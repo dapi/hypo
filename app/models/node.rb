@@ -1,0 +1,2 @@
+class Node < TenantRecord
+end

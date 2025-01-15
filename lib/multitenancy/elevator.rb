@@ -10,10 +10,10 @@ module Multitenancy
     end
 
     def call(env)
-      raise 'wtf' if RequestStore.store[:account]
+      raise "wtf" if RequestStore.store[:account]
 
       subdomain = fetch_subdomain env
-      return @app.call env if subdomain.nil? || subdomain == 'admin'
+      return @app.call env if subdomain.nil? || subdomain == "admin"
 
       account = find_account subdomain
 

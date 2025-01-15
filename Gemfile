@@ -40,8 +40,8 @@ gem "thruster", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 #
-gem 'semver2', github: 'haf/semver'
-gem 'slim-rails'
+gem "semver2", github: "haf/semver"
+gem "slim-rails"
 
 group :development, :test do
   gem "dip"

@@ -36,7 +36,7 @@ module Multitenancy
   end
 
   def tenant_schemas_to_migrate
-    ['public'] + tenant_schemas
+    [ "public" ] + tenant_schemas
   end
 
   def tenant_schemas
@@ -57,7 +57,7 @@ module Multitenancy
 
   def use_all_tenants
     saved_tenant = Thread.current[:current_tenant]
-    connection.schema_search_path = tenant_schemas.join(',')
+    connection.schema_search_path = tenant_schemas.join(",")
     Thread.current[:current_tenant] = nil
     yield
   ensure
@@ -78,7 +78,7 @@ module Multitenancy
     if multiple_db?
       tenant
     else
-      [tenant, 'public'].join(',')
+      [ tenant, "public" ].join(",")
     end
   end
 
@@ -91,7 +91,7 @@ module Multitenancy
   end
 
   def tenant_template
-    multiple_db? ? 'public' : 'tenant_template'
+    multiple_db? ? "public" : "tenant_template"
   end
 
   def default_schema?
@@ -99,6 +99,6 @@ module Multitenancy
   end
 
   def default_tenant_scheme
-    'public'
+    "public"
   end
 end

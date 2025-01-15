@@ -1,0 +1,23 @@
+doctype html
+html lang=I18n.locale class='h-100'
+  head
+    = render 'head'
+    = stylesheet_link_tag "private", "data-turbo-track": "reload", media: 'all'
+  body
+    /= render 'header'
+
+    .d-flex.flex-nowrap style='height: 100vh'
+      // .container.px-3.pb-5.flex-shrink-0
+      = render 'sidebar'
+      - if content_for? :topbar
+        main.container-fluid style='height: 100vh; overflow: scroll;'
+          = content_for :topbar
+          .py-3.px-3
+            = yield
+      - else
+        main.container-fluid.px-5.py-5 style='overflow: scroll;' 
+          = yield
+
+    /= render 'footer'
+    = render 'flashes'
+    /= render 'samochat_widget'

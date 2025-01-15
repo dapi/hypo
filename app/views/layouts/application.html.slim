@@ -1,0 +1,11 @@
+doctype html
+html lang=I18n.locale
+  head
+    = render 'head'
+  body
+    = render 'header'
+    main.container.px-3.py-5
+      = yield
+
+    = render 'footer'
+    = render 'flashes'

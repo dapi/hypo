@@ -1,0 +1,7 @@
+- decorator ||= object.is_a?(ApplicationDecorator) ? object.class : object.decorate
+- columns = decorator.table_columns unless defined?(columns) && columns.present?
+table.table.table-condensed.table-narrow
+  - columns.each do |column|
+    tr
+      th= object.class.attribute_title column
+      td= object.send column

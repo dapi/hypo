@@ -1,0 +1,30 @@
+nav.navbar.navbar-expand-lg.bg-body-tertiary.sticky-top.border-bottom
+  = content_tag :div, class: "#{defined?(container_class) ? container_class : 'container'} px-3" do
+    span.navbar-brand.mb-0.h1
+      = link_to root_url, class: 'text-dark text-decoration-none' do
+        = render 'logo'
+    button.navbar-toggler[type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"]
+      span.navbar-toggler-icon
+    #navbarNav.collapse.navbar-collapse
+      ul.navbar-nav.me-auto.mb-2.mb-lg-0.d-flex
+        /li.nav-item
+          /= active_link_to 'Безопасность', safety_url, class: 'nav-link'
+        /li.nav-item
+          /= active_link_to 'Стоимость', price_url, class: 'nav-link'
+        /li.nav-item
+          /= active_link_to 'Функции', features_url, class: 'nav-link'
+        /li.nav-item
+          /= active_link_to 'Токены и сети', networks_url, class: 'nav-link'
+        li.nav-item
+          = active_link_to 'О проекте', '#', class: 'nav-link'
+    ///span Методично ловим айрдропы в популярных блокчейн-проектах
+    //.alert.alert-warning.mb-0
+      //| 🧁 Сервис находится в разработке. Используйте на свой страх и риск.
+    - if logged_in?
+      .navbar-text
+        | 🙋 Привет, #{current_user}!
+        - if current_user.default_account.present?
+          span.ms-4= link_to 'Рабочий стол', private_root_url(subdomain: current_user.default_account.subdomain)
+        span.ms-4= link_to 'Попрощаться', user_sessions_url, data: { turbo_method: :delete }
+    - else
+      = link_to 'Подключиться', new_session_url(back_url: current_url), class: 'btn btn-primary'

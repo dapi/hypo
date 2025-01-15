@@ -1,0 +1,9 @@
+h3 
+  | Сессия 
+  = link_to '#' + session.id.to_s, private_sessions_path
+  |  - 
+  = link_to session.wallet_address.address, private_wallets_path(wallet_address_id: session.wallet_address_id)
+  |  - 
+  = session.network
+  |  - 
+  = session.script.title

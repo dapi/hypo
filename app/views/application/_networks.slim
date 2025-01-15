@@ -1,0 +1,23 @@
+h2.mb-4 Доступные сети и контракты
+table.table.table-condensed.table-striped.table-narrow.table-bordered
+  thead.thead-dark
+    tr
+      th Сеть
+      th Стоимость газа
+      - Token.ordered.each do |token|
+        th.font-monospace
+          = token.name
+          |  контракт
+  tbody
+    - Network.available.order(:id).each do |network|
+      tr
+        th= network.title
+        td
+          div= network.gas_price_humanized
+          small.text-muted= (network.gas_price_updated_at.present? ? l(network.gas_price_updated_at, format: :long) : '' )
+        - Token.ordered.each do |token|
+          - network_token = NetworkToken.find_by(token: token, network: network)
+          td
+            code= network_token.address
+
+p.text-muted Текущее время #{l Time.zone.now, format: :long}

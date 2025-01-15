@@ -13,7 +13,7 @@ module Multitenancy
   def create(tenant, &)
     # Схема уже создается клонированием
     # connection.execute(%{CREATE SCHEMA "#{tenant}"})
-    connection.execute(sanitize_sql_array['SELECT clone_schema(?,?)', tenant_template, tenant])
+    connection.execute(sanitize_sql_array["SELECT clone_schema(?,?)", tenant_template, tenant])
     Thread.current[:available_schemas] = nil
     switch(tenant, &) if block_given?
   end
@@ -83,7 +83,7 @@ module Multitenancy
   end
 
   def drop(tenant)
-    connection.execute(sanitize_sql_array ['DROP SCHEMA ? CASCADE', tenant])
+    connection.execute(sanitize_sql_array [ "DROP SCHEMA ? CASCADE", tenant ])
   end
 
   def multiple_db?

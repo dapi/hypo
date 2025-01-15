@@ -1,9 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  tenant_key: MyString
+  tenant_key: abc
   owner: one
 
 two:
-  tenant_key: MyString
+  tenant_key: def
   owner: two

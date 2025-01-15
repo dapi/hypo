@@ -1,0 +1,19 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*'
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  release:
+    uses: safeblock-com/github-actions/.github/workflows/golang-release.yml@docker-build
+    with:
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}

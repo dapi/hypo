@@ -72,3 +72,5 @@ gem "nanoid", "~> 2.0"
 gem "request_store", "~> 1.7"
 
 gem "active_link_to", "~> 1.0"
+
+gem "cssbundling-rails", "~> 1.4"

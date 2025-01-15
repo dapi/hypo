@@ -1,3 +1,5 @@
+require 'account_constraint'
+
 Rails.application.routes.draw do
   constraints subdomain: "" do
     root "dashboard#index"
@@ -17,7 +19,7 @@ Rails.application.routes.draw do
     # root "posts#index"
   end
 
-  scope module: :private, as: :private, constraints: AccountConstraint do
+  scope module: :tenant, as: :tenant, constraints: AccountConstraint do
     root "nodes#index"
     resources :nodes
   end

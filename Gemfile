@@ -42,7 +42,6 @@ gem "thruster", require: false
 #
 gem 'semver2', github: 'haf/semver'
 gem 'slim-rails'
-gem 'sassc-rails'
 
 group :development, :test do
   gem "dip"

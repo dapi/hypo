@@ -1,6 +1,5 @@
 class Account < ApplicationRecord
-  include AccountTenant
-  belongs_to :owner, class_name: "User"
+  include AccountSubdomain
 
-  alias_attribute :subdomain, :tenant_key
+  belongs_to :owner, class_name: "User"
 end

@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
     # Defines the root path route ("/")
     # root "posts#index"
+    get 'telegram/auth_callback', to: 'telegram_auth_callback#create'
   end
 
   scope module: :tenant, as: :tenant, constraints: AccountConstraint do

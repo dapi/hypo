@@ -4,12 +4,12 @@
 class ApplicationConfig < Anyway::Config
   env_prefix :vilna
   attr_config(
-    app_title: 'Vilna',
-    host: 'localhost',
-    protocol: 'https',
+    app_title: "Vilna",
+    host: "localhost",
+    protocol: "https",
     # sidekiq_redis_url: 'redis://localhost:6379/0',
-    bot_token: '',
-    bot_username: '',
+    bot_token: "",
+    bot_username: "",
   )
 
   class << self

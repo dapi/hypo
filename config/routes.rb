@@ -1,4 +1,4 @@
-require 'account_constraint'
+require "account_constraint"
 
 Rails.application.routes.draw do
   constraints subdomain: "" do
@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
     # Defines the root path route ("/")
     # root "posts#index"
-    get 'telegram/auth_callback', to: 'telegram_auth_callback#create'
+    get "telegram/auth_callback", to: "telegram_auth_callback#create"
   end
 
   scope module: :tenant, as: :tenant, constraints: AccountConstraint do

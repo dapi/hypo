@@ -44,7 +44,7 @@ gem "semver2", github: "haf/semver"
 gem "slim-rails"
 
 group :development, :test do
-  gem "dip", '~> 8.2.5'
+  gem "dip", "~> 8.2.5"
 
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
@@ -59,6 +59,15 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem "guard"
+  gem "listen"
+  gem "terminal-notifier-guard"
+
+  gem "guard-ctags-bundler"
+  gem "guard-minitest"
+  gem "guard-rails"
+  gem "guard-rubocop", "~> 1.5"
+  gem "guard-shell", "~> 0.7.2"
 end
 
 group :test do

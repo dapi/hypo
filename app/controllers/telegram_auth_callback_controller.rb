@@ -4,9 +4,9 @@
 
 class TelegramAuthCallbackController < ApplicationController
   def self.sign_params(data_params)
-    data_check_string = data_params.sort.map { |k, v| [k, v].join('=') }.join("\n")
+    data_check_string = data_params.sort.map { |k, v| [ k, v ].join("=") }.join("\n")
     secret_key = OpenSSL::Digest::SHA256.new(ApplicationConfig.bot_token).digest
-    OpenSSL::HMAC.hexdigest('sha256', secret_key, data_check_string)
+    OpenSSL::HMAC.hexdigest("sha256", secret_key, data_check_string)
   end
 
   EXPIRED = 5
@@ -18,10 +18,10 @@ class TelegramAuthCallbackController < ApplicationController
 
     if current_user.default_account.present?
       redirect_back_or_to private_root_url(subdomain: current_user.default_account.subdomain),
-                          notice: t('flash.hi', username: current_user)
+                          notice: t("flash.hi", username: current_user)
     else
       # TODO: На страницу создания аккаунта через тариф
-      redirect_back_or_to root_url, notice: t('flash.hi', username: current_user)
+      redirect_back_or_to root_url, notice: t("flash.hi", username: current_user)
     end
   end
 
@@ -36,7 +36,7 @@ class TelegramAuthCallbackController < ApplicationController
   def authorize!
     return if signed? && fresh?
 
-    raise HumanizedError, 'Unauthorized telegram callback'
+    raise HumanizedError, "Unauthorized telegram callback"
   end
 
   def signed?

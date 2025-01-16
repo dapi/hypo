@@ -11,7 +11,7 @@ class User < ApplicationRecord
 
   ROLES = %w[user superadmin developer].freeze
 
-  enum role: ROLES.each_with_object({}) { |key, a| a[key] = key }
+  enum :role, ROLES.each_with_object({}) { |key, a| a[key] = key }
 
   def default_account
     accounts.order(:id).first

@@ -7,7 +7,8 @@ image: safeblock-com/vilna
 # Deploy to these servers.
 servers:
   web:
-    - 147.182.199.181
+    # - 147.182.199.181
+    - becquerel.kiiiosk.store 
   # job:
   #   hosts:
   #     - 192.168.0.1
@@ -88,8 +89,9 @@ builder:
   #   - RAILS_MASTER_KEY
 
 # Use a different ssh user than root
-ssh:
-  keys: [ "~/.ssh/id_ed25519" ]
+# ssh:
+  # keys: [ "/Users/danil/.ssh/id_rsa" ]
+  # log_level: debug
 #   user: app
 
 # Use accessory services (secrets come from .kamal/secrets).

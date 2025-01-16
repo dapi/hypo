@@ -1,4 +1,4 @@
-version: '7.1'
+version: '8.1'
 
 # Define default environment variables to pass
 # to Docker Compose
@@ -61,10 +61,15 @@ interaction:
     default_args: vilna_development
     command: psql -h postgres -U postgres
 
+  clean_cache:
+    description: Delete cache files on the host machine
+    command: rm -rf $(pwd)/tmp/cache/*
+
 provision:
   # We need the `|| true` part because some docker-compose versions
   # cannot down a non-existent container without an error,
   # see https://github.com/docker/compose/issues/9426
   - dip compose down --volumes || true
+  - dip clean_cache
   - dip compose up -d postgres
-  - dip bash -c bin/setup
+  - dip bash -c bin/setup -- --skip-server

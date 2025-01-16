@@ -44,7 +44,7 @@ gem "semver2", github: "haf/semver"
 gem "slim-rails"
 
 group :development, :test do
-  gem "dip"
+  gem "dip", '~> 8.2.5'
 
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
@@ -74,3 +74,7 @@ gem "request_store", "~> 1.7"
 gem "active_link_to", "~> 1.0"
 
 gem "cssbundling-rails", "~> 1.4"
+
+gem "anyway_config", "~> 2.6"
+
+gem "rack-cors", "~> 2.0"

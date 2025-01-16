@@ -11,6 +11,6 @@ class SessionsController < ApplicationController
 
   def destroy
     logout
-    redirect_to root_url(format: :html), status: :see_other, notice: t('flash.buy')
+    redirect_to root_url(format: :html), status: :see_other, notice: t("flash.buy")
   end
 end

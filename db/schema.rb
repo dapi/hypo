@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_16_184741) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_16_185803) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -30,6 +30,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_16_184741) do
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_memberships_on_account_id"
     t.index ["user_id"], name: "index_memberships_on_user_id"
+  end
+
+  create_table "nodes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "account_id", null: false
+    t.string "key", null: false
+    t.boolean "no_mining", default: false, null: false
+    t.boolean "block_time", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_nodes_on_account_id"
+    t.index ["key"], name: "index_nodes_on_key", unique: true
   end
 
   create_table "telegram_users", id: :string, force: :cascade do |t|
@@ -63,4 +74,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_16_184741) do
   add_foreign_key "accounts", "users", column: "owner_id"
   add_foreign_key "memberships", "accounts"
   add_foreign_key "memberships", "users"
+  add_foreign_key "nodes", "accounts"
 end

@@ -1,14 +1,10 @@
 module ApplicationHelper
   def app_title
-    "Vilna"
+    ApplicationConfig.app_title
   end
 
   def current_url
     request.url
-  end
-
-  def logged_in?
-    authenticated?
   end
 
   def spinner

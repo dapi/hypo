@@ -1,0 +1,5 @@
+./bin/semver inc patch
+git add .semver
+git commit -m `./bin/semver`
+gh release create `./bin/semver` --generate-notes
+git push --follow-tags

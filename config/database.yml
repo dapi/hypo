@@ -33,51 +33,33 @@ _default: &_default
   <% if ENV.key?('DATABASE_PASSWORD') %>
   password: <%= ENV["DATABASE_PASSWORD"] %>
   <% end %>
+  url: <%= ENV['DATABASE_URL'] %>
 
-_primary: &_primary
-  <<: *_default
-  url: <%= ENV.fetch( "PRIMARY_DATABASE_URL", ENV['DATABASE_URL'] ) %>
-
-_tenant: &_tenant
-  <<: *_default
-  migrations_paths: 'db/tenant_migrate'
-  url: <%= ENV.fetch( "TENANT_DATABASE_URL", ENV['DATABASE_URL'] ) %>
 
 development:
-  primary:
-    <<: *_primary
-    database: vilna_primary_development
-  tenant:
-    <<: *_tenant
-    database: vilna_tenant_development
+  <<: *_default
+  database: vilna_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  primary:
-    <<: *_primary
-    database: vilna_primary_test
-  tenant:
-    <<: *_tenant
-    database: vilna_tenant_test
+  <<: *_default
+  database: vilna_test
 
 production:
-  primary: &primary_production
-    <<: *_primary
-    database: <%= ENV.fetch( 'DATABASE_PRIMARY_NAME', 'vilna_primary_production' ) %>
-  tenant:
-    <<: *_tenant
-    database: <%= ENV.fetch( 'DATABASE_TENANT_NAME', 'vilta_tenant_production' ) %>
+  primary: &production
+    <<: *_default
+    database: <%= ENV.fetch( 'DATABASE_NAME', 'vilna_production' ) %>
   cache:
-    <<: *primary_production
+    <<: *production
     database: vilna_production_cache
     migrations_paths: db/cache_migrate
   queue:
-    <<: *primary_production
+    <<: *production
     database: vilna_production_queue
     migrations_paths: db/queue_migrate
   cable:
-    <<: *primary_production
+    <<: *production
     database: vilna_production_cable
     migrations_paths: db/cable_migrate

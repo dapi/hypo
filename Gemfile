@@ -76,3 +76,5 @@ gem "active_link_to", "~> 1.0"
 gem "cssbundling-rails", "~> 1.4"
 
 gem "anyway_config", "~> 2.6"
+
+gem "sorcery", "~> 0.17.0"

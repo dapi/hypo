@@ -17,7 +17,7 @@ class TelegramAuthCallbackController < ApplicationController
     login data_params
 
     if current_user.default_account.present?
-      redirect_back_or_to private_root_url(subdomain: current_user.default_account.subdomain),
+      redirect_back_or_to tenant_root_url(subdomain: current_user.default_account.subdomain),
                           notice: t("flash.hi", username: current_user)
     else
       # TODO: На страницу создания аккаунта через тариф

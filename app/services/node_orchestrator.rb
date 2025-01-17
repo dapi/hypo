@@ -6,10 +6,16 @@ class NodeOrchestrator
 
   attr_reader :cli
 
-  def initialize(node_key, host)
-    @node_key = node_key
-    @release = RELEASE_PREFIX + node_key
-    @set_args = "host=" + host
+  def initialize(path:, node_id:, account_id:, values: {})
+    @release = RELEASE_PREFIX + node_id
+    @values = values.merge(
+      podLabels: {
+        'vilna.blockberry.com/nodeId': node_id,
+        'vilna.blockberry.com/accountId': account_id
+      },
+      path: path,
+      host: ApplicationConfig.node_host,
+    ).deep_stringify_keys
     @cli = Rhelm::Client.new(
       kubeconfig: ApplicationConfig.kubeconfig,
       namespace: ApplicationConfig.namespace,
@@ -18,18 +24,18 @@ class NodeOrchestrator
     )
   end
 
-  def install(values: {})
-    with_values values do |values_path|
+  def install
+    with_values do |values_path|
       cli
-        .install(release, ApplicationConfig.chart_dir, create_namespace: true, set: set_args, values: values_path)
+        .install(release, ApplicationConfig.chart_dir, create_namespace: true, values: values_path)
         .run &method(:run_block)
     end
   end
 
-  def upgrade(values: {})
-    with_values values do |values_path|
+  def upgrade
+    with_values do |values_path|
       cli
-        .upgrade(release, ApplicationConfig.chart_dir, create_namespace: true, set: set_args, values: values_path)
+        .upgrade(release, ApplicationConfig.chart_dir, create_namespace: true, values: values_path)
         .run
     end
   end
@@ -44,13 +50,13 @@ class NodeOrchestrator
 
   private
 
-  attr_reader :release, :node_key, :set_args
+  attr_reader :release, :set_args, :values
 
   def logger
     Rails.logger
   end
 
-  def with_values(values, &block)
+  def with_values(&block)
     file = Tempfile.new(release + "-values.yaml")
     file.write values.to_yaml
     file.close

@@ -29,6 +29,8 @@ Rails.application.configure do
   config.solid_queue.connects_to = { database: { writing: :queue } }
 
   config.hosts << ENV["APP_HOST"]
+  config.hosts << "*." + ENV["APP_HOST"]
+  config.hosts << /brandymint/
 
   config.web_console.whitelisted_ips = [ "172.0.0.0/8" ]
 

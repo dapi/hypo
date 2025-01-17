@@ -20,6 +20,8 @@ user = User.find_or_create_by!(telegram_user_id: telegram_user.id)
 
 user.update! role: 'superadmin'
 account = Account
-  .find_or_create_by!(owner: user)
+  .find_or_create_by!(owner: user, subdomain: 'demo')
 
-account.nodes.find_or_create_by!(key: 'abc')
+account.memberships.find_or_create_by! user: user
+
+account.nodes.first_or_create!

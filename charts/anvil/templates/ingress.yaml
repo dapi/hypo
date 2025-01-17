@@ -7,6 +7,7 @@ metadata:
     {{- include "anvil.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
   annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
@@ -27,7 +28,7 @@ spec:
     - host: {{ .Values.host | quote }}
       http:
         paths:
-          - path: /
+          - path: {{ .Values.path }}
             pathType: ImplementationSpecific
             backend:
               service:

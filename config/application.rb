@@ -20,7 +20,7 @@ module Vilna
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w[assets tasks])
 
-    config.action_dispatch.tld_length = Rails.env.test? ? 1 : Integer(ENV['TLD_LENGTH'] || 1)
+    config.action_dispatch.tld_length = Rails.env.test? ? 1 : Integer(ENV["TLD_LENGTH"] || 1)
 
     # Configuration for the application, engines, and railties goes here.
     #

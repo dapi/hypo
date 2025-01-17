@@ -24,7 +24,7 @@ nav.navbar.navbar-expand-lg.bg-body-tertiary.sticky-top.border-bottom
       .navbar-text
         | 🙋 Привет, #{current_user}!
         - if current_user.default_account.present?
-          span.ms-4= link_to 'Рабочий стол', private_root_url(subdomain: current_user.default_account.subdomain)
+          span.ms-4= link_to 'Рабочий стол', tenant_root_url(subdomain: current_user.default_account.subdomain)
         span.ms-4= link_to 'Попрощаться', session_url, data: { turbo_method: :delete }
     - else
       = link_to 'Подключиться', new_session_url(back_url: current_url), class: 'btn btn-primary'

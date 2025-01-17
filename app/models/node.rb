@@ -26,11 +26,17 @@ class Node < ApplicationRecord
     end
   end
 
-  def host
-    key + ApplicationConfig.nodes_domain
+  before_create { self.key ||= Nanoid.generate(size: 32) }
+
+  def url
+    ApplicationConfig.nodes_domain + path
+  end
+
+  def path
+    "/" + key
   end
 
   def orchestrator
-    @orchestrator ||= NodeOrchestrator.new(key, host)
+    @orchestrator ||= NodeOrchestrator.new(path: path, node_id: id, account_id: account_id)
   end
 end

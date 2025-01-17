@@ -28,6 +28,8 @@ gem "solid_cache"
 gem "solid_queue"
 gem "solid_cable"
 
+gem "state_machines-activerecord"
+
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
@@ -87,3 +89,7 @@ gem "cssbundling-rails", "~> 1.4"
 gem "anyway_config", "~> 2.6"
 
 gem "sorcery", "~> 0.17.0"
+
+gem "rhelm", "~> 0.2.0"
+
+gem "zstd-ruby", "~> 1.5"

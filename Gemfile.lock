@@ -345,6 +345,7 @@ GEM
     request_store (1.7.0)
       rack (>= 1.4)
     rexml (3.4.0)
+    rhelm (0.2.0)
     rubocop (1.70.0)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
@@ -420,6 +421,13 @@ GEM
       net-sftp (>= 2.1.2)
       net-ssh (>= 2.8.0)
       ostruct
+    state_machines (0.6.0)
+    state_machines-activemodel (0.9.0)
+      activemodel (>= 6.0)
+      state_machines (>= 0.6.0)
+    state_machines-activerecord (0.9.0)
+      activerecord (>= 6.0)
+      state_machines-activemodel (>= 0.9.0)
     stimulus-rails (1.3.4)
       railties (>= 6.0.0)
     stringio (3.1.2)
@@ -456,6 +464,7 @@ GEM
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.7.1)
+    zstd-ruby (1.5.6.6)
 
 PLATFORMS
   aarch64-linux
@@ -494,6 +503,7 @@ DEPENDENCIES
   puma (>= 5.0)
   rails (~> 8.0.1)
   request_store (~> 1.7)
+  rhelm (~> 0.2.0)
   rubocop-rails-omakase
   selenium-webdriver
   semver2!
@@ -502,12 +512,14 @@ DEPENDENCIES
   solid_cache
   solid_queue
   sorcery (~> 0.17.0)
+  state_machines-activerecord
   stimulus-rails
   terminal-notifier-guard
   thruster
   turbo-rails
   tzinfo-data
   web-console
+  zstd-ruby (~> 1.5)
 
 BUNDLED WITH
-   2.6.2
+   2.6.3

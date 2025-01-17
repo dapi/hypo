@@ -69,10 +69,13 @@ ingress:
   # className: ""
   annotations:
     kubernetes.io/ingress.allow-http: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/rewrite-target: /
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
-  #tls:
-    #- secretName: anvil-tls
+  tls:
+    - secretName: anvil-tls
       #hosts:
         #- a1.anvil-nodes.blockberry.cc
 

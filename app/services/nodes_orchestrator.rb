@@ -9,6 +9,7 @@ class NodesOrchestrator
   def initialize(node_id)
     @node_id = node_id
     @release = RELEASE_PREFIX + node_id
+    @set_args = "host=#{node_id}." + ApplicationConfig.nodes_domain
     @cli = Rhelm::Client.new(
       kubeconfig: ApplicationConfig.kubeconfig,
       namespace: ApplicationConfig.namespace,
@@ -43,11 +44,7 @@ class NodesOrchestrator
 
   private
 
-  attr_reader :release, :node_id
-
-  def set_args
-    "ingress.hosts[0].host=#{node_id}." + ApplicationConfig.nodes_domain
-  end
+  attr_reader :release, :node_id, :set_args
 
   def logger
     Rails.logger

@@ -24,20 +24,14 @@ spec:
     {{- end }}
   {{- end }}
   rules:
-    {{- range .Values.ingress.hosts }}
-    - host: {{ .host | quote }}
+    - host: {{ .Values.host | quote }}
       http:
         paths:
-          {{- range .paths }}
-          - path: {{ .path }}
-            {{- with .pathType }}
-            pathType: {{ . }}
-            {{- end }}
+          - path: /
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: {{ include "anvil.fullname" $ }}
                 port:
                   number: {{ $.Values.service.port }}
-          {{- end }}
-    {{- end }}
 {{- end }}

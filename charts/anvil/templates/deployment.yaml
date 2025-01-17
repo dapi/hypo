@@ -36,13 +36,17 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          {{/*command:*/}}
-            {{/*- anvil*/}}
+          command:
+            - anvil
+            - --host  
+            - 0.0.0.0
+            - --cache-path 
+            - /cache
             {{/*- -p*/}}
             {{/*- "80"*/}}
           ports:
             - name: http
-              containerPort: {{ .Values.service.port }}
+              containerPort: 8545 # {{ .Values.service.port }}
               protocol: TCP
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}

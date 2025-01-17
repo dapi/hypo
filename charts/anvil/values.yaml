@@ -8,6 +8,7 @@ replicaCount: 1
 # This sets the container image more information can be found here: https://kubernetes.io/docs/concepts/containers/images/
 image:
   repository: ghcr.io/safeblock-com/anvil-image/anvil
+  # repository: hashicorp/http-echo
   # This sets the pull policy for images.
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
@@ -54,22 +55,23 @@ service:
   # This sets the service type more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
   type: ClusterIP
   # This sets the ports more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports
-  port: 8545
+  port: 80 # 8545
 
 host: anvil-node.example.com
 
 # This block is for setting up the ingress for more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
 ingress:
-  className: nginx
   enabled: true
+  className: nginx
   # className: ""
-  annotations: {}
+  annotations:
+    kubernetes.io/ingress.allow-http: "true"
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+  #tls:
+    #- secretName: anvil-tls
+      #hosts:
+        #- a1.anvil-nodes.blockberry.cc
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -84,6 +86,15 @@ resources: {}
   #   memory: 128Mi
 
 # This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
+#livenessProbe:
+  #httpGet:
+    #path: /
+    #port: http
+#readinessProbe:
+  #httpGet:
+    #path: /
+    #port: http
+
 livenessProbe:
   periodSeconds: 10
   exec:
@@ -122,17 +133,17 @@ autoscaling:
   # targetMemoryUtilizationPercentage: 80
 
 # Additional volumes on the output Deployment definition.
-volumes: []
-# - name: foo
-#   secret:
-#     secretName: mysecret
-#     optional: false
+volumes:
+  - name: tmpfs
+    emptyDir:
+      medium: Memory
+      sizeLimit: 64Mi # {{ (.Values.tmpfs).sizeLimit | default "64Mi" }}
 
 # Additional volumeMounts on the output Deployment definition.
-volumeMounts: []
-# - name: foo
-#   mountPath: "/etc/foo"
-#   readOnly: true
+volumeMounts:
+  - name: tmpfs
+    readOnly: false
+    mountPath: '/cache'
 
 nodeSelector: {}
 

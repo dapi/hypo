@@ -1,8 +1,8 @@
-require 'rhelm/client'
-require 'tempfile'
+require "rhelm/client"
+require "tempfile"
 
 class NodesOrchestrator
-  RELEASE_PREFIX = 'anvil-'
+  RELEASE_PREFIX = "anvil-"
 
   attr_reader :cli
 
@@ -51,7 +51,7 @@ class NodesOrchestrator
   end
 
   def with_values(values, &block)
-    file = Tempfile.new(release + '-values.yaml')
+    file = Tempfile.new(release + "-values.yaml")
     file.write values.to_yaml
     file.close
     block.call file.path

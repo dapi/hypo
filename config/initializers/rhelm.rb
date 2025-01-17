@@ -1,4 +1,4 @@
-require 'rhelm/client'
+require "rhelm/client"
 
 # Using kubeconfig
 $rhelm = Rhelm::Client.new(

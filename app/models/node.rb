@@ -29,7 +29,7 @@ class Node < ApplicationRecord
   before_create { self.key ||= Nanoid.generate(size: 32) }
 
   def url
-    ApplicationConfig.nodes_domain + path
+    ApplicationConfig.protocol + '://' + ApplicationConfig.node_host + path
   end
 
   def path

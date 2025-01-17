@@ -35,6 +35,9 @@ Common labels
 */}}
 {{- define "anvil.labels" -}}
 helm.sh/chart: {{ include "anvil.chart" . }}
+{{- with .Values.extraLabels }}
+{{- toYaml . | nindent 0 }}
+{{- end }}
 {{ include "anvil.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}

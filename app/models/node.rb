@@ -1,7 +1,7 @@
 class Node < ApplicationRecord
   belongs_to :account
 
-  state_machine initial: "initiated" do
+  state_machine initial: :initiated do
     event :start do
       transition initiated: :starting
     end

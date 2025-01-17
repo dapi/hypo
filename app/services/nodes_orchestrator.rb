@@ -18,11 +18,18 @@ class NodesOrchestrator
   end
 
   def install(values: {})
-    set = "ingress.hosts[0].host=#{node_id}.anvil-nodes.blockberry.cc"
     with_values values do |values_path|
       cli
-        .install(release, ApplicationConfig.chart_dir, create_namespace: true, set: set, values: values_path)
+        .install(release, ApplicationConfig.chart_dir, create_namespace: true, set: set_args, values: values_path)
         .run &method(:run_block)
+    end
+  end
+
+  def upgrade(values: {})
+    with_values values do |values_path|
+      cli
+        .upgrade(release, ApplicationConfig.chart_dir, create_namespace: true, set: set_args, values: values_path)
+        .run
     end
   end
 
@@ -37,6 +44,10 @@ class NodesOrchestrator
   private
 
   attr_reader :release, :node_id
+
+  def set_args
+    "ingress.hosts[0].host=#{node_id}." + ApplicationConfig.nodes_domain
+  end
 
   def logger
     Rails.logger

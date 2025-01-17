@@ -89,3 +89,5 @@ gem "anyway_config", "~> 2.6"
 gem "sorcery", "~> 0.17.0"
 
 gem "rhelm", "~> 0.2.0"
+
+gem "zstd-ruby", "~> 1.5"

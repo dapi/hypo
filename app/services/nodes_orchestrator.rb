@@ -6,10 +6,10 @@ class NodesOrchestrator
 
   attr_reader :cli
 
-  def initialize(node_id)
-    @node_id = node_id
-    @release = RELEASE_PREFIX + node_id
-    @set_args = "host=#{node_id}." + ApplicationConfig.nodes_domain
+  def initialize(node_key, host)
+    @node_key = node_key
+    @release = RELEASE_PREFIX + node_key
+    @set_args = "host=" + host
     @cli = Rhelm::Client.new(
       kubeconfig: ApplicationConfig.kubeconfig,
       namespace: ApplicationConfig.namespace,
@@ -44,7 +44,7 @@ class NodesOrchestrator
 
   private
 
-  attr_reader :release, :node_id, :set_args
+  attr_reader :release, :node_key, :set_args
 
   def logger
     Rails.logger

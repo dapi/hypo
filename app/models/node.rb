@@ -10,7 +10,7 @@ class Node < ApplicationRecord
       transition starting: :processing
     end
 
-    event :failed do
+    event :fail do
       transition starting: :failed_to_start
       transition finishing: :failed_to_finish
     end
@@ -24,5 +24,13 @@ class Node < ApplicationRecord
     event :finished do
       transition finishing: :finished
     end
+  end
+
+  def host
+    key + ApplicationConfig.nodes_domain
+  end
+
+  def orchestrator
+    @orchestrator ||= NodesOrchestrator.new(key, host)
   end
 end

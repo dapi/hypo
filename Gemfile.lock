@@ -345,6 +345,7 @@ GEM
     request_store (1.7.0)
       rack (>= 1.4)
     rexml (3.4.0)
+    rhelm (0.2.0)
     rubocop (1.70.0)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
@@ -494,6 +495,7 @@ DEPENDENCIES
   puma (>= 5.0)
   rails (~> 8.0.1)
   request_store (~> 1.7)
+  rhelm (~> 0.2.0)
   rubocop-rails-omakase
   selenium-webdriver
   semver2!
@@ -510,4 +512,4 @@ DEPENDENCIES
   web-console
 
 BUNDLED WITH
-   2.6.2
+   2.6.3

@@ -7,6 +7,7 @@ class ApplicationConfig < Anyway::Config
     app_title: "Vilna",
     host: "localhost",
     protocol: "https",
+    kubeconfig: ,
     # sidekiq_redis_url: 'redis://localhost:6379/0',
     bot_token: "",
     bot_username: "",

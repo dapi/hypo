@@ -87,3 +87,5 @@ gem "cssbundling-rails", "~> 1.4"
 gem "anyway_config", "~> 2.6"
 
 gem "sorcery", "~> 0.17.0"
+
+gem "rhelm", "~> 0.2.0"

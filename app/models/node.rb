@@ -31,6 +31,6 @@ class Node < ApplicationRecord
   end
 
   def orchestrator
-    @orchestrator ||= NodesOrchestrator.new(key, host)
+    @orchestrator ||= NodeOrchestrator.new(key, host)
   end
 end

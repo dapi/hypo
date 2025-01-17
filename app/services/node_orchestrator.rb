@@ -1,7 +1,7 @@
 require "rhelm/client"
 require "tempfile"
 
-class NodesOrchestrator
+class NodeOrchestrator
   RELEASE_PREFIX = "anvil-"
 
   attr_reader :cli

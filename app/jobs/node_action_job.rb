@@ -6,7 +6,7 @@ class NodeActionJob < ApplicationJob
     node = Node.find node_id
     send action node
   rescue => err
-    node&.fail! err
+    node&.failed! err
   end
 
   private

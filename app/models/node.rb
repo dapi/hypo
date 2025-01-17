@@ -10,7 +10,7 @@ class Node < ApplicationRecord
       transition starting: :processing
     end
 
-    event :fail do
+    event :failed do
       transition starting: :failed_to_start
       transition finishing: :failed_to_finish
     end

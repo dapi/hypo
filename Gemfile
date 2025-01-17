@@ -93,3 +93,5 @@ gem "sorcery", "~> 0.17.0"
 gem "rhelm", "~> 0.2.0"
 
 gem "zstd-ruby", "~> 1.5"
+
+gem "solid_queue_dashboard", "~> 0.2.0"

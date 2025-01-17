@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_16_202257) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_17_140752) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -39,6 +39,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_16_202257) do
     t.boolean "block_time", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "state", default: "initiated", null: false
     t.index ["account_id"], name: "index_nodes_on_account_id"
     t.index ["key"], name: "index_nodes_on_key", unique: true
   end

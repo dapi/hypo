@@ -95,3 +95,11 @@ gem "rhelm", "~> 0.2.0"
 gem "zstd-ruby", "~> 1.5"
 
 gem "solid_queue_dashboard", "~> 0.2.0"
+
+gem "simple_form", "~> 5.3"
+
+gem "strip_attributes", "~> 1.14"
+
+gem "kaminari", "~> 1.2"
+
+gem "ransack", "~> 4.2"

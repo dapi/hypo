@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AccountsController < ApplicationController
-  layout 'simple'
+  layout "simple"
 
   before_action :require_login
 

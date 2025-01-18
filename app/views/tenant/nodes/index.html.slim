@@ -1,0 +1,6 @@
+- if current_account.nodes.empty?
+  p У вас еще нет ни одной ноды
+  = link_to 'Создать', new_tenant_node_url, class: 'btn btn-primary'
+- else
+  h1 Ваши ноды
+  = link_to 'Создать', new_tenant_node_url, class: 'btn btn-primary'

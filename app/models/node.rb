@@ -28,6 +28,8 @@ class Node < ApplicationRecord
 
   before_create { self.key ||= Nanoid.generate(size: 32) }
 
+  validates :title, uniqueness: { scope: :account_id }
+
   def url
     ApplicationConfig.protocol + "://" + ApplicationConfig.node_host + path
   end

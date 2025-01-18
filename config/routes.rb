@@ -23,18 +23,20 @@ Rails.application.routes.draw do
     mount SolidQueueDashboard::Engine, at: "/solid-queue"
   end
 
-  scope module: :tenant, as: :tenant, constraints: AccountConstraint do
-    root "nodes#index"
-    resources :nodes
-  end
-
   # TODO: constraint superadmin only
   constraints subdomain: "admin" do
     scope module: :admin, as: :admin do
       resources :users
+      resources :telegram_users
       resources :accounts
       resources :nodes
+      resources :memberships
       root to: "accounts#index"
     end
+  end
+
+  scope module: :tenant, as: :tenant, constraints: AccountConstraint do
+    root "nodes#index"
+    resources :nodes
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "administrate/base_dashboard"
 
 class UserDashboard < Administrate::BaseDashboard
@@ -20,7 +22,9 @@ class UserDashboard < Administrate::BaseDashboard
     owner_accounts: Field::HasMany,
     remember_me_token: Field::String,
     remember_me_token_expires_at: Field::DateTime,
-    role: Field::Select.with_options(searchable: false, collection: ->(field) { field.resource.class.send(field.attribute.to_s.pluralize).keys }),
+    role: Field::Select
+                    .with_options(searchable: false,
+                                  collection: ->(field) { field.resource.class.send(field.attribute.to_s.pluralize).keys }),
     salt: Field::String,
     telegram_user: Field::BelongsTo,
     created_at: Field::DateTime,
@@ -33,30 +37,28 @@ class UserDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
-    id
+    telegram_user
     accounts
-    crypted_password
     email
+    last_login_at
+    last_activity_at
+    last_login_from_ip_address
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
-    id
-    accounts
-    crypted_password
+    telegram_user
     email
+    role
     last_activity_at
     last_login_at
     last_login_from_ip_address
     last_logout_at
+    remember_me_token_expires_at
     memberships
     owner_accounts
-    remember_me_token
-    remember_me_token_expires_at
-    role
-    salt
-    telegram_user
+    accounts
     created_at
     updated_at
   ].freeze
@@ -66,18 +68,11 @@ class UserDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
     accounts
-    crypted_password
     email
-    last_activity_at
-    last_login_at
-    last_login_from_ip_address
-    last_logout_at
     memberships
     owner_accounts
     remember_me_token
-    remember_me_token_expires_at
     role
-    salt
     telegram_user
   ].freeze
 
@@ -96,7 +91,7 @@ class UserDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how users are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(user)
-  #   "User ##{user.id}"
-  # end
+  def display_resource(user)
+    "User (#{user.public_name})"
+  end
 end

@@ -8,15 +8,14 @@
                                          PUT    /session(.:format)                                                                                sessions#update {subdomain: ""}
                                          DELETE /session(.:format)                                                                                sessions#destroy {subdomain: ""}
                                          POST   /session(.:format)                                                                                sessions#create {subdomain: ""}
-                               passwords GET    /passwords(.:format)                                                                              passwords#index {subdomain: ""}
-                                         POST   /passwords(.:format)                                                                              passwords#create {subdomain: ""}
-                            new_password GET    /passwords/new(.:format)                                                                          passwords#new {subdomain: ""}
-                           edit_password GET    /passwords/:token/edit(.:format)                                                                  passwords#edit {subdomain: ""}
-                                password GET    /passwords/:token(.:format)                                                                       passwords#show {subdomain: ""}
-                                         PATCH  /passwords/:token(.:format)                                                                       passwords#update {subdomain: ""}
-                                         PUT    /passwords/:token(.:format)                                                                       passwords#update {subdomain: ""}
-                                         DELETE /passwords/:token(.:format)                                                                       passwords#destroy {subdomain: ""}
                       rails_health_check GET    /up(.:format)                                                                                     rails/health#show {subdomain: ""}
+                  telegram_auth_callback GET    /telegram/auth_callback(.:format)                                                                 telegram_auth_callback#create {subdomain: ""}
+                                 profile GET    /profile(.:format)                                                                                profile#show {subdomain: ""}
+                                         PATCH  /profile(.:format)                                                                                profile#update {subdomain: ""}
+                                         PUT    /profile(.:format)                                                                                profile#update {subdomain: ""}
+                                accounts GET    /accounts(.:format)                                                                               accounts#index {subdomain: ""}
+                                 account GET    /accounts/:id(.:format)                                                                           accounts#show {subdomain: ""}
+                   solid_queue_dashboard        /solid-queue                                                                                      SolidQueueDashboard::Engine {subdomain: ""}
                              tenant_root GET    /                                                                                                 tenant/nodes#index
                             tenant_nodes GET    /nodes(.:format)                                                                                  tenant/nodes#index
                                          POST   /nodes(.:format)                                                                                  tenant/nodes#create
@@ -68,3 +67,16 @@ rails_conductor_inbound_email_incinerate POST   /rails/conductor/action_mailbox/
                       rails_disk_service GET    /rails/active_storage/disk/:encoded_key/*filename(.:format)                                       active_storage/disk#show
                update_rails_disk_service PUT    /rails/active_storage/disk/:encoded_token(.:format)                                               active_storage/disk#update
                     rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                                    active_storage/direct_uploads#create
+
+Routes for SolidQueueDashboard::Engine:
+             retry_job POST /jobs/:id/retry(.:format)              solid_queue_dashboard/jobs#retry
+                  jobs GET  /jobs(.:format)                        solid_queue_dashboard/jobs#index
+                   job GET  /jobs/:id(.:format)                    solid_queue_dashboard/jobs#show
+             processes GET  /processes(.:format)                   solid_queue_dashboard/processes#index
+               process GET  /processes/:id(.:format)               solid_queue_dashboard/processes#show
+enqueue_recurring_task POST /recurring-tasks/:id/enqueue(.:format) solid_queue_dashboard/recurring_tasks#enqueue
+       recurring_tasks GET  /recurring-tasks(.:format)             solid_queue_dashboard/recurring_tasks#index
+        recurring_task GET  /recurring-tasks/:id(.:format)         solid_queue_dashboard/recurring_tasks#show
+                 stats GET  /stats(.:format)                       solid_queue_dashboard/stats#index
+     toggle_appearance POST /appearance/toggle(.:format)           solid_queue_dashboard/appearance#toggle
+                  root GET  /                                      solid_queue_dashboard/dashboard#index

@@ -1,0 +1,34 @@
+.dropdown
+  a.d-flex.align-items-center.text-white.text-decoration-none.dropdown-toggle[href="#" data-bs-toggle="dropdown" aria-expanded="false"]
+    img.rounded-circle.me-2[src=current_user.avatar_url alt="" width="32" height="32"]
+    strong= current_user
+  ul.dropdown-menu.dropdown-menu-dark.text-small.shadow
+    /li
+      /a.dropdown-item[href="#"]
+        /| New project...
+    li
+      a.dropdown-item[href=profile_url]
+        | Профиль
+    li
+      a.dropdown-item[href=accounts_url]
+        | Аккаунты
+    - if current_user.super_admin?
+      li
+        hr.dropdown-divider
+      - if defined? Sidekiq
+        li
+          a.dropdown-item[href=sidekiq_web_url target="_blank"] Sidekiq
+      - if defined? SolidQueueDashboard
+        li
+          a.dropdown-item[href=solid_queue_dashboard_url target="_blank"] Solid Queue
+      /li
+        /a.dropdown-item[href=admin_root_url target="_blank"] Admin
+    li
+      hr.dropdown-divider
+    li
+      a.dropdown-item[href=root_url] На главную
+    li
+      hr.dropdown-divider
+    li
+      = link_to 'Выйти', session_url, data: { turbo_method: :delete }, class: 'dropdown-item'
+= render 'online_status'

@@ -13,13 +13,13 @@ class NodeOrchestrator
       host: ApplicationConfig.node_host,
       ingress: {
         tls: {
-          secretName: ApplicationConfig.tls_secret_name,
+          secretName: ApplicationConfig.tls_secret_name
         }
       },
       extraLabels: {
-        'vilna.blockberry.com/nodeId' => node_id,
-        'vilna.blockberry.com/accountId' => account_id,
-        'vilna.blockberry.com/version' => AppVersion.to_s,
+        "vilna.blockberry.com/nodeId" => node_id,
+        "vilna.blockberry.com/accountId" => account_id,
+        "vilna.blockberry.com/version" => AppVersion.to_s
       }
     ).deep_stringify_keys
     @cli = Rhelm::Client.new(

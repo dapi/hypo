@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     # root "posts#index"
     get "telegram/auth_callback", to: "telegram_auth_callback#create"
 
+    resource :profile, only: %i[show update], controller: "profile"
+    resources :accounts, only: %i[index show]
     mount SolidQueueDashboard::Engine, at: "/solid-queue"
   end
 

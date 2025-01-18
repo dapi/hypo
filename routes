@@ -41,6 +41,14 @@
                                          PATCH  /accounts/:id(.:format)                                                                           admin/accounts#update {subdomain: "admin"}
                                          PUT    /accounts/:id(.:format)                                                                           admin/accounts#update {subdomain: "admin"}
                                          DELETE /accounts/:id(.:format)                                                                           admin/accounts#destroy {subdomain: "admin"}
+                             admin_nodes GET    /nodes(.:format)                                                                                  admin/nodes#index {subdomain: "admin"}
+                                         POST   /nodes(.:format)                                                                                  admin/nodes#create {subdomain: "admin"}
+                          new_admin_node GET    /nodes/new(.:format)                                                                              admin/nodes#new {subdomain: "admin"}
+                         edit_admin_node GET    /nodes/:id/edit(.:format)                                                                         admin/nodes#edit {subdomain: "admin"}
+                              admin_node GET    /nodes/:id(.:format)                                                                              admin/nodes#show {subdomain: "admin"}
+                                         PATCH  /nodes/:id(.:format)                                                                              admin/nodes#update {subdomain: "admin"}
+                                         PUT    /nodes/:id(.:format)                                                                              admin/nodes#update {subdomain: "admin"}
+                                         DELETE /nodes/:id(.:format)                                                                              admin/nodes#destroy {subdomain: "admin"}
         turbo_recede_historical_location GET    /recede_historical_location(.:format)                                                             turbo/native/navigation#recede
         turbo_resume_historical_location GET    /resume_historical_location(.:format)                                                             turbo/native/navigation#resume
        turbo_refresh_historical_location GET    /refresh_historical_location(.:format)                                                            turbo/native/navigation#refresh

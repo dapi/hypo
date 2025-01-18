@@ -28,10 +28,13 @@ Rails.application.routes.draw do
     resources :nodes
   end
 
+  # TODO: constraint superadmin only
   constraints subdomain: "admin" do
     scope module: :admin, as: :admin do
       resources :users
       resources :accounts
+      resources :nodes
+      root to: "accounts#index"
     end
   end
 end

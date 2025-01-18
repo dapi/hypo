@@ -108,4 +108,4 @@ gem "draper", "~> 4.0"
 
 gem "bootstrap-icons-helper", "~> 2.0"
 
-gem "administrate", github: 'thoughtbot/administrate'
+gem "administrate", github: "thoughtbot/administrate"

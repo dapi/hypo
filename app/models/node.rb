@@ -18,6 +18,7 @@ class Node < ApplicationRecord
     end
 
     event :finish do
+      transition initiated: :finishing
       transition failed_to_start: :finishing
       transition failed_to_finish: :finishing
       transition processing: :finishing
@@ -33,7 +34,8 @@ class Node < ApplicationRecord
   validates :title, uniqueness: { scope: :account_id }
 
   def url
-    ApplicationConfig.protocol + "://" + ApplicationConfig.node_host + path
+    # ApplicationConfig.protocol + "://" + ApplicationConfig.node_host + path
+    "http://" + ApplicationConfig.node_host + path
   end
 
   def path

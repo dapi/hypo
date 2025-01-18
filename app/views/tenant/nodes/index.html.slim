@@ -9,9 +9,9 @@
       .col-md-3
         = link_to node.title, tenant_node_path(node)
       .col-md-3
-        = node.state
+        = node_state node.state
       .col-md-3
         = link_to 'Details..', tenant_node_path(node)
 
   .my-5
-    = link_to 'Создать', new_tenant_node_url, class: 'btn btn-primary'
+    = link_to 'Создать', new_tenant_node_url, class: 'btn btn-outline-primary'

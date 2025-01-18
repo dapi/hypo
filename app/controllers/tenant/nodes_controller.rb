@@ -20,11 +20,19 @@ module Tenant
       render :show, locals: { node: current_account.nodes.find(params[:id]) }
     end
 
+    def destroy
+      node=current_account.nodes.find(params[:id])
+      node.finish!
+      # node.destroy!
+
+      redirect_to tenant_nodes_path, notice: "Узел #{node.title} удален"
+    end
+
     private
 
     def permitted_params
       return {} unless params.key? :node
-      params.require(:node).permit(Node::OPTIONS + [:title])
+      params.require(:node).permit(Node::OPTIONS + [ :title ])
     end
   end
 end

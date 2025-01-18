@@ -2,5 +2,16 @@
   p У вас еще нет ни одной ноды
   = link_to 'Создать', new_tenant_node_url, class: 'btn btn-primary'
 - else
-  h1 Ваши ноды
-  = link_to 'Создать', new_tenant_node_url, class: 'btn btn-primary'
+  h1.mb-5 Ваши ноды
+
+  - current_account.nodes.order(:title).each do |node|
+    .row.my-2
+      .col-md-3
+        = link_to node.title, tenant_node_path(node)
+      .col-md-3
+        = node.state
+      .col-md-3
+        = link_to 'Details..', tenant_node_path(node)
+
+  .my-5
+    = link_to 'Создать', new_tenant_node_url, class: 'btn btn-primary'

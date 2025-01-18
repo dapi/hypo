@@ -1,20 +1,26 @@
-h1.my-3 Создать новый узел
+h1.my-2 Создать новый узел
 
-= simple_form_for node, url: tenant_nodes_path do |f|
-  = full_error_messages f
-  .row
-    .col-md-3
-      = f.input :title
-      /= f.input :wallets_count, as: :numeric, input_html: { style: 'max-width: 6em', max: current_account.available_wallets_count, min: 1 }
-    /- if current_account.tariff.allow_multiple_addresses?
-      /.col-md-3
-        /= f.input :addresses_count, as: :numeric, input_html: { style: 'max-width: 6em' }
-  .row
-    .col-md-3
-      = f.input :no_mining
-    .col-md-3
-      = f.input :block_number, input_html: { min: 0 }
-  .row
-    .col-md-6
-      .mt-3
-        = f.submit 'Создать ноду', class: 'btn btn-lg btn-primary'
+.mt-5
+  = simple_form_for node, wrapper_mappings: { boolean: :vertical_boolean }, url: tenant_nodes_path do |f|
+    = full_error_messages f
+    .row
+      .col-md-3
+        = f.input :title, label: false, hint: 'Название узла'
+        /= f.input :wallets_count, as: :numeric, input_html: { style: 'max-width: 6em', max: current_account.available_wallets_count, min: 1 }
+      /- if current_account.tariff.allow_multiple_addresses?
+        /.col-md-3
+          /= f.input :addresses_count, as: :numeric, input_html: { style: 'max-width: 6em' }
+    .row
+      .col-md-12
+        h2.my-3 Параметры узлы
+    .row
+      .col-md-3
+        = f.input :no_mining
+      .col-md-3
+        = f.input :block_time, input_html: { min: 0 }
+      .col-md-4
+        = f.input :chain_id, input_html: { min: 0 }, label: false, hint: 'Chain ID'
+    .row
+      .col-md-6
+        .mt-3
+          = f.submit 'Создать ноду', class: 'btn btn-lg btn-primary'

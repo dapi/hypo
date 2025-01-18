@@ -1,6 +1,8 @@
 class Node < ApplicationRecord
   belongs_to :account
 
+  OPTIONS=%i[no_minig block_time chain_id]
+
   state_machine initial: :initiated do
     event :start do
       transition initiated: :starting

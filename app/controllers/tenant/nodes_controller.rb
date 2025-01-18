@@ -5,7 +5,7 @@ module Tenant
 
     def new
       node = Node.new title: Faker::App.name
-      node.assign_params permitted_params
+      node.assign_attributes permitted_params
       render locals: { node: node }
     end
 
@@ -23,7 +23,8 @@ module Tenant
     private
 
     def permitted_params
-      params.require(:node).permit(:title, :no_mining, :block_number)
+      return {} unless params.key? :node
+      params.require(:node).permit(Node::OPTIONS + [:title])
     end
   end
 end

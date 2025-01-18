@@ -39,6 +39,7 @@ class UserDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[
     telegram_user
     accounts
+    role
     email
     last_login_at
     last_activity_at

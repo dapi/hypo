@@ -11,6 +11,8 @@ class NodeDashboard < Administrate::BaseDashboard
     id: Field::String,
     account: Field::BelongsTo,
     block_time: Field::Boolean,
+    path: Field::String,
+    url: Field::String,
     key: Field::String,
     no_mining: Field::Boolean,
     state: Field::String,
@@ -26,8 +28,7 @@ class NodeDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[
     id
     account
-    block_time
-    key
+    path
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -37,6 +38,8 @@ class NodeDashboard < Administrate::BaseDashboard
     account
     block_time
     key
+    url
+    path
     no_mining
     state
     created_at

@@ -14,17 +14,7 @@ class TelegramUserDashboard < Administrate::BaseDashboard
     id: Field::String,
     first_name: Field::String,
     last_name: Field::String,
-    photo_url: Field::String.with_options(
-      getter: ->(tu) {
-        photo_url = tu.resource.photo_url
-        # if photo_url
-        # debugger
-        # image_tag photo_url
-        # else
-        # '-'
-        # end
-      }
-    ),
+    photo_url: TelegramAvatarField,
     public_name: Field::String,
     user: Field::HasOne,
     username: Field::String,

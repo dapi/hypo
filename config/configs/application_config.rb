@@ -9,6 +9,7 @@ class ApplicationConfig < Anyway::Config
     protocol: "https",
     kubeconfig: ".kube/config",
     namespace: "anvil-" + Rails.env,
+    tls_secret_name: 'anvil-node-blockberry-cc-tls',
     node_host: "anvil-node.blockberry.cc",
     chart_dir: "./charts/anvil",
     # sidekiq_redis_url: 'redis://localhost:6379/0',

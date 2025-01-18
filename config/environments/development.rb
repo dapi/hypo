@@ -28,9 +28,7 @@ Rails.application.configure do
   config.active_job.queue_adapter = :solid_queue
   config.solid_queue.connects_to = { database: { writing: :queue } }
 
-  config.hosts << ENV["APP_HOST"]
-  config.hosts << "*." + ENV["APP_HOST"]
-  config.hosts << /brandymint/
+  config.hosts << /.*/
 
   config.web_console.whitelisted_ips = [ "172.0.0.0/8" ]
 

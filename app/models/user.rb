@@ -11,6 +11,8 @@ class User < ApplicationRecord
 
   ROLES = %w[user superadmin developer].freeze
 
+  before_create { self.api_key ||= Nanoid.generate(size: 32) }
+
   enum :role, ROLES.each_with_object({}) { |key, a| a[key] = key }
 
   def default_account

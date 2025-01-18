@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_17_140752) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_18_173707) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -67,6 +67,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_17_140752) do
     t.string "last_login_from_ip_address"
     t.bigint "telegram_user_id"
     t.string "role", default: "user", null: false
+    t.string "api_key", null: false
+    t.index ["api_key"], name: "index_users_on_api_key", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["last_logout_at", "last_activity_at"], name: "index_users_on_last_logout_at_and_last_activity_at"
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token"

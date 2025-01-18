@@ -1,0 +1,7 @@
+h2 Ваши аккаунты:
+
+ul
+  - accounts.each do |account|
+    li
+      = link_to account.title, tenant_root_url(subdomain: account.subdomain)
+

@@ -1,0 +1,12 @@
+img.rounded-circle.me-2[src=current_user.avatar_url alt="" width="64" height="64"]
+h1.my-4 Ваш личный профиль
+dl
+  dt Телеграм
+  dd= current_user.telegram_user.telegram_nick
+  dt Email
+  dd= current_user.email.presence || 'отсутствует'
+  dt API key
+  dd
+    code= current_user.api_key
+
+= render 'accounts/accounts', accounts: current_user.accounts

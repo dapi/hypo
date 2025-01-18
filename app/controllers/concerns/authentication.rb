@@ -18,7 +18,7 @@ module Authentication
   end
 
   def simple_layout
-    "simple" unless is_a?(Admin::ApplicationController)
+    "simple" unless defined?(Admin) && is_a?(Admin::ApplicationController)
   end
 
   def not_authorized

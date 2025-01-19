@@ -23,12 +23,17 @@ class NodeOrchestrator
       }
     ).deep_stringify_keys
     args = {
-      namespace: ApplicationConfig.kube_namespace
+      namespace: ApplicationConfig.kube_namespace,
+      kube_as_user: ApplicationConfig.kube_as_user,
+      kube_as_group: ApplicationConfig.kube_as_group
       # program: '/path/to/a/specific/helm/binary'
       # logger: Rhelm::Client::SimpleLogger
     }
     if ApplicationConfig.kube_token
-      args.merge! kube_token: ApplicationConfig.kube_token, kube_apiserver: ApplicationConfig.kube_apiserver
+      args.merge!(
+        kube_token: ApplicationConfig.kube_token,
+        kube_apiserver: ApplicationConfig.kube_apiserver,
+      )
     else
       args.merge! kubeconfig: ApplicationConfig.kubeconfig
     end

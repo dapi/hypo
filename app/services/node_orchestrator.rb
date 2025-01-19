@@ -23,7 +23,7 @@ class NodeOrchestrator
       }
     ).deep_stringify_keys
     args = {
-      namespace: ApplicationConfig.kube_namespace,
+      namespace: ApplicationConfig.kube_namespace
       # program: '/path/to/a/specific/helm/binary'
       # logger: Rhelm::Client::SimpleLogger
     }

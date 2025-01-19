@@ -1,6 +1,6 @@
 h1.mb-5 Узел #{node.title}
 
-p Создан #{l node.created_at}
+p Создан #{time_ago_in_words node.created_at}
 p Статус #{node_state node.state}
 p Адрес #{link_to node.url, node.url}
 

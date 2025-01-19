@@ -21,7 +21,7 @@
           td
             = node_state node.state
           td
-            = l node.created_at
+            = time_ago_in_words node.created_at
           td
             = link_to tenant_node_path(node) do
               = bootstrap_icon 'three-dots'

@@ -12,14 +12,14 @@ class NodeActionJob < ApplicationJob
 
   private
 
-  def finish node
+  def finish(node)
     node.finish!
     node.orchestrator.uninstall
     node.finished!
     node.destroy!
   end
 
-  def start node
+  def start(node)
     node.start!
     node.orchestrator.install
     node.started!

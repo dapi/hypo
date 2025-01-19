@@ -3,11 +3,12 @@ html lang=I18n.locale
   head
     = render 'head'
   body
-    nav.navbar.navbar-light
-      .container-lg.px-3.py-5 style='max-width: 920px'
-        = link_to '╳', back_url, class: 'text-dark fs-3' if defined? back_url
+    - unless controller.is_a? SessionsController
+      nav.navbar.navbar-light
+        .container-lg.px-3.py-5 style='max-width: 920px'
+          = link_to '╳', back_url, class: 'text-dark fs-3' if defined? back_url
 
-        .text-muted= @header_title
+          .text-muted= @header_title
     main.container-md.px-3.py-5 style='max-width: 920px'
       = yield
 

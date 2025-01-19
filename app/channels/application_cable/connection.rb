@@ -8,9 +8,10 @@ module ApplicationCable
 
     private
       def set_current_user
-        if session = Session.find_by(id: cookies.signed[:session_id])
-          self.current_user = session.user
-        end
+        # Alternative:
+        # cookies.encrypted['_telik_session']['user_id']
+        user_id = env['rack.session'][:user_id]
+        self.current_user = User.find_by(id: user_id) if user_id
       end
   end
 end

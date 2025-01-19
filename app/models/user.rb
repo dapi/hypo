@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  include UserAppearance
+
   authenticates_with_sorcery!
   has_many :owner_accounts, class_name: "Account", foreign_key: :owner_id, dependent: :restrict_with_error,
                             inverse_of: :owner

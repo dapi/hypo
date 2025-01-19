@@ -10,7 +10,11 @@ class Node < ApplicationRecord
 
   state_machine initial: :initiated do
     event :start do
-      transition initiated: :starting
+      transition initiated: :to_start
+    end
+
+    event :starting do
+      transition to_start: :starting
     end
 
     event :started do
@@ -18,7 +22,7 @@ class Node < ApplicationRecord
     end
 
     event :failed do
-      transition %i[starting initiated] => :failed_to_start
+      transition %i[starting to_start initiated] => :failed_to_start
       transition %i[finishing] => :failed_to_finish
     end
 
@@ -46,6 +50,10 @@ class Node < ApplicationRecord
 
   def path
     "/" + key
+  end
+
+  def destroy_if_unreleased
+    destroy! unless orchestrator.exists?
   end
 
   def orchestrator

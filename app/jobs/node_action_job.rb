@@ -21,7 +21,9 @@ class NodeActionJob < ApplicationJob
 
   def start(node)
     node.start!
-    node.orchestrator.install
-    node.started!
+    node.with_lock do
+      node.orchestrator.install
+      node.started!
+    end
   end
 end

@@ -52,7 +52,15 @@ class NodeOrchestrator
   end
 
   def status
-    cli.status(release).run
+    cli
+      .status(release)
+      .run
+  end
+
+  def exists?
+    cli
+      .status(release)
+      .exists?
   end
 
   private

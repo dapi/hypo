@@ -2,7 +2,7 @@
 
 module UserAppearance
   def away
-    Rails.logger.debug { "User appeared on #{away}" }
+    Rails.logger.debug { "User appeared on away" }
     # update! appearance: 'away'
   end
 
@@ -12,7 +12,7 @@ module UserAppearance
   end
 
   def disappear
-    Rails.logger.debug { "User appeared on #{disappear}" }
+    Rails.logger.debug { "User appeared on disappear" }
     # update! appearance: 'disappear'
   end
 end

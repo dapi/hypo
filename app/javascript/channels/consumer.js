@@ -3,5 +3,4 @@
 
 import { createConsumer } from "@rails/actioncable"
 
-console.log('createConsumer added');
 export default createConsumer()

@@ -33,8 +33,9 @@ _default: &_default
   <% if ENV.key?('DATABASE_PASSWORD') %>
   password: <%= ENV["DATABASE_PASSWORD"] %>
   <% end %>
-  # url: <%= ENV['DATABASE_URL'] %>
-
+  <% if ENV.key?('DATABSAE_URL') %>
+  url: <%= ENV['DATABASE_URL'] %>
+  <% end %>
 
 development:
   primary: &development

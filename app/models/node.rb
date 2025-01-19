@@ -1,5 +1,5 @@
 class Node < ApplicationRecord
-  OPTIONS=%i[no_minig block_time chain_id]
+  OPTIONS=%i[no_mining block_time chain_id]
 
   belongs_to :account
 

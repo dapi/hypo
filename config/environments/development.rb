@@ -31,6 +31,7 @@ Rails.application.configure do
   config.hosts << /.*/
 
   config.web_console.whitelisted_ips = [ "172.0.0.0/8" ]
+  config.web_console.whitelisted_ips << ENV['WHITELIST_IP'] if ENV['WHITELIST_IP']
 
   # Change to :null_store to avoid any caching.
   config.cache_store = :memory_store

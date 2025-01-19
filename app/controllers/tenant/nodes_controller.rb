@@ -19,7 +19,7 @@ module Tenant
       StartNodeJob.perform_later node
       redirect_to tenant_node_path(node), notice: "Создан узел #{node.title}"
     rescue ActiveRecord::RecordInvalid => e
-      render :new, locals: { node: e.record }
+      render :new, locals: { node: e.record }, status: :unprocessable_entity
     end
 
     def show
@@ -30,8 +30,7 @@ module Tenant
       node = current_account.nodes.find(params[:id])
 
       FinishNodeJob.perform_later node
-
-      redirect_to tenant_nodes_path, notice: "Узел #{node.title} удаляется"
+      redirect_back fallback_location: tenant_nodes_path, notice: "Узел #{node.title} удаляется"
     end
 
     private

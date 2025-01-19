@@ -1,7 +1,9 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import "@hotwired/turbo-rails"
+import Rails from "@rails/ujs"
 import "controllers"
 import * as bootstrap from "bootstrap"
+Rails.start();
 
 const onReady = function() {
   console.log("onReady emited");

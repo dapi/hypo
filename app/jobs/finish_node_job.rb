@@ -1,11 +1,11 @@
 class FinishNodeJob < ApplicationJob
   queue_as :default
   limits_concurrency to: 1,
-    key: ->(node, _action) { node.id },
+    key: ->(node) { node.id },
     duration: 5.minutes,
     group: :nodes
 
-  def perform(*args)
+  def perform(node)
     node.finish!
     node.with_lock do
       node.finishing!
@@ -15,6 +15,7 @@ class FinishNodeJob < ApplicationJob
     end
   rescue => err
     Rails.logger.error "NodeActionJob[#{node}] catch error #{err}"
+    node&.update_column :last_node_job_error_message, err.message
     node&.failed!
     raise err
   end

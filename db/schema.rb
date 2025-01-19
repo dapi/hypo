@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_19_073947) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_19_140856) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
@@ -43,6 +43,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_19_073947) do
     t.string "state", default: "initiated", null: false
     t.citext "title", null: false
     t.integer "chain_id", default: 31337, null: false
+    t.string "last_node_job_error_message"
     t.index ["account_id", "created_at"], name: "index_nodes_on_account_id_and_created_at"
     t.index ["account_id", "title"], name: "index_nodes_on_account_id_and_title", unique: true
     t.index ["account_id"], name: "index_nodes_on_account_id"

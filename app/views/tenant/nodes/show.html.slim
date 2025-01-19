@@ -4,5 +4,8 @@ p Создан #{time_ago_in_words node.created_at}
 p Статус #{node_state node.state}
 p RPC endpoint #{link_to node.url, node.url}
 
+- if current_user.super_admin?
+  p Last node job error message: #{node.last_node_job_error_message}
+
 .mt-5
-  = link_to 'Удалить', tenant_node_path(node), data: { turbo_method: :delete }, class: 'btn btn-outline-danger'
+  = link_to 'Удалить', tenant_node_path(node), data: { turbo: false, method: :delete, confirm: 'Удалить?' }, class: 'btn btn-outline-danger'

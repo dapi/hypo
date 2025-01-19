@@ -1,0 +1,30 @@
+---
+ru:
+  helpers:
+    back: назад
+    confirm_delete: Удаляем насовсем?
+    disable_with: Понеслась..
+    invalid_authenticity_token: Просрочен токен аутентификации, авторизуйтесь снова
+    select:
+      prompt: 'Выберите: '
+    submit:
+      project:
+        create: Добавить проект
+      create: Создать %{model}
+      submit: Сохранить изменения
+      update: Сохранить изменения
+    warning: Внимание!
+
+    project_setup_errors:
+      no_telegram_group: 'Бот не добавлен в группу'
+      not_supergroup: 'Группа к которой подключен бот не является супер-группой'
+      admin_cant_manage_topics: 'У бота нет прав управлять топиками'
+      not_admin: 'Бот не добавлен в группу или не является администратором'
+      host_not_confirmed: 'Виджет не установлен или не активирован'
+    project_setup_actions:
+      no_telegram_group: 'Добавьте бота в супер-группу администритором с правом управлять топиками'
+      not_supergroup: 'Включите в группе топики'
+      admin_cant_manage_topics: 'Дайте боту доступ управлять топиками'
+      not_admin: 'Сделайте бота администратором и дайте доступ управлять топиками'
+      host_not_confirmed: 'Установите виджет на сайт и воспользуйтесь им'
+

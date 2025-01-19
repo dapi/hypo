@@ -1,0 +1,4 @@
+ru:
+  application:
+    index:
+      total_records: "Всего записей: %{count}"

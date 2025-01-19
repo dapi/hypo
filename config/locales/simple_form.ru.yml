@@ -1,0 +1,29 @@
+---
+ru:
+  simple_form:
+    error_notification:
+      blank: Не может быть пустым
+      default_message: Обнаружены ошибки,<br /> пожалуйста, взгляните на&nbsp;них
+    hints:
+      defaults:
+        addresses_count: 'Количество генерируемых на фразу адресов'
+    labels:
+      defaults:
+        locale: Язык
+        title: Название
+
+        wallets_count: Количество кошельков
+        addresses_count: Количество адресов
+
+      generate_wallets_form:
+        addresses_count: Количество адресов на кошелёк
+      project:
+        host_confirmed?: Сайт подтверждён
+    placeholders:
+      import_wallets_form:
+        seed_phrases: 'swamp pretty glove sniff credit eyebrow organ roast tenant double project entire'
+    required:
+      mark: "*"
+      text: обязательное поле
+    'no': нет
+    'yes': да

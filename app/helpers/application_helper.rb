@@ -3,6 +3,14 @@ module ApplicationHelper
     ApplicationConfig.app_title
   end
 
+  def back_link(url = nil)
+    link_to "&larr; #{t('helpers.back')}".html_safe, url || root_path
+  end
+
+  def back_url
+    params[:back_url] || @back_url || request.referer.presence || root_url # rubocop:disable Rails/HelperInstanceVariable
+  end
+
   def current_url
     request.url
   end

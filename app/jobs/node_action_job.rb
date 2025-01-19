@@ -13,8 +13,9 @@ class NodeActionJob < ApplicationJob
 
   def finish
     node.finish!
-    node.orchestrator.install
+    node.orchestrator.uninstall
     node.finished!
+    node.destroy!
   end
 
   def start

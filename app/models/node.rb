@@ -18,8 +18,8 @@ class Node < ApplicationRecord
     end
 
     event :failed do
-      transition starting: :failed_to_start
-      transition finishing: :failed_to_finish
+      transition %i[starting initiated] => :failed_to_start
+      transition %i[finishing] => :failed_to_finish
     end
 
     event :finish do

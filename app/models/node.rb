@@ -5,7 +5,7 @@ class Node < ApplicationRecord
 
   scope :alive, -> { where.not state: %i[finishing finished] }
 
-  before_create { self.key ||= Nanoid.generate(size: 32) }
+  before_create { set_defaults }
   validates :title, uniqueness: { scope: :account_id }
 
   state_machine initial: :initiated do
@@ -32,6 +32,11 @@ class Node < ApplicationRecord
     event :finished do
       transition finishing: :finished
     end
+  end
+
+  def set_defaults
+    self.title ||= Faker::App.name
+    self.key ||= Nanoid.generate(size: 32)
   end
 
   def url

@@ -4,7 +4,7 @@ class CreateNodes < ActiveRecord::Migration[8.0]
       t.references :account, null: false, foreign_key: true, type: :uuid
       t.string :key, null: false
       t.boolean :no_mining, null: false, default: false
-      t.boolean :block_time, null: false, default: 0
+      t.integer :block_time, null: false, default: 0
 
       t.timestamps
     end

@@ -5,7 +5,7 @@ h1.my-2 Создать новый узел
     = full_error_messages f
     .row
       .col-md-3
-        = f.input :title, label: false, hint: 'Название узла'
+        = f.input :title, label: 'Название узла', hint: 'Для вашего удобства каждый узел имеет свое имя'
         /= f.input :wallets_count, as: :numeric, input_html: { style: 'max-width: 6em', max: current_account.available_wallets_count, min: 1 }
       /- if current_account.tariff.allow_multiple_addresses?
         /.col-md-3
@@ -15,7 +15,7 @@ h1.my-2 Создать новый узел
         h2.my-3 Параметры узлы
     .row
       .col-md-3
-        = f.input :no_mining
+        = f.input :no_mining, wrapper: :custom_boolean
       .col-md-3
         = f.input :block_time, input_html: { min: 0 }
       .col-md-4

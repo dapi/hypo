@@ -8,7 +8,8 @@ module Tenant
     end
 
     def new
-      node = Node.new title: Faker::App.name
+      node = Node.new
+      node.set_defaults
       node.assign_attributes permitted_params
       render locals: { node: node }
     end

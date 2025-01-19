@@ -2,16 +2,23 @@
   p У вас еще нет ни одной ноды
   = link_to 'Создать', new_tenant_node_url, class: 'btn btn-primary'
 - else
-  h1.mb-5 Ваши ноды
+  h1.mb-5 Ваши ноды (#{current_account.nodes.count})
 
-  - nodes.each do |node|
-    .row.my-2
-      .col-md-3
-        = link_to node.title, tenant_node_path(node)
-      .col-md-3
-        = node_state node.state
-      .col-md-3
-        = link_to 'Details..', tenant_node_path(node)
+  table.table.table-hover
+    - nodes.each do |node|
+      tr
+        td
+          = link_to node.title, tenant_node_path(node)
+        td
+          = node_state node.state
+        td
+          = l node.created_at
+        td
+          = link_to tenant_node_path(node) do
+            = bootstrap_icon 'three-dots'
+          -#, width: 40, height: 32, class: 'pe-none me-2'
+          -# = link_to 'Details..', tenant_node_path(node)
+          -# three-dots
 
   .my-5
     = link_to 'Создать', new_tenant_node_url, class: 'btn btn-outline-primary'

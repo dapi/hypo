@@ -2,7 +2,7 @@
 import "@hotwired/turbo-rails"
 import Rails from "@rails/ujs"
 import "controllers"
-import * as bootstrap from "bootstrap"
+import "bootstrap"
 Rails.start();
 
 const onReady = function() {

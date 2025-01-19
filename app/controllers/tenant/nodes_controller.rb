@@ -16,7 +16,7 @@ module Tenant
 
     def create
       node = current_account.nodes.create! permitted_params
-      NodeActionJob.perform_later node, :start
+      StartNodeJob.perform_later node
       redirect_to tenant_node_path(node), notice: "Создан узел #{node.title}"
     rescue ActiveRecord::RecordInvalid => e
       render :new, locals: { node: e.record }
@@ -27,9 +27,9 @@ module Tenant
     end
 
     def destroy
-      node=current_account.nodes.find(params[:id])
+      node = current_account.nodes.find(params[:id])
 
-      NodeActionJob.perform_later node, :finish
+      FinishNodeJob.perform_later node
 
       redirect_to tenant_nodes_path, notice: "Узел #{node.title} удаляется"
     end

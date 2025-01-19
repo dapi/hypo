@@ -2,6 +2,7 @@ module NodesHelper
   NODE_STATE_CLASSES = {
     "initiated" => "badge text-bg-warning",
     "starting" => "badge text-bg-warning",
+    "to_start" => "badge text-bg-warning",
     "processing" => "badge text-bg-success",
     "failed_to_start" => "badge text-bg-danger",
     "failed_to_finish" => "badge text-bg-danger",

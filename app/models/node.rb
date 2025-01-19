@@ -27,10 +27,14 @@ class Node < ApplicationRecord
     end
 
     event :finish do
-      transition initiated: :finishing
-      transition failed_to_start: :finishing
-      transition failed_to_finish: :finishing
-      transition processing: :finishing
+      transition initiated: :to_finish
+      transition failed_to_start: :to_finish
+      transition failed_to_finish: :to_finish
+      transition processing: :to_finish
+    end
+
+    event :finishing do
+      transition to_finish: :finishing
     end
 
     event :finished do

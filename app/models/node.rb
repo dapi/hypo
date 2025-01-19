@@ -36,7 +36,7 @@ class Node < ApplicationRecord
 
   def set_defaults
     self.title ||= Faker::App.name
-    self.key ||= Nanoid.generate(size: 32)
+    self.key ||= Nanoid.generate(size: 16)
   end
 
   def url

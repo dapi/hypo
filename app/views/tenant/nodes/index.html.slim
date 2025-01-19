@@ -4,7 +4,7 @@
 - else
   h1.mb-5 Ваши ноды
 
-  - current_account.nodes.order(:title).each do |node|
+  - nodes.each do |node|
     .row.my-2
       .col-md-3
         = link_to node.title, tenant_node_path(node)

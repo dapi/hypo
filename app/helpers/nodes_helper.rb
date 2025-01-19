@@ -9,8 +9,19 @@ module NodesHelper
     "finished" => "badge text-bg-secondary"
   }.freeze
 
+  NODE_STATE_TITLES = {
+    "initiated" => "Starting..",
+    "starting" => "Starting..",
+    "processing" => "Live",
+    "failed_to_start" => "Error",
+    "failed_to_finish" => "Error",
+    "finishing" => "Stopping..",
+    "finished" => "Stopped"
+  }
+
   def node_state(state)
     state = state.state if state.is_a? Node
-    content_tag :span, state, class: NODE_STATE_CLASSES.fetch(state)
+    title = NODE_STATE_TITLES.fetch(state)
+    content_tag :span, title, class: NODE_STATE_CLASSES.fetch(state), title: state
   end
 end

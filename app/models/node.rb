@@ -1,7 +1,12 @@
 class Node < ApplicationRecord
+  OPTIONS=%i[no_minig block_time chain_id]
+
   belongs_to :account
 
-  OPTIONS=%i[no_minig block_time chain_id]
+  scope :alive, -> { where.not state: %i[finishing finished] }
+
+  before_create { self.key ||= Nanoid.generate(size: 32) }
+  validates :title, uniqueness: { scope: :account_id }
 
   state_machine initial: :initiated do
     event :start do
@@ -28,10 +33,6 @@ class Node < ApplicationRecord
       transition finishing: :finished
     end
   end
-
-  before_create { self.key ||= Nanoid.generate(size: 32) }
-
-  validates :title, uniqueness: { scope: :account_id }
 
   def url
     # ApplicationConfig.protocol + "://" + ApplicationConfig.node_host + path

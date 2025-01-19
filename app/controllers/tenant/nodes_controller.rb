@@ -3,6 +3,10 @@ module Tenant
     include PaginationSupport
     include RansackSupport
 
+    def index
+      render locals: { nodes: current_account.nodes.alive.order(:created_at) }
+    end
+
     def new
       node = Node.new title: Faker::App.name
       node.assign_attributes permitted_params

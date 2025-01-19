@@ -1,4 +1,4 @@
-import consumer from "./consumer"
+import consumer from "channels/consumer"
 import onlineStatus from 'helpers/onlineStatus'
 
 consumer.subscriptions.create("AppearanceChannel", {

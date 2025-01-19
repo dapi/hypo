@@ -3,7 +3,6 @@ module ApplicationCable
     identified_by :current_user
 
     def connect
-      debugger
       set_current_user || reject_unauthorized_connection
     end
 

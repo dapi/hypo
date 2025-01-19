@@ -22,12 +22,17 @@ class NodeOrchestrator
         "vilna.blockberry.com/version" => AppVersion.to_s
       }
     ).deep_stringify_keys
-    @cli = Rhelm::Client.new(
-      kubeconfig: ApplicationConfig.kubeconfig,
-      namespace: ApplicationConfig.namespace,
+    args = {
+      namespace: ApplicationConfig.kube_namespace,
       # program: '/path/to/a/specific/helm/binary'
       # logger: Rhelm::Client::SimpleLogger
-    )
+    }
+    if ApplicationConfig.kube_token
+      args.merge! kube_token: ApplicationConfig.kube_token, kube_apiserver: ApplicationConfig.kube_apiserver
+    else
+      args.merge! kubeconfig: ApplicationConfig.kubeconfig
+    end
+    @cli = Rhelm::Client.new(**args)
     @set_options = nil
   end
 

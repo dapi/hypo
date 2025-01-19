@@ -1,9 +1,8 @@
 class NodeActionJob < ApplicationJob
   queue_as :default
-  limits_concurrency to: 1, key: ->(node_id) { node_id }, duration: 5.minutes
+  limits_concurrency to: 1, key: ->(node, _action) { node.id }, duration: 5.minutes
 
-  def perform(node_id, action)
-    node = Node.find node_id
+  def perform(node, action)
     send action node
   rescue => err
     node&.failed! err

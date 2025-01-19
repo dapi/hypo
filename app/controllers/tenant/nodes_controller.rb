@@ -29,7 +29,7 @@ module Tenant
     def destroy
       node=current_account.nodes.find(params[:id])
 
-      NodeActionJob.perform_later node.id, :finish
+      NodeActionJob.perform_later node, :finish
 
       redirect_to tenant_nodes_path, notice: "Узел #{node.title} удаляется"
     end

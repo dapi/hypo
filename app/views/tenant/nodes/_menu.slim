@@ -1,0 +1,15 @@
+/= link_to tenant_node_path(node) do
+-#, width: 40, height: 32, class: 'pe-none me-2'
+-# = link_to 'Details..', tenant_node_path(node)
+-# three-dots
+
+.dropdown
+  a.d-flex.align-items-center.text-decoration-none[href="#" data-bs-toggle="dropdown" aria-expanded="false"]
+    strong= bootstrap_icon 'three-dots'
+  ul.dropdown-menu.text-small.shadow
+    li= link_to 'Статус', tenant_node_path(node), class: 'dropdown-item'
+    li= link_to 'RPC Endpoint', node.url, class: 'dropdown-item'
+    li
+      hr.dropdown-divider
+    li
+      = link_to 'Удалить', tenant_node_path(node), class: 'text-danger dropdown-item', data: { turbo_method: :delete }

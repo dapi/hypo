@@ -26,9 +26,4 @@
           td
             = time_ago_in_words node.created_at
           td
-            = link_to tenant_node_path(node) do
-              = bootstrap_icon 'three-dots'
-            -#, width: 40, height: 32, class: 'pe-none me-2'
-            -# = link_to 'Details..', tenant_node_path(node)
-            -# three-dots
-
+            .float-sm-end= render 'menu', node: node

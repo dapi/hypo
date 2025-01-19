@@ -1,6 +1,6 @@
 ./bin/semver inc patch
 git add .semver
 git commit -m `./bin/semver`
-# git tag `./bin/semver`
 gh release create `./bin/semver` --generate-notes
-git push --follow-tags
+# git push --follow-tags
+git pull --tags

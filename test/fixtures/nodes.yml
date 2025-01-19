@@ -2,12 +2,14 @@
 
 one:
   account: one
-  key: MyString
+  key: one
+  title: one
   no_mining: false
   block_time: false
 
 two:
   account: two
-  key: MyString
+  key: two
+  title: two
   no_mining: false
   block_time: false

@@ -22,6 +22,8 @@ module Vilna
 
     config.action_dispatch.tld_length = Rails.env.test? ? 1 : Integer(ENV["TLD_LENGTH"] || 1)
 
+    config.log_tags = %i[request_id subdomain]
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

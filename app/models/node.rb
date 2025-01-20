@@ -3,7 +3,7 @@ class Node < ApplicationRecord
 
   belongs_to :account
 
-  scope :alive, -> { where.not state: %i[finishing finished] }
+  scope :alive, -> { where.not state: %i[finishing finished to_finish failed_to_finish] }
 
   before_create { set_defaults }
   validates :title, uniqueness: { scope: :account_id }

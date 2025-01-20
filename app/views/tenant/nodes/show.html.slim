@@ -13,6 +13,7 @@ p Статус #{node_state node.state}
 - if node.processing?
   h2.my-4 Usage examples
 
+  -# Хороший пример доки https://docs.chainstack.com/reference/ethereum-clientversion
   p RPC endpoint #{link_to node.url, node.url}
   h3 curl
   code

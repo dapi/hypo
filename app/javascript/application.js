@@ -1,14 +1,11 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import { Turbo } from "@hotwired/turbo-rails"
-import Rails from "@rails/ujs"
 import "bootstrap"
-
 import "controllers"
 import "channels"
 import "elements"
 
 Turbo.config.drive.progressBarDelay = 100;
-Rails.start();
 
 const onReady = function() {
   console.log("onReady emited");

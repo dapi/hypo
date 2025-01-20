@@ -1,7 +1,7 @@
 require "account_constraint"
 
 Rails.application.routes.draw do
-  constraints subdomain: "" do
+  constraints subdomain: "", constraints: HomeConstraint do
     root "dashboard#index"
     resource :session
     # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

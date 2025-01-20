@@ -9,4 +9,8 @@ dl
   dd
     code= current_user.api_key
 
+  dt
+  dd
+    = link_to 'Выйти', session_url, data: { turbo_method: :delete }
+
 = render 'accounts/accounts', accounts: current_user.accounts

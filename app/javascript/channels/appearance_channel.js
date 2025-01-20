@@ -9,14 +9,14 @@ consumer.subscriptions.create("AppearanceChannel", {
 
   // Called when the subscription is ready for use on the server.
   connected() {
-    onlineStatus('connected')
+    this.connected = true
     this.install()
     this.update()
   },
 
   // Called when the WebSocket connection is closed.
   disconnected() {
-    onlineStatus('disconnected')
+    this.connected = false
     this.uninstall()
   },
 
@@ -25,8 +25,12 @@ consumer.subscriptions.create("AppearanceChannel", {
     this.uninstall()
   },
 
+  updateStatus() {
+    this.connected ? onlineStatus('connected') : onlineStatus('disconnected')
+  },
+
   update() {
-    console.log("Update AppearanceChannel")
+    this.updateStatus()
     this.documentIsActive ? this.appear() : this.away()
   },
 

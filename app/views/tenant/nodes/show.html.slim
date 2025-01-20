@@ -4,7 +4,8 @@
 h1.mb-5 Узел #{node.title}
 
 p Создан #{time_ago_in_words node.created_at}
-p Статус #{node_state node.state}
+p 
+  | Статус #{node_state node}
 
 - if current_user.superadmin?
   p 

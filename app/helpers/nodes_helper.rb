@@ -23,9 +23,18 @@ module NodesHelper
     "finished" => "Stopped"
   }
 
-  def node_state(state)
-    state = state.state if state.is_a? Node
+  def node_state(node)
+    state = node.state
     title = NODE_STATE_TITLES.fetch(state)
-    content_tag :span, title, class: NODE_STATE_CLASSES.fetch(state), title: state
+    content_tag :span, class: NODE_STATE_CLASSES.fetch(state), title: state do
+      buffer = []
+      if node.initiated? || node.to_start? || node.starting?
+        buffer << render("spinner")
+        buffer << " " + title
+      else
+        buffer << title
+      end
+      buffer.join.html_safe
+    end
   end
 end

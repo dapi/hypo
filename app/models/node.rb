@@ -48,8 +48,11 @@ class Node < ApplicationRecord
   end
 
   def url
-    # ApplicationConfig.protocol + "://" + ApplicationConfig.node_host + path
-    "http://" + ApplicationConfig.node_host + path
+    ApplicationConfig.protocol + "://" + ApplicationConfig.node_host + path
+  end
+
+  def ws_url
+    "wss://" + ApplicationConfig.node_host + path
   end
 
   def path

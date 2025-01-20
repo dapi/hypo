@@ -24,7 +24,7 @@ class NodeOrchestrator
       }
     ).deep_stringify_keys
     args = {
-      namespace: ApplicationConfig.kube_namespace,
+      kube_namespace: ApplicationConfig.kube_namespace,
       kube_as_user: ApplicationConfig.kube_as_user,
       kube_as_group: ApplicationConfig.kube_as_group
       # Для примера
@@ -53,7 +53,7 @@ class NodeOrchestrator
   def upgrade
     with_values do |values_path|
       cli
-        .upgrade(release, ApplicationConfig.chart_dir, create_namespace: true, set: set_options, values: values_path)
+        .upgrade(release, ApplicationConfig.chart_dir, set: set_options, values: values_path)
         .run
     end
   end

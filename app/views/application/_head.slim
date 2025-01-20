@@ -4,6 +4,7 @@ meta content="IE=Edge" http-equiv="X-UA-Compatible"
 meta content="width=device-width, initial-scale=1.0" name="viewport"
 meta name="apple-mobile-web-app-capable" content="yes"
 meta name="mobile-web-app-capable" content="yes"
+meta name="view-transition" content="same-origin"
 
 = content_for :head
 
@@ -14,7 +15,6 @@ meta name="turbo-refresh-method" content="morph"
 meta name='appear' data-appearing-on=current_url
 = turbo_refreshes_with method: :morph, scroll: :preserve
 
--#= render 'bugsnag'
 = csrf_meta_tags
 = csp_meta_tag
 
@@ -30,4 +30,5 @@ link rel="apple-touch-icon" href="/icon.png"
 = stylesheet_link_tag 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css'
 = stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css'
 
-= render 'bugsnag'
+- if params[:bugsnag]
+  = render 'bugsnag'

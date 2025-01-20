@@ -2,7 +2,7 @@ require "account_constraint"
 
 Rails.application.routes.draw do
   get "/", to: redirect(ApplicationConfig.home_url), constraints: { subdomain: "www" }
-  constraints subdomain: "" do
+  constraints subdomain: ApplicationConfig.home_subdomain do
     root "dashboard#index"
     resource :session
     # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

@@ -21,11 +21,16 @@ class ApplicationConfig < Anyway::Config
     # sidekiq_redis_url: 'redis://localhost:6379/0',
     bot_token: "",
     bot_username: "",
-    reserved_subdomains: "www,node,vilna"
+    reserved_subdomains: "www,node,vilna",
+    home_subdomain: "app"
   )
 
   def home_url
-    protocol + "://" + host
+    if home_subdomain.present?
+      protocol + "://" + home_subdomain + "." + host
+    else
+      protocol + "://" + host
+    end
   end
 
   def kube_token

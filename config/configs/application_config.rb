@@ -24,6 +24,10 @@ class ApplicationConfig < Anyway::Config
     reserved_subdomains: "www,node,vilna"
   )
 
+  def home_url
+    protocol + "://" + host
+  end
+
   def kube_token
     super || kube_token_from_file
   end

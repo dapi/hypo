@@ -1,7 +1,8 @@
 require "account_constraint"
 
 Rails.application.routes.draw do
-  constraints subdomain: "", constraints: HomeConstraint do
+  get "/", to: redirect(ApplicationConfig.home_url), constraints: { subdomain: "www" }
+  constraints subdomain: "" do
     root "dashboard#index"
     resource :session
     # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -20,11 +21,11 @@ Rails.application.routes.draw do
 
     resource :profile, only: %i[show update], controller: "profile"
     resources :accounts, only: %i[index show]
-    mount SolidQueueDashboard::Engine, at: "/solid-queue"
   end
 
   # TODO: constraint superadmin only
   constraints subdomain: "admin" do
+    mount SolidQueueDashboard::Engine, at: "/solid-queue"
     scope module: :admin, as: :admin do
       resources :users
       resources :telegram_users

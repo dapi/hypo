@@ -1,21 +1,22 @@
                                   Prefix Verb   URI Pattern                                                                                       Controller#Action
                                                 /assets                                                                                           Propshaft::Server
-                                    root GET    /                                                                                                 dashboard#index {subdomain: ""}
-                             new_session GET    /session/new(.:format)                                                                            sessions#new {subdomain: ""}
-                            edit_session GET    /session/edit(.:format)                                                                           sessions#edit {subdomain: ""}
-                                 session GET    /session(.:format)                                                                                sessions#show {subdomain: ""}
-                                         PATCH  /session(.:format)                                                                                sessions#update {subdomain: ""}
-                                         PUT    /session(.:format)                                                                                sessions#update {subdomain: ""}
-                                         DELETE /session(.:format)                                                                                sessions#destroy {subdomain: ""}
-                                         POST   /session(.:format)                                                                                sessions#create {subdomain: ""}
+                                         GET    /                                                                                                 redirect(301, https://app.3000.brandymint.ru) {subdomain: "www"}
                       rails_health_check GET    /up(.:format)                                                                                     rails/health#show {subdomain: ""}
-                  telegram_auth_callback GET    /telegram/auth_callback(.:format)                                                                 telegram_auth_callback#create {subdomain: ""}
-                                 profile GET    /profile(.:format)                                                                                profile#show {subdomain: ""}
-                                         PATCH  /profile(.:format)                                                                                profile#update {subdomain: ""}
-                                         PUT    /profile(.:format)                                                                                profile#update {subdomain: ""}
-                                accounts GET    /accounts(.:format)                                                                               accounts#index {subdomain: ""}
-                                 account GET    /accounts/:id(.:format)                                                                           accounts#show {subdomain: ""}
-                   solid_queue_dashboard        /solid-queue                                                                                      SolidQueueDashboard::Engine {subdomain: ""}
+                                    root GET    /                                                                                                 dashboard#index {subdomain: "app"}
+                             new_session GET    /session/new(.:format)                                                                            sessions#new {subdomain: "app"}
+                            edit_session GET    /session/edit(.:format)                                                                           sessions#edit {subdomain: "app"}
+                                 session GET    /session(.:format)                                                                                sessions#show {subdomain: "app"}
+                                         PATCH  /session(.:format)                                                                                sessions#update {subdomain: "app"}
+                                         PUT    /session(.:format)                                                                                sessions#update {subdomain: "app"}
+                                         DELETE /session(.:format)                                                                                sessions#destroy {subdomain: "app"}
+                                         POST   /session(.:format)                                                                                sessions#create {subdomain: "app"}
+                  telegram_auth_callback GET    /telegram/auth_callback(.:format)                                                                 telegram_auth_callback#create {subdomain: "app"}
+                                 profile GET    /profile(.:format)                                                                                profile#show {subdomain: "app"}
+                                         PATCH  /profile(.:format)                                                                                profile#update {subdomain: "app"}
+                                         PUT    /profile(.:format)                                                                                profile#update {subdomain: "app"}
+                                accounts GET    /accounts(.:format)                                                                               accounts#index {subdomain: "app"}
+                                 account GET    /accounts/:id(.:format)                                                                           accounts#show {subdomain: "app"}
+                   solid_queue_dashboard        /solid-queue                                                                                      SolidQueueDashboard::Engine {subdomain: "admin"}
                              admin_users GET    /users(.:format)                                                                                  admin/users#index {subdomain: "admin"}
                                          POST   /users(.:format)                                                                                  admin/users#create {subdomain: "admin"}
                           new_admin_user GET    /users/new(.:format)                                                                              admin/users#new {subdomain: "admin"}
@@ -57,7 +58,7 @@
                                          PUT    /memberships/:id(.:format)                                                                        admin/memberships#update {subdomain: "admin"}
                                          DELETE /memberships/:id(.:format)                                                                        admin/memberships#destroy {subdomain: "admin"}
                               admin_root GET    /                                                                                                 admin/accounts#index {subdomain: "admin"}
-                             tenant_root GET    /                                                                                                 tenant/nodes#index
+                             tenant_root GET    /                                                                                                 redirect(301, /nodes)
                             tenant_nodes GET    /nodes(.:format)                                                                                  tenant/nodes#index
                                          POST   /nodes(.:format)                                                                                  tenant/nodes#create
                          new_tenant_node GET    /nodes/new(.:format)                                                                              tenant/nodes#new

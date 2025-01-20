@@ -13,10 +13,10 @@ spec:
   {{- with .Values.ingress.className }}
   ingressClassName: {{ . }}
   {{- end }}
-  tls:
-    - hosts:
-      - {{ $.Values.host | quote }}
-      secretName: {{ .Values.ingress.secretName }}
+  #tls:
+    #- hosts:
+      #- {{ $.Values.host | quote }}
+      #secretName: {{ .Values.ingress.secretName }}
   rules:
     - host: {{ .Values.host | quote }}
       http:

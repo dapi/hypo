@@ -4,30 +4,31 @@ h1.mb-5 Узел #{node.title}
 
 p Создан #{time_ago_in_words node.created_at}
 p Статус #{node_state node.state}
-p RPC endpoint #{link_to node.url, node.url}
 
 - if current_user.superadmin?
   p 
     | Last node job error message: 
     code =node.last_node_job_error_message
 
-h2.my-4 Usage examples
+- if node.processing?
+  h2.my-4 Usage examples
 
-h3 curl
-code
-  pre.border.border-secondary-subtle.rounded.py-2.px-2
-    |
-      curl #{node.url} \
-        -X POST \
-        -H "Content-Type: application/json" \
-        -d '{"jsonrpc": "2.0", "method": "web3_clientVersion", "params": [], "id": 1}'
+  p RPC endpoint #{link_to node.url, node.url}
+  h3 curl
+  code
+    pre.border.border-secondary-subtle.rounded.py-2.px-2
+      |
+        curl #{node.url} \
+          -X POST \
+          -H "Content-Type: application/json" \
+          -d '{"jsonrpc": "2.0", "method": "web3_clientVersion", "params": [], "id": 1}'
 
-h3 WebSocket
-code
-  pre.border.border-secondary-subtle.rounded.py-2.px-2
-    |
-      wscat -c #{node.ws_url} \
-        -x '{"jsonrpc": "2.0", "method": "web3_clientVersion", "params": [], "id": 1}'
+  h3 WebSocket
+  code
+    pre.border.border-secondary-subtle.rounded.py-2.px-2
+      |
+        wscat -c #{node.ws_url} \
+          -x '{"jsonrpc": "2.0", "method": "web3_clientVersion", "params": [], "id": 1}'
 
-p= link_to 'Supported RPC Methods', 'https://book.getfoundry.sh/reference/anvil/#supported-rpc-methods', target: '_blank'
+  p= link_to 'Supported RPC Methods', 'https://book.getfoundry.sh/reference/anvil/#supported-rpc-methods', target: '_blank'
 

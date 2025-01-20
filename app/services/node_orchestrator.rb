@@ -24,7 +24,7 @@ class NodeOrchestrator
       }
     ).deep_stringify_keys
     args = {
-      kube_namespace: ApplicationConfig.kube_namespace,
+      namespace: ApplicationConfig.kube_namespace,
       kube_as_user: ApplicationConfig.kube_as_user,
       kube_as_group: ApplicationConfig.kube_as_group
       # Для примера

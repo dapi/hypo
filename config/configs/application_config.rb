@@ -21,11 +21,16 @@ class ApplicationConfig < Anyway::Config
     # sidekiq_redis_url: 'redis://localhost:6379/0',
     bot_token: "",
     bot_username: "",
+    reserved_subdomains: 'www,node,vilna'
   )
 
   def kube_token
     super || kube_token_from_file
   end
+
+  #def reserved_subdomains
+    #super.to_s.split(',')
+  #end
 
   def kube_token_from_file
     File.read kube_token_file if kube_token_file.present?

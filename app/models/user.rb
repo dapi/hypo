@@ -45,7 +45,7 @@ class User < ApplicationRecord
     role == "superadmin" || role == "developer"
   end
 
-  def super_admin?
+  def superadmin?
     role == "superadmin"
   end
 end

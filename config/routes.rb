@@ -1,4 +1,5 @@
 require "account_constraint"
+require "admin_constraint"
 
 Rails.application.routes.draw do
   get "/", to: redirect(ApplicationConfig.home_url), constraints: { subdomain: "www" }
@@ -25,14 +26,16 @@ Rails.application.routes.draw do
 
   # TODO: constraint superadmin only
   constraints subdomain: "admin" do
-    mount SolidQueueDashboard::Engine, at: "/solid-queue"
-    scope module: :admin, as: :admin do
-      resources :users
-      resources :telegram_users
-      resources :accounts
-      resources :nodes
-      resources :memberships
-      root to: "accounts#index"
+    constraints AdminConstraint do
+      mount SolidQueueDashboard::Engine, at: "/solid-queue"
+      scope module: :admin, as: :admin do
+        resources :users
+        resources :telegram_users
+        resources :accounts
+        resources :nodes
+        resources :memberships
+        root to: "accounts#index"
+      end
     end
   end
 

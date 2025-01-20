@@ -12,7 +12,7 @@
     li
       a.dropdown-item[href=accounts_url]
         | Аккаунты
-    - if current_user.super_admin?
+    - if current_user.superadmin?
       li
         hr.dropdown-divider
       - if defined? Sidekiq

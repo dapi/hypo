@@ -44,7 +44,7 @@ class NodeOrchestrator
   def install
     with_values do |values_path|
       cli
-        .install(release, ApplicationConfig.chart_dir, create_namespace: true, set: set_options, values: values_path)
+        .install(release, ApplicationConfig.chart_dir, set: set_options, values: values_path)
         .run &method(:run_block)
     end
   end

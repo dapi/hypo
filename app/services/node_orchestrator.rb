@@ -12,11 +12,11 @@ class NodeOrchestrator
       path: path,
       host: ApplicationConfig.node_host,
       # Пока не используем
-      #ingress: {
-        #tls: {
-          #secretName: ApplicationConfig.tls_secret_name
-        #}
-      #},
+      # ingress: {
+      # tls: {
+      # secretName: ApplicationConfig.tls_secret_name
+      # }
+      # },
       extraLabels: {
         "vilna.blockberry.com/nodeId" => node_id,
         "vilna.blockberry.com/accountId" => account_id,

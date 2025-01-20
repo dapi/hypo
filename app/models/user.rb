@@ -18,7 +18,7 @@ class User < ApplicationRecord
   enum :role, ROLES.each_with_object({}) { |key, a| a[key] = key }
 
   def default_account
-    accounts.order(:id).first
+    accounts.order(:created_at).first || owner_accounts.order(:created_at).first
   end
 
   def to_s

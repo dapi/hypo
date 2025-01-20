@@ -16,15 +16,6 @@
                                 accounts GET    /accounts(.:format)                                                                               accounts#index {subdomain: ""}
                                  account GET    /accounts/:id(.:format)                                                                           accounts#show {subdomain: ""}
                    solid_queue_dashboard        /solid-queue                                                                                      SolidQueueDashboard::Engine {subdomain: ""}
-                             tenant_root GET    /                                                                                                 tenant/nodes#index
-                            tenant_nodes GET    /nodes(.:format)                                                                                  tenant/nodes#index
-                                         POST   /nodes(.:format)                                                                                  tenant/nodes#create
-                         new_tenant_node GET    /nodes/new(.:format)                                                                              tenant/nodes#new
-                        edit_tenant_node GET    /nodes/:id/edit(.:format)                                                                         tenant/nodes#edit
-                             tenant_node GET    /nodes/:id(.:format)                                                                              tenant/nodes#show
-                                         PATCH  /nodes/:id(.:format)                                                                              tenant/nodes#update
-                                         PUT    /nodes/:id(.:format)                                                                              tenant/nodes#update
-                                         DELETE /nodes/:id(.:format)                                                                              tenant/nodes#destroy
                              admin_users GET    /users(.:format)                                                                                  admin/users#index {subdomain: "admin"}
                                          POST   /users(.:format)                                                                                  admin/users#create {subdomain: "admin"}
                           new_admin_user GET    /users/new(.:format)                                                                              admin/users#new {subdomain: "admin"}
@@ -33,6 +24,14 @@
                                          PATCH  /users/:id(.:format)                                                                              admin/users#update {subdomain: "admin"}
                                          PUT    /users/:id(.:format)                                                                              admin/users#update {subdomain: "admin"}
                                          DELETE /users/:id(.:format)                                                                              admin/users#destroy {subdomain: "admin"}
+                    admin_telegram_users GET    /telegram_users(.:format)                                                                         admin/telegram_users#index {subdomain: "admin"}
+                                         POST   /telegram_users(.:format)                                                                         admin/telegram_users#create {subdomain: "admin"}
+                 new_admin_telegram_user GET    /telegram_users/new(.:format)                                                                     admin/telegram_users#new {subdomain: "admin"}
+                edit_admin_telegram_user GET    /telegram_users/:id/edit(.:format)                                                                admin/telegram_users#edit {subdomain: "admin"}
+                     admin_telegram_user GET    /telegram_users/:id(.:format)                                                                     admin/telegram_users#show {subdomain: "admin"}
+                                         PATCH  /telegram_users/:id(.:format)                                                                     admin/telegram_users#update {subdomain: "admin"}
+                                         PUT    /telegram_users/:id(.:format)                                                                     admin/telegram_users#update {subdomain: "admin"}
+                                         DELETE /telegram_users/:id(.:format)                                                                     admin/telegram_users#destroy {subdomain: "admin"}
                           admin_accounts GET    /accounts(.:format)                                                                               admin/accounts#index {subdomain: "admin"}
                                          POST   /accounts(.:format)                                                                               admin/accounts#create {subdomain: "admin"}
                        new_admin_account GET    /accounts/new(.:format)                                                                           admin/accounts#new {subdomain: "admin"}
@@ -49,6 +48,24 @@
                                          PATCH  /nodes/:id(.:format)                                                                              admin/nodes#update {subdomain: "admin"}
                                          PUT    /nodes/:id(.:format)                                                                              admin/nodes#update {subdomain: "admin"}
                                          DELETE /nodes/:id(.:format)                                                                              admin/nodes#destroy {subdomain: "admin"}
+                       admin_memberships GET    /memberships(.:format)                                                                            admin/memberships#index {subdomain: "admin"}
+                                         POST   /memberships(.:format)                                                                            admin/memberships#create {subdomain: "admin"}
+                    new_admin_membership GET    /memberships/new(.:format)                                                                        admin/memberships#new {subdomain: "admin"}
+                   edit_admin_membership GET    /memberships/:id/edit(.:format)                                                                   admin/memberships#edit {subdomain: "admin"}
+                        admin_membership GET    /memberships/:id(.:format)                                                                        admin/memberships#show {subdomain: "admin"}
+                                         PATCH  /memberships/:id(.:format)                                                                        admin/memberships#update {subdomain: "admin"}
+                                         PUT    /memberships/:id(.:format)                                                                        admin/memberships#update {subdomain: "admin"}
+                                         DELETE /memberships/:id(.:format)                                                                        admin/memberships#destroy {subdomain: "admin"}
+                              admin_root GET    /                                                                                                 admin/accounts#index {subdomain: "admin"}
+                             tenant_root GET    /                                                                                                 tenant/nodes#index
+                            tenant_nodes GET    /nodes(.:format)                                                                                  tenant/nodes#index
+                                         POST   /nodes(.:format)                                                                                  tenant/nodes#create
+                         new_tenant_node GET    /nodes/new(.:format)                                                                              tenant/nodes#new
+                        edit_tenant_node GET    /nodes/:id/edit(.:format)                                                                         tenant/nodes#edit
+                             tenant_node GET    /nodes/:id(.:format)                                                                              tenant/nodes#show
+                                         PATCH  /nodes/:id(.:format)                                                                              tenant/nodes#update
+                                         PUT    /nodes/:id(.:format)                                                                              tenant/nodes#update
+                                         DELETE /nodes/:id(.:format)                                                                              tenant/nodes#destroy
         turbo_recede_historical_location GET    /recede_historical_location(.:format)                                                             turbo/native/navigation#recede
         turbo_resume_historical_location GET    /resume_historical_location(.:format)                                                             turbo/native/navigation#resume
        turbo_refresh_historical_location GET    /refresh_historical_location(.:format)                                                            turbo/native/navigation#refresh

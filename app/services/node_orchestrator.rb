@@ -11,11 +11,12 @@ class NodeOrchestrator
     @values = values.merge(
       path: path,
       host: ApplicationConfig.node_host,
-      ingress: {
-        tls: {
-          secretName: ApplicationConfig.tls_secret_name
-        }
-      },
+      # Пока не используем
+      #ingress: {
+        #tls: {
+          #secretName: ApplicationConfig.tls_secret_name
+        #}
+      #},
       extraLabels: {
         "vilna.blockberry.com/nodeId" => node_id,
         "vilna.blockberry.com/accountId" => account_id,
@@ -26,7 +27,7 @@ class NodeOrchestrator
       namespace: ApplicationConfig.kube_namespace,
       kube_as_user: ApplicationConfig.kube_as_user,
       kube_as_group: ApplicationConfig.kube_as_group
-      # program: '/path/to/a/specific/helm/binary'
+      # Для примера
       # logger: Rhelm::Client::SimpleLogger
     }
     if ApplicationConfig.kube_token.present?

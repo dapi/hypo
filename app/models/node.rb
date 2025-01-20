@@ -42,6 +42,10 @@ class Node < ApplicationRecord
     end
   end
 
+  after_commit do
+    NodeRelayJob.perform_later self, previous_changes
+  end
+
   def set_defaults
     self.title ||= Faker::App.name
     self.key ||= Nanoid.generate(size: 16)

@@ -26,6 +26,7 @@ consumer.subscriptions.create("AppearanceChannel", {
   },
 
   update() {
+    console.log("Update AppearanceChannel")
     this.documentIsActive ? this.appear() : this.away()
   },
 

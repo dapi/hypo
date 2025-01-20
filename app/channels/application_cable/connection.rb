@@ -2,11 +2,18 @@ module ApplicationCable
   class Connection < ActionCable::Connection::Base
     identified_by :current_user
 
+    rescue_from StandardError, with: :report_error
+
     def connect
       set_current_user || reject_unauthorized_connection
     end
 
     private
+
+    def report_error(e)
+      Rails.logger.error e
+      Bugsnag.notify(e)
+    end
 
     def set_current_user
       # Alternative:

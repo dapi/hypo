@@ -2,3 +2,7 @@
 @import 'bootstrap-icons/font/bootstrap-icons';
 // @import './application.bootstrap';
 @import 'online-status-badge';
+
+html[data-turbo-visit-direction="forward"]::view-transition-old(sidebar):only-child {
+  animation: slide-to-right 0.5s ease-out;
+}

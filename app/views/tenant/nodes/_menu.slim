@@ -8,8 +8,9 @@
     strong= bootstrap_icon 'three-dots'
   ul.dropdown-menu.text-small.shadow
     li= link_to 'Статус', tenant_node_path(node), class: 'dropdown-item'
-    li= link_to 'Примеры использования', tenant_node_path(node), class: 'dropdown-item'
-    li= link_to 'RPC Endpoint', node.url, class: 'dropdown-item'
+    - if node.processing?
+      li= link_to 'Примеры использования', tenant_node_path(node), class: 'dropdown-item'
+      li= link_to 'RPC Endpoint', node.url, class: 'dropdown-item'
     li
       hr.dropdown-divider
     li

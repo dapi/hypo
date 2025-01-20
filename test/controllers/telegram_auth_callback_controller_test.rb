@@ -6,7 +6,7 @@ require "test_helper"
 
 class TelegramAuthCallbackControllerTest < ActionDispatch::IntegrationTest
   setup do
-    host! "example.com"
+    host! [ApplicationConfig.home_subdomain.presence, "example.com"].compact.join('.')
   end
 
   test "receive callback data, create user and login him" do

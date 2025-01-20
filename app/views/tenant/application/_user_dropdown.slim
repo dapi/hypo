@@ -30,5 +30,6 @@
     li
       hr.dropdown-divider
     li
-      = link_to 'Выйти', session_url, data: { method: :delete }, class: 'dropdown-item'
+      = button_to 'logout', session_url, method: :delete
+      = link_to 'Выйти', session_url, data: { turbo_method: :delete }, class: 'dropdown-item'
 = render 'online_status'

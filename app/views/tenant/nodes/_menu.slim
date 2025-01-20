@@ -14,4 +14,6 @@
     li
       hr.dropdown-divider
     li
-      = link_to 'Удалить', tenant_node_path(node), class: 'text-danger dropdown-item', data: { turbo: false, method: :delete, confirm: 'Удалить?' }
+      = link_to 'Удалить', tenant_node_path(node), 
+        class: 'text-danger dropdown-item', 
+        data: { turbo_method: :delete, turbo_confirm: 'Удалить?' }

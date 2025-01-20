@@ -1,6 +1,6 @@
 .mb-3= back_link
 .form-actions.float-end.mt-2
-  = link_to 'Удалить', tenant_node_path(node), data: { turbo: false, method: :delete, confirm: 'Удалить?' }, class: 'btn btn-outline-danger'
+  = link_to 'Удалить', tenant_node_path(node), data: { turbo_method: :delete, turbo_confirm: 'Удалить?' }, class: 'btn btn-outline-danger'
 h1.mb-5 Узел #{node.title}
 
 p Создан #{time_ago_in_words node.created_at}

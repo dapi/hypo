@@ -10,7 +10,7 @@ aside.d-flex.flex-column.flex-shrink-0.p-3.text-bg-dark[style="width: 280px;"]
         /= bootstrap_icon :speedometer2, width: 16, height: 16, class: 'pe-none me-2'
         /|  Рабочий стол
     li
-      = active_link_to tenant_nodes_path, class: 'nav-link text-white' do
+      = active_link_to tenant_nodes_path, data: { turbo: true }, class: 'nav-link text-white' do
         = bootstrap_icon :speedometer2, width: 16, height: 16, class: 'pe-none me-2'
         = title_with_counter '  Узлы', current_account.nodes.alive.count
     /li

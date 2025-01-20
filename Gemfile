@@ -113,3 +113,5 @@ gem "administrate", github: "thoughtbot/administrate"
 gem "faker", "~> 3.5"
 
 gem "redis", "~> 5.3"
+
+gem "bugsnag", "~> 6.27"

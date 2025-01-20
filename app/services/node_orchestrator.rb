@@ -29,12 +29,12 @@ class NodeOrchestrator
       # program: '/path/to/a/specific/helm/binary'
       # logger: Rhelm::Client::SimpleLogger
     }
-    if ApplicationConfig.kube_token
+    if ApplicationConfig.kube_token.present?
       args.merge!(
         kube_token: ApplicationConfig.kube_token,
         kube_apiserver: ApplicationConfig.kube_apiserver,
       )
-    else
+    elsif ApplicationConfig.kubeconfig.present?
       args.merge! kubeconfig: ApplicationConfig.kubeconfig
     end
     @cli = Rhelm::Client.new(**args)

@@ -2,8 +2,8 @@ class SessionsController < ApplicationController
   # There are no needs
   # allow_unauthenticated_access only: %i[ new create ]
 
-  # For destroy
-  skip_before_filter :verify_authenticity_token
+  # For destroy from different domain
+  skip_before_action :verify_authenticity_token
 
   layout "simple"
 

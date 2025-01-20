@@ -30,9 +30,9 @@ module Tenant
       node = current_account.nodes.find(params[:id])
 
       node.with_lock do
-        if node.initiated? || node.failed_to_start?
+        if node.initiated? || node.failed_to_start? || node.to_start?
           node.destroy!
-          redirect_back fallback_location: tenant_nodes_path, notice: "Узел #{node.title} удалена"
+          redirect_back fallback_location: tenant_nodes_path, notice: "Узел #{node.title} удалён"
           return
         end
       end

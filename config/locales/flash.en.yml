@@ -1,0 +1,4 @@
+ru:
+  flash:
+    buy: Buy!
+    hi: Hi, %{username}!

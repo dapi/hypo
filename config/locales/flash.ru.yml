@@ -2,4 +2,3 @@ ru:
   flash:
     buy: До новых встреч!
     hi: Привет, %{username}!
-    wallets_generated: Созданы кошельки

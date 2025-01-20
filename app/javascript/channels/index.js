@@ -3,3 +3,4 @@
 // This kind does not work: (404)
 import "channels/appearance_channel"
 import "channels/web_notifications_channel"
+import "channels/node_channel"

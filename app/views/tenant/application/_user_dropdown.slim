@@ -26,9 +26,9 @@
     li
       hr.dropdown-divider
     li
-      a.dropdown-item[href=root_url] На главную
+      a.dropdown-item[href=root_url(subdomain: '')] На главную
     li
       hr.dropdown-divider
     li
-      = link_to 'Выйти', session_url, data: { turbo_method: :delete }, class: 'dropdown-item'
+      = link_to 'Выйти', session_url, data: { method: :delete }, class: 'dropdown-item'
 = render 'online_status'

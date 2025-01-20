@@ -2,21 +2,21 @@ require "account_constraint"
 
 Rails.application.routes.draw do
   get "/", to: redirect(ApplicationConfig.home_url), constraints: { subdomain: "www" }
-  constraints subdomain: ApplicationConfig.home_subdomain do
-    root "dashboard#index"
-    resource :session
-    # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
+  constraints subdomain: "" do
     # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
     # Can be used by load balancers and uptime monitors to verify that the app is live.
     get "up" => "rails/health#show", as: :rails_health_check
+  end
+
+  constraints subdomain: ApplicationConfig.home_subdomain do
+    root "dashboard#index"
+    resource :session
 
     # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
     # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
     # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
-    # Defines the root path route ("/")
-    # root "posts#index"
     get "telegram/auth_callback", to: "telegram_auth_callback#create"
 
     resource :profile, only: %i[show update], controller: "profile"

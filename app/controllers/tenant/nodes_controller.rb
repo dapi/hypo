@@ -17,7 +17,7 @@ module Tenant
     def create
       node = current_account.nodes.create! permitted_params
       StartNodeJob.perform_later node
-      redirect_to tenant_node_path(node), notice: "Создан узел #{node.title}"
+      redirect_to tenant_node_path(node), notice: "Создается узел #{node.title}"
     rescue ActiveRecord::RecordInvalid => e
       render :new, locals: { node: e.record }, status: :unprocessable_entity
     end

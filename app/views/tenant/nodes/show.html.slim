@@ -1,37 +1,21 @@
 .mb-3= back_link
-.form-actions.float-end.mt-2
-  = link_to 'Удалить', tenant_node_path(node), data: { turbo_method: :delete, turbo_confirm: 'Удалить?' }, class: 'btn btn-outline-danger'
-h1.mb-5 Узел #{node.title}
 
-p Создан #{time_ago_in_words node.created_at}
-p 
-  | Статус #{node_state node}
+-# turbo-stream action="refresh"
+= turbo_stream_from node
+-##   <%= turbo_stream_from "room", channel: RoomChannel, data: {room_name: "room #1"} %>
+div[data-node-channel=node.id]
+  .form-actions.float-end.mt-2
+    = link_to 'Удалить', tenant_node_path(node), data: { turbo_method: :delete, turbo_confirm: 'Удалить?' }, class: 'btn btn-outline-danger'
 
-- if current_user.superadmin?
-  p 
-    | Last node job error message: 
-    code =node.last_node_job_error_message
+  h1.mb-5 Узел #{node.title}
 
-- if node.processing?
-  h2.my-4 Usage examples
+  p Создан #{time_ago_in_words node.created_at}
+  p Статус #{node_state node}
 
-  -# Хороший пример доки https://docs.chainstack.com/reference/ethereum-clientversion
-  p RPC endpoint #{link_to node.url, node.url}
-  h3 curl
-  code
-    pre.border.border-secondary-subtle.rounded.py-2.px-2
-      |
-        curl #{node.url} \
-          -X POST \
-          -H "Content-Type: application/json" \
-          -d '{"jsonrpc": "2.0", "method": "web3_clientVersion", "params": [], "id": 1}'
+  - if current_user.superadmin?
+    p 
+      | Last node job error message: 
+      code =node.last_node_job_error_message
 
-  h3 WebSocket
-  code
-    pre.border.border-secondary-subtle.rounded.py-2.px-2
-      |
-        wscat -c #{node.ws_url} \
-          -x '{"jsonrpc": "2.0", "method": "web3_clientVersion", "params": [], "id": 1}'
-
-  p= link_to 'Supported RPC Methods', 'https://book.getfoundry.sh/reference/anvil/#supported-rpc-methods', target: '_blank'
-
+  - if node.processing?
+    = render 'example', node: node

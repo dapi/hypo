@@ -1,3 +1,4 @@
+# Не используется сейчас
 class NodeRelayJob < ApplicationJob
   queue_as :default
 

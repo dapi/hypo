@@ -1,6 +1,8 @@
 class Account < ApplicationRecord
   include AccountSubdomain
 
+  broadcasts_refreshes
+
   has_many :nodes
   has_many :memberships
   belongs_to :owner, class_name: "User"

@@ -1,7 +1,9 @@
 class Node < ApplicationRecord
+  broadcasts_refreshes
+
   OPTIONS=%i[no_mining block_time chain_id]
 
-  belongs_to :account
+  belongs_to :account, touch: :nodes_updated_at
 
   scope :alive, -> { where.not state: %i[finishing finished to_finish failed_to_finish] }
 
@@ -42,9 +44,10 @@ class Node < ApplicationRecord
     end
   end
 
-  after_commit do
-    NodeRelayJob.perform_later self, previous_changes
-  end
+  # Пока не используем
+  # after_commit do
+  # NodeRelayJob.perform_later self, previous_changes
+  # end
 
   def set_defaults
     self.title ||= Faker::App.name

@@ -25,6 +25,6 @@ class Tenant::ApplicationController < ApplicationController
   end
 
   def current_account
-    @current_account ||= RequestStore.store[:account].freeze
+    @current_account ||= RequestStore.store[:account]
   end
 end

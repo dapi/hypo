@@ -15,7 +15,7 @@ class ApplicationConfig < Anyway::Config
     kube_namespace: "vilna-nodes-" + Rails.env,
     kube_as_group: nil,
     kube_as_user: nil,
-    telegram_auth_expiration: '15', # В минутах
+    telegram_auth_expiration: "15", # В минутах
     tls_secret_name: "anvil-node-blockberry-cc-tls",
     node_host: "node.localhost",
     chart_dir: "./charts/anvil",

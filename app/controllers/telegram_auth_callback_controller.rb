@@ -9,8 +9,6 @@ class TelegramAuthCallbackController < ApplicationController
     OpenSSL::HMAC.hexdigest("sha256", secret_key, data_check_string)
   end
 
-  EXPIRED = 5
-
   before_action :authorize!
 
   def create
@@ -44,6 +42,6 @@ class TelegramAuthCallbackController < ApplicationController
   end
 
   def fresh?
-    Time.zone.at(params.fetch(:auth_date).to_i) >= EXPIRED.minutes.ago
+    Time.zone.at(params.fetch(:auth_date).to_i) >= Integer(ApplicationConfig.telegram_auth_expiration).minutes.ago
   end
 end

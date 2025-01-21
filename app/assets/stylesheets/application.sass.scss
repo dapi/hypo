@@ -6,3 +6,13 @@
 html[data-turbo-visit-direction="forward"]::view-transition-old(sidebar):only-child {
   animation: slide-to-right 0.5s ease-out;
 }
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 280px; // Sidebar width
+  right: 0px;
+  height: 64px;
+  line-height: 60px;
+  // background-color: #f5f5f5;
+}

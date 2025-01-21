@@ -1,9 +1,2 @@
-.container.mt-auto
-  footer.py-3.d-flex.flex-wrap.justify-content-between.align-items-center.border-top
-    .col-md-6.text-body-secondary title=AppVersion.to_s
-      =" &copy; #{Date.today.year} ".html_safe
-      | SibilDAO
-    ul.nav.col-md-6.justify-content-end
-      li.nav-item
-        a.nav-link.px-2.text-body-secondary[href=root_url]
-          | На главную
+footer.footer.px-3
+  p.text-body-secondary.border-top.text-end=" &copy; #{Date.today.year} #{app_title} #{AppVersion.to_s}".html_safe

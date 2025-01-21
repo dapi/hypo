@@ -18,7 +18,7 @@ table.table.table-hover0
         td
           = node_state node
         td
-          = link_to 'RPC endpoint', node.url, target: '_blank'
+          = link_to 'RPC endpoint', node.url, target: '_blank', rel: "noopener noreferrer"
         td
           = time_ago_in_words node.created_at
         td

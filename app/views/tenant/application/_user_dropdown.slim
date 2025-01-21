@@ -24,6 +24,6 @@
     li
       hr.dropdown-divider
     li
-      // = button_to 'logout', session_url, method: :delete
-      = link_to 'Выйти', session_url, data: { turbo_method: :delete }, class: 'dropdown-item'
+      -# Ссылкой не получается, потому что turbu drive отказыватся учитывать method из-за разницы в домене
+      = button_to 'Выйти', session_url, method: :delete , class: 'dropdown-item'
 = render 'online_status'

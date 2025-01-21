@@ -11,6 +11,6 @@ dl
 
   dt
   dd
-    = link_to 'Выйти', session_url, data: { turbo_method: :delete }
+    = button_to 'Выйти', session_url, method: :delete, class: 'btn btn-sm btn-outline-secondary'
 
 = render 'accounts/accounts', accounts: current_user.accounts

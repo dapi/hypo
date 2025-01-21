@@ -32,16 +32,30 @@ class TelegramAuthCallbackController < ApplicationController
   end
 
   def authorize!
-    return if signed? && fresh?
+    unless signed?
+      Rails.logger.error "Not signed telegram callback #{data_params}, #{self.class.sign_params(data_params)}, #{params[:hash]}"
+      raise HumanizedError, "Unauthorized telegram callback"
+    end
 
-    raise HumanizedError, "Unauthorized telegram callback"
+    unless fresh?
+      Rails.logger.error "Expired telegram callback #{auth_date} must be larget then #{expiration_ago}"
+      raise HumanizedError, "Expired telegram callback"
+    end
   end
 
   def signed?
     self.class.sign_params(data_params) == params[:hash].to_s
   end
 
+  def auth_date
+    Time.at(params.fetch(:auth_date).to_i)
+  end
+
   def fresh?
-    Time.zone.at(params.fetch(:auth_date).to_i) >= Integer(ApplicationConfig.telegram_auth_expiration).minutes.ago
+    auth_date >= expiration_ago
+  end
+
+  def expiration_ago
+    @expiration_ago ||= Integer(ApplicationConfig.telegram_auth_expiration).minutes.ago
   end
 end

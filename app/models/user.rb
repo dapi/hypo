@@ -32,9 +32,10 @@ class User < ApplicationRecord
   end
 
   def self.find_or_create_by_telegram_data!(data)
-    find_or_create_by!(
-      telegram_user: TelegramUser.find_or_create_by_telegram_data!(data)
-    )
+    create_with(locale: I18n.locale).
+      find_or_create_by!(
+        telegram_user: TelegramUser.find_or_create_by_telegram_data!(data)
+      )
   end
 
   def self.authenticate(telegram_data)

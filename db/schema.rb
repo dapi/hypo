@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_21_082700) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_22_174030) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
@@ -60,6 +60,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_21_082700) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_authentications", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id", null: false
+    t.string "provider", null: false
+    t.string "uid", null: false
+    t.jsonb "data", default: {}, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["provider", "uid"], name: "index_user_authentications_on_provider_and_uid", unique: true
+    t.index ["user_id"], name: "index_user_authentications_on_user_id"
+  end
+
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email"
     t.string "crypted_password"
@@ -75,6 +86,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_21_082700) do
     t.bigint "telegram_user_id"
     t.string "role", default: "user", null: false
     t.string "api_key", null: false
+    t.string "locale", default: "en", null: false
     t.index ["api_key"], name: "index_users_on_api_key", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["last_logout_at", "last_activity_at"], name: "index_users_on_last_logout_at_and_last_activity_at"
@@ -86,4 +98,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_21_082700) do
   add_foreign_key "memberships", "accounts"
   add_foreign_key "memberships", "users"
   add_foreign_key "nodes", "accounts"
+  add_foreign_key "user_authentications", "users"
 end

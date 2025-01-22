@@ -13,7 +13,6 @@ class TelegramAuthCallbackController < ApplicationController
 
   def create
     login data_params
-
     if current_user.default_account.present?
       url = tenant_root_url(subdomain: current_user.default_account.subdomain)
       redirect_back_or_to url, allow_other_host: true, notice: t("flash.hi", username: current_user)

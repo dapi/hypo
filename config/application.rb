@@ -24,6 +24,12 @@ module Vilna
 
     config.log_tags = %i[request_id subdomain]
 
+    config.i18n.default_locale = :en
+
+    config.i18n.available_locales = [ :en, :ru ]
+
+    config.rails_i18n.enabled_modules = [ :pluralization ]
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

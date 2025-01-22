@@ -115,3 +115,5 @@ gem "faker", "~> 3.5"
 gem "redis", "~> 5.3"
 
 gem "bugsnag", "~> 6.27"
+
+gem "rails-i18n", "~> 8.0"

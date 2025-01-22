@@ -26,7 +26,9 @@ module Vilna
 
     config.i18n.default_locale = :en
 
-    I18n.available_locales = [ :en, :ru ]
+    config.i18n.available_locales = [ :en, :ru ]
+
+    config.rails_i18n.enabled_modules = [ :pluralization ]
 
     # Configuration for the application, engines, and railties goes here.
     #

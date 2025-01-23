@@ -70,8 +70,9 @@ production:
     <<: *_default
     database: <%= ENV.fetch( 'DATABASE_NAME', 'vilna_production' ) %>
   bb:
+    # ActiveRecord::Base.schema_migrations_table_name
     <<: *production
-    database: blockberry
+    url: <%= ENV['BLOCKBERRY_DATABASE_URL'] %>
     migrations_paths: db/bb_migrate
   cache:
     <<: *production

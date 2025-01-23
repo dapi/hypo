@@ -41,6 +41,10 @@ development:
   primary: &development
     <<: *_default
     database: vilna_development
+  bb:
+    <<: *development
+    database: blockberry_development
+    migrations_paths: db/bb_migrate
   cache:
     <<: *development
     database: vilna_development_cache
@@ -65,6 +69,10 @@ production:
   primary: &production
     <<: *_default
     database: <%= ENV.fetch( 'DATABASE_NAME', 'vilna_production' ) %>
+  bb:
+    <<: *production
+    database: blockberry
+    migrations_paths: db/bb_migrate
   cache:
     <<: *production
     database: vilna_production_cache

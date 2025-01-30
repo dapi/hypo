@@ -15,16 +15,22 @@ class ApplicationConfig < Anyway::Config
     kube_namespace: "vilna-nodes-" + Rails.env,
     kube_as_group: nil,
     kube_as_user: nil,
-    telegram_auth_expiration: "5", # В минутах
+    telegram_auth_expiration: 120, # В Секундах
     tls_secret_name: "anvil-node-blockberry-cc-tls",
     node_host: "node.localhost",
     chart_dir: "./charts/anvil",
-    # sidekiq_redis_url: 'redis://localhost:6379/0',
     bot_token: "",
     bot_username: "",
     reserved_subdomains: "www,node,vilna",
-    home_subdomain: "app"
+    home_subdomain: "app",
+
+    helm_wait: true,
+    helm_timeout: 600,
   )
+
+  coerce_types helm_wait: :boolean,
+    helm_timeout: :integer,
+    telegram_auth_expiration: :integer
 
   def home_url
     if home_subdomain.present?

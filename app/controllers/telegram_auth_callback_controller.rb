@@ -55,6 +55,6 @@ class TelegramAuthCallbackController < ApplicationController
   end
 
   def expiration_ago
-    @expiration_ago ||= Integer(ApplicationConfig.telegram_auth_expiration).minutes.ago
+    @expiration_ago ||= ApplicationConfig.telegram_auth_expiration.seconds.ago
   end
 end

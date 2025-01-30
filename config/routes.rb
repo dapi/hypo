@@ -21,6 +21,8 @@ Rails.application.routes.draw do
     # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
     get "telegram/auth_callback", to: "telegram_auth_callback#create"
+    get "telegram/confirm", to: "telegram_auth_callback#confirm"
+    telegram_webhook Telegram::WebhookController
 
     resource :profile, only: %i[show update], controller: "profile"
     resources :accounts, only: %i[index show]

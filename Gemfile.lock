@@ -5,6 +5,15 @@ GIT
     semver2 (3.4.2)
 
 GIT
+  remote: https://github.com/telegram-bot-rb/telegram-bot.git
+  revision: 14370bd8ded7dd6f273d9b1717aa50827437761d
+  specs:
+    telegram-bot (0.16.7)
+      actionpack (>= 4.0, < 8.1)
+      activesupport (>= 4.0, < 8.1)
+      httpclient (~> 2.7)
+
+GIT
   remote: https://github.com/thoughtbot/administrate.git
   revision: ccf070371836f2d8701c352e10ab76117908eb20
   specs:
@@ -206,6 +215,8 @@ GEM
       guard (>= 2.0.0)
       guard-compat (~> 1.0)
     hashie (5.0.0)
+    hiredis (0.6.3)
+    httpclient (2.8.3)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     importmap-rails (2.1.0)
@@ -270,6 +281,7 @@ GEM
     msgpack (1.7.5)
     multi_xml (0.7.1)
       bigdecimal (~> 3.1)
+    mutex_m (0.3.0)
     nanoid (2.0.0)
     nenv (0.3.0)
     net-http (0.6.0)
@@ -564,11 +576,13 @@ DEPENDENCIES
   guard-rails
   guard-rubocop (~> 1.5)
   guard-shell (~> 0.7.2)
+  hiredis (~> 0.6.3)
   importmap-rails
   jbuilder
   kamal
   kaminari (~> 1.2)
   listen
+  mutex_m (~> 0.3.0)
   nanoid (~> 2.0)
   pg (~> 1.1)
   propshaft
@@ -592,6 +606,7 @@ DEPENDENCIES
   state_machines-activerecord
   stimulus-rails
   strip_attributes (~> 1.14)
+  telegram-bot!
   terminal-notifier-guard
   thruster
   turbo-rails

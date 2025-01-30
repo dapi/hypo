@@ -1,3 +1,4 @@
 css: yarn watch:css
 css: yarn build:css --watch
 jobs: ./bin/jobs
+bot: bundle exec rake telegram:bot:poller

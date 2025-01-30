@@ -38,9 +38,16 @@ class User < ApplicationRecord
       )
   end
 
+  def self.find_or_create_by_telegram_id!(tid)
+    create_with(locale: I18n.locale).
+      find_or_create_by!(
+        telegram_user_id: tid
+      )
+  end
+
   def self.authenticate(telegram_data)
     yield(
-      User.find_or_create_by_telegram_data!(telegram_data),
+      telegram_data.is_a?(String) ? User.find_or_create_by_telegram_id!(telegram_data) : User.find_or_create_by_telegram_data!(telegram_data),
       nil)
   end
 

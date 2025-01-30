@@ -2,6 +2,7 @@
 
 # Base class for application config classes
 class ApplicationConfig < Anyway::Config
+  TELEGRAM_LINK_PREFIX = "https://t.me/"
   env_prefix :vilna
   attr_config(
     app_title: "Vilna",
@@ -23,7 +24,7 @@ class ApplicationConfig < Anyway::Config
     bot_username: "",
     reserved_subdomains: "www,node,vilna",
     home_subdomain: "app",
-
+    redis_cache_store_url: "redis://localhost:6379/2",
     helm_wait: true,
     helm_timeout: 600,
   )
@@ -38,6 +39,14 @@ class ApplicationConfig < Anyway::Config
     else
       protocol + "://" + host
     end
+  end
+
+  def bot_url
+    TELEGRAM_LINK_PREFIX + bot_username
+  end
+
+  def bot_id
+    bot_token.split(":").first
   end
 
   def kube_token

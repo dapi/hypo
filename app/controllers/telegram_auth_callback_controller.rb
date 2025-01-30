@@ -9,10 +9,38 @@ class TelegramAuthCallbackController < ApplicationController
     OpenSSL::HMAC.hexdigest("sha256", secret_key, data_check_string)
   end
 
-  before_action :authorize!
+  before_action :authorize!, only: :create
+
+  def confirm
+    verifier = Rails.application.message_verifier :telegram
+    token = params[:token].to_s
+    if token.present?
+      data = verifier.verify token, purpose: :login
+      if Time.at(data.fetch("t").to_i) < ApplicationConfig.telegram_auth_expiration.seconds.ago
+        redirect_to new_session_url, notice: "Токен ваторизации устарел, попробуйте еще раз"
+        return
+      end
+      if data.fetch("st") == cookies.signed[:auth_token]
+        login data.fetch("tid")
+        redirect_after_login
+      else
+        redirect_to new_session_url, notice: "Неверный токен авторизации (3), попробуйте еще раз"
+      end
+    else
+      redirect_to new_session_url, notice: "Неверный токен авторизации (1), попробуйте еще раз"
+    end
+  rescue ActiveSupport::MessageVerifier::InvalidSignature
+    redirect_to new_session_url, notice: "Неверный токен авторизации (2), попробуйте еще раз"
+  end
 
   def create
     login data_params
+    redirect_after_login
+  end
+
+  private
+
+  def redirect_after_login
     if current_user.default_account.present?
       url = tenant_root_url(subdomain: current_user.default_account.subdomain)
       redirect_back_or_to url, allow_other_host: true, notice: t("flash.hi", username: current_user)
@@ -21,8 +49,6 @@ class TelegramAuthCallbackController < ApplicationController
       redirect_back_or_to root_url, notice: t("flash.hi", username: current_user)
     end
   end
-
-  private
 
   def data_params
     @data_params ||= params

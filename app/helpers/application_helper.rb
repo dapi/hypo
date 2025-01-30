@@ -3,6 +3,15 @@ module ApplicationHelper
     ApplicationConfig.app_title
   end
 
+  def telegram_auth_url
+    "https://t.me/" + ApplicationConfig.bot_username + "?start=" + auth_session
+  end
+
+  AUTH_PREFIX = "auth_"
+  def auth_session
+    AUTH_PREFIX + cookies.signed[:auth_token]||=Nanoid.generate
+  end
+
   def back_link(url = nil)
     link_to "&larr; #{t('helpers.back')}".html_safe, url || root_path
   end

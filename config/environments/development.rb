@@ -51,7 +51,7 @@ Rails.application.configure do
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
-  if ENV['SKIP_PENDING_MIGRATIONS_CHECK']
+  if ENV["SKIP_PENDING_MIGRATIONS_CHECK"]
     config.active_record.migration_error = false
   else
     # Raise an error on page load if there are pending migrations.

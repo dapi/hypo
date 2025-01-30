@@ -117,3 +117,9 @@ gem "redis", "~> 5.3"
 gem "bugsnag", "~> 6.27"
 
 gem "rails-i18n", "~> 8.0"
+
+gem "telegram-bot", github: "telegram-bot-rb/telegram-bot"
+
+gem "hiredis", "~> 0.6.3"
+
+gem "mutex_m", "~> 0.3.0"

@@ -26,12 +26,13 @@ class ApplicationConfig < Anyway::Config
     home_subdomain: "app",
     redis_cache_store_url: "redis://localhost:6379/2",
     helm_wait: true,
-    helm_timeout: 600,
+    helm_timeout: "10m"
   )
 
-  coerce_types helm_wait: :boolean,
-    helm_timeout: :integer,
+  coerce_types(
+    helm_wait: :boolean,
     telegram_auth_expiration: :integer
+  )
 
   def home_url
     if home_subdomain.present?

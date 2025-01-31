@@ -20,12 +20,10 @@ class TelegramAuthCallbackController < ApplicationController
         redirect_to new_session_url, notice: "Токен ваторизации устарел, попробуйте еще раз"
         return
       end
-      if data.fetch("st") == cookies.signed[:auth_token]
-        login data.fetch("tid")
-        redirect_after_login
-      else
-        redirect_to new_session_url, notice: "Неверный токен авторизации (3), попробуйте еще раз"
-      end
+      # так не даст авторизоваться в другом браузере
+      # if data.fetch("st") == cookies.signed[:auth_token]
+      login data.fetch("tid")
+      redirect_after_login
     else
       redirect_to new_session_url, notice: "Неверный токен авторизации (1), попробуйте еще раз"
     end

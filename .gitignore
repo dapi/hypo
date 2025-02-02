@@ -41,3 +41,5 @@
 /config/*.local.yml
 /config/credentials/local.*
 .kamal_registry_password
+
+tags

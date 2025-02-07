@@ -102,7 +102,7 @@ gem "strip_attributes", "~> 1.14"
 
 gem "kaminari", "~> 1.2"
 
-gem "ransack", "~> 4.2"
+gem "ransack", "~> 4.3"
 
 gem "draper", "~> 4.0"
 

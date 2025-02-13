@@ -123,3 +123,5 @@ gem "telegram-bot", github: "telegram-bot-rb/telegram-bot"
 gem "hiredis", "~> 0.6.3"
 
 gem "mutex_m", "~> 0.3.0"
+
+gem "net-smtp", "~> 0.5.0"

@@ -141,7 +141,7 @@ GEM
     concurrent-ruby (1.3.5)
     connection_pool (2.5.0)
     crass (1.0.6)
-    cssbundling-rails (1.4.1)
+    cssbundling-rails (1.4.2)
       railties (>= 6.0.0)
     date (3.4.1)
     debug (1.10.0)
@@ -511,7 +511,7 @@ GEM
       state_machines-activemodel (>= 0.9.0)
     stimulus-rails (1.3.4)
       railties (>= 6.0.0)
-    stringio (3.1.2)
+    stringio (3.1.5)
     strip_attributes (1.14.1)
       activemodel (>= 3.0, < 9.0)
     temple (0.10.3)
@@ -546,7 +546,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.7.1)
+    zeitwerk (2.7.2)
     zstd-ruby (1.5.6.6)
 
 PLATFORMS

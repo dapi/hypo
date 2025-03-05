@@ -67,7 +67,7 @@ production:
   primary: &production
     <<: *_default
     database: <%= ENV.fetch( 'DATABASE_NAME', 'vilna_production' ) %>
-    migrations_paths: db/bb_migrate
+    migrations_paths: db/migrate
   cache:
     <<: *production
     database: vilna_production_cache

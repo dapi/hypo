@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_30_182204) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_28_134451) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
@@ -49,6 +49,25 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_30_182204) do
     t.index ["account_id", "title"], name: "index_nodes_on_account_id_and_title", unique: true
     t.index ["account_id"], name: "index_nodes_on_account_id"
     t.index ["key"], name: "index_nodes_on_key", unique: true
+  end
+
+  create_table "project_extenstions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "blockchain_id", null: false
+    t.string "title", null: false
+    t.jsonb "params", default: {}, null: false
+    t.string "extra_dataset_paths", default: [], null: false, array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "services", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "account_id", null: false
+    t.string "name", null: false
+    t.integer "blockchain_id"
+    t.jsonb "extra_dataset_paths", default: [], null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_services_on_account_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -107,5 +126,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_30_182204) do
   add_foreign_key "memberships", "accounts"
   add_foreign_key "memberships", "users"
   add_foreign_key "nodes", "accounts"
+  add_foreign_key "services", "accounts"
   add_foreign_key "user_authentications", "users"
 end

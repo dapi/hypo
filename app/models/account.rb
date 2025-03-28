@@ -3,10 +3,12 @@ class Account < ApplicationRecord
 
   broadcasts_refreshes
 
+  belongs_to :owner, class_name: "User"
+
   has_many :nodes
   has_many :memberships
-  belongs_to :owner, class_name: "User"
   has_many :members, through: :memberships, source: :user
+  has_many :project_api_keys
 
   validates :subdomain, exclusion: { in: ApplicationConfig.reserved_subdomains }
 

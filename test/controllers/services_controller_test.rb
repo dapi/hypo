@@ -1,6 +1,6 @@
 require "test_helper"
 
-class ProjectExtenstionTest < ActiveSupport::TestCase
+class ServicesControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

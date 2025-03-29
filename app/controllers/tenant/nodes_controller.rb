@@ -4,7 +4,7 @@ module Tenant
     include RansackSupport
 
     before_action do
-      @back_url = action_name == 'index' ? root_path : nodes_path
+      @back_url = action_name == "index" ? root_path : nodes_path
     end
 
     def index

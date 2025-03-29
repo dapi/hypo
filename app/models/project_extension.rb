@@ -12,7 +12,7 @@ class ProjectExtension < ApplicationRecord
   end
 
   def set_defaults
-    self.name ||= 'abi'
+    self.name ||= "abi"
     self.title ||= Faker::App.name
   end
 end

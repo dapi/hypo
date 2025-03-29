@@ -1,7 +1,7 @@
 module Tenant
   class ProjectExtensionsController < ApplicationController
     before_action do
-      @back_url = action_name == 'index' ? root_path : project_extensions_path
+      @back_url = action_name == "index" ? root_path : project_extensions_path
     end
 
     def index

@@ -1,7 +1,7 @@
 module Tenant
   class ServicesController < ApplicationController
     before_action do
-      @back_url = action_name == 'index' ? root_path : services_path
+      @back_url = action_name == "index" ? root_path : services_path
     end
 
     def index

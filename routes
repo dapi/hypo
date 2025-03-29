@@ -69,6 +69,38 @@
                                          PATCH  /nodes/:id(.:format)                                                                              tenant/nodes#update
                                          PUT    /nodes/:id(.:format)                                                                              tenant/nodes#update
                                          DELETE /nodes/:id(.:format)                                                                              tenant/nodes#destroy
+                         tenant_services GET    /services(.:format)                                                                               tenant/services#index
+                                         POST   /services(.:format)                                                                               tenant/services#create
+                      new_tenant_service GET    /services/new(.:format)                                                                           tenant/services#new
+                     edit_tenant_service GET    /services/:id/edit(.:format)                                                                      tenant/services#edit
+                          tenant_service GET    /services/:id(.:format)                                                                           tenant/services#show
+                                         PATCH  /services/:id(.:format)                                                                           tenant/services#update
+                                         PUT    /services/:id(.:format)                                                                           tenant/services#update
+                                         DELETE /services/:id(.:format)                                                                           tenant/services#destroy
+                                         GET    /services(.:format)                                                                               tenant/services#index
+                                         POST   /services(.:format)                                                                               tenant/services#create
+                                         GET    /services/new(.:format)                                                                           tenant/services#new
+                                         GET    /services/:id/edit(.:format)                                                                      tenant/services#edit
+                                         GET    /services/:id(.:format)                                                                           tenant/services#show
+                                         PATCH  /services/:id(.:format)                                                                           tenant/services#update
+                                         PUT    /services/:id(.:format)                                                                           tenant/services#update
+                                         DELETE /services/:id(.:format)                                                                           tenant/services#destroy
+               tenant_project_extensions GET    /project_extensions(.:format)                                                                     tenant/project_extensions#index
+                                         POST   /project_extensions(.:format)                                                                     tenant/project_extensions#create
+            new_tenant_project_extension GET    /project_extensions/new(.:format)                                                                 tenant/project_extensions#new
+           edit_tenant_project_extension GET    /project_extensions/:id/edit(.:format)                                                            tenant/project_extensions#edit
+                tenant_project_extension GET    /project_extensions/:id(.:format)                                                                 tenant/project_extensions#show
+                                         PATCH  /project_extensions/:id(.:format)                                                                 tenant/project_extensions#update
+                                         PUT    /project_extensions/:id(.:format)                                                                 tenant/project_extensions#update
+                                         DELETE /project_extensions/:id(.:format)                                                                 tenant/project_extensions#destroy
+                 tenant_project_api_keys GET    /project_api_keys(.:format)                                                                       tenant/project_api_keys#index
+                                         POST   /project_api_keys(.:format)                                                                       tenant/project_api_keys#create
+              new_tenant_project_api_key GET    /project_api_keys/new(.:format)                                                                   tenant/project_api_keys#new
+             edit_tenant_project_api_key GET    /project_api_keys/:id/edit(.:format)                                                              tenant/project_api_keys#edit
+                  tenant_project_api_key GET    /project_api_keys/:id(.:format)                                                                   tenant/project_api_keys#show
+                                         PATCH  /project_api_keys/:id(.:format)                                                                   tenant/project_api_keys#update
+                                         PUT    /project_api_keys/:id(.:format)                                                                   tenant/project_api_keys#update
+                                         DELETE /project_api_keys/:id(.:format)                                                                   tenant/project_api_keys#destroy
         turbo_recede_historical_location GET    /recede_historical_location(.:format)                                                             turbo/native/navigation#recede
         turbo_resume_historical_location GET    /resume_historical_location(.:format)                                                             turbo/native/navigation#resume
        turbo_refresh_historical_location GET    /refresh_historical_location(.:format)                                                            turbo/native/navigation#refresh

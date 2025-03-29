@@ -1,0 +1,21 @@
+.mb-3= back_link
+
+-# turbo-stream action="refresh"
+= turbo_stream_from service
+-##   <%= turbo_stream_from "room", channel: RoomChannel, data: {room_name: "room #1"} %>
+div[data-service-channel=service.id]
+  .form-actions.float-end.mt-2
+    = link_to 'Удалить', tenant_service_path(service), data: { turbo_method: :delete, turbo_confirm: 'Удалить?' }, class: 'btn btn-outline-danger'
+
+  h1.mb-5 Узел #{service.name}
+
+  p Создан #{time_ago_in_words service.created_at}
+  p Статус #{service_state service}
+
+  - if current_user.superadmin?
+    p 
+      | Last service job error message: 
+      code =service.last_service_job_error_message
+
+  - if service.processing?
+    = render 'example', service: service

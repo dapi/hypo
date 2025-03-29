@@ -1,0 +1,5 @@
+= turbo_stream_from current_account
+- if current_account.services.alive.empty?
+  = render 'empty'
+- else
+  = render 'list', services: services

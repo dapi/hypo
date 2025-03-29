@@ -9,6 +9,8 @@ class Account < ApplicationRecord
   has_many :memberships
   has_many :members, through: :memberships, source: :user
   has_many :project_api_keys
+  has_many :services
+  has_many :project_extensions
 
   validates :subdomain, exclusion: { in: ApplicationConfig.reserved_subdomains }
 

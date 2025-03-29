@@ -1,0 +1,15 @@
+= back_link
+
+h1.my-4 Новый сервис
+
+.mt-2
+  = simple_form_for service, wrapper_mappings: { boolean: :vertical_boolean }, url: tenant_services_path do |f|
+    = full_error_messages f
+    .row
+      .col-md-3
+        = f.input :name, label: 'Название', hint: 'Для вашего удобства каждый сервис имеет свое имя', autofocus: true
+      .col-md-3
+        = f.input :blockchain, label: 'Название', hint: 'Для вашего удобства каждый сервис имеет свое имя', autofocus: true
+    .row.mt-3
+      .col-md-6
+        = f.submit 'Создать сервис', class: 'btn btn-lg btn-outline-primary'

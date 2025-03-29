@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_28_135202) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_29_070444) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
 
-  create_table "accounts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "accounts", force: :cascade do |t|
     t.string "subdomain", null: false
-    t.uuid "owner_id", null: false
+    t.bigint "owner_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "nodes_updated_at", precision: nil
@@ -25,20 +25,28 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_28_135202) do
     t.index ["subdomain"], name: "index_accounts_on_subdomain", unique: true
   end
 
-  create_table "memberships", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "account_id", null: false
-    t.uuid "user_id", null: false
+  create_table "blockchains", force: :cascade do |t|
+    t.integer "chain_id"
+    t.string "key"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "memberships", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_memberships_on_account_id"
     t.index ["user_id"], name: "index_memberships_on_user_id"
   end
 
-  create_table "nodes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "account_id", null: false
+  create_table "nodes", force: :cascade do |t|
+    t.bigint "account_id", null: false
     t.string "key", null: false
     t.boolean "no_mining", default: false, null: false
-    t.boolean "block_time", default: false, null: false
+    t.integer "block_time", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "state", default: "initiated", null: false
@@ -51,25 +59,27 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_28_135202) do
     t.index ["key"], name: "index_nodes_on_key", unique: true
   end
 
-  create_table "project_api_keys", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "account_id", null: false
+  create_table "project_api_keys", force: :cascade do |t|
+    t.bigint "account_id", null: false
     t.string "secret_key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_project_api_keys_on_account_id"
   end
 
-  create_table "project_extensions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "project_extensions", force: :cascade do |t|
     t.integer "blockchain_id", null: false
     t.string "title", null: false
+    t.string "summary"
+    t.string "tag"
     t.jsonb "params", default: {}, null: false
     t.string "extra_dataset_paths", default: [], null: false, array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "services", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "account_id", null: false
+  create_table "services", force: :cascade do |t|
+    t.bigint "account_id", null: false
     t.string "name", null: false
     t.integer "blockchain_id"
     t.jsonb "extra_dataset_paths", default: [], null: false
@@ -96,18 +106,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_28_135202) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_authentications", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "user_id", null: false
-    t.string "provider", null: false
-    t.string "uid", null: false
-    t.jsonb "data", default: {}, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["provider", "uid"], name: "index_user_authentications_on_provider_and_uid", unique: true
-    t.index ["user_id"], name: "index_user_authentications_on_user_id"
-  end
-
-  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "crypted_password"
     t.string "salt"
@@ -136,5 +135,4 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_28_135202) do
   add_foreign_key "nodes", "accounts"
   add_foreign_key "project_api_keys", "accounts"
   add_foreign_key "services", "accounts"
-  add_foreign_key "user_authentications", "users"
 end

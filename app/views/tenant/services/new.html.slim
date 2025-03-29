@@ -9,7 +9,10 @@ h1.my-4 Новый сервис
       .col-md-3
         = f.input :name, label: 'Название', hint: 'Для вашего удобства каждый сервис имеет свое имя', autofocus: true
       .col-md-3
-        = f.input :blockchain, label: 'Название', hint: 'Для вашего удобства каждый сервис имеет свое имя', autofocus: true
+        = f.association :blockchain, include_blank: false
+    .row
+      .col-md-12
+        = f.input :extra_dataset_paths
     .row.mt-3
       .col-md-6
         = f.submit 'Создать сервис', class: 'btn btn-lg btn-outline-primary'

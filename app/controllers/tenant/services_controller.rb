@@ -13,7 +13,7 @@ module Tenant
 
     def create
       service = current_account.services.create! permitted_params
-      redirect_to tenant_service_path(service), notice: "Создается сервис #{service.title}"
+      redirect_to tenant_service_path(service), notice: "Создается сервис #{service.name}"
     rescue ActiveRecord::RecordInvalid => e
       render :new, locals: { service: e.record }, status: :unprocessable_entity
     end
@@ -41,7 +41,7 @@ module Tenant
 
     def permitted_params
       return {} unless params.key? :service
-      params.require(:service).permit(:name, :blockchain_id, :extra_dataset_paths)
+      params.require(:service).permit(:name, :blockchain_id, :summary, :extra_dataset_paths)
     end
   end
 end

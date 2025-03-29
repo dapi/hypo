@@ -25,3 +25,19 @@ account = Account
 account.memberships.find_or_create_by! user: user
 
 account.nodes.first_or_create!
+
+CHAIN_IDS = {
+  "binance" => 56,
+  "avalanche" => 43114,
+  "ethereum" => 1,
+  "optimism" => 10,
+  "arbitrum" => 42161,
+  "polygon" => 137,
+  "base" => 8453
+}
+
+CHAIN_IDS.each_pair do |key, chain_id|
+  Blockchain.
+    create_with(key: key, name: key).
+    find_or_create_by!(chain_id: chain_id)
+end

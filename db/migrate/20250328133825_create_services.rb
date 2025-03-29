@@ -4,7 +4,7 @@ class CreateServices < ActiveRecord::Migration[8.0]
       t.references :account, null: false, foreign_key: true
       t.string :name, null: false
       t.references :blockchain, null: false
-      t.jsonb :extra_dataset_paths, null: false, default: []
+      t.string :extra_dataset_paths, array: true, null: false, default: []
 
       t.timestamps
     end

@@ -1,22 +1,31 @@
 .form-actions.float-end.mt-2
   = link_to 'Создать', new_tenant_project_extension_path, class: 'btn btn-outline-primary'
-h1.mb-5 Сервисы (#{current_account.project_extensions.alive.count})
+h1.mb-5 Расширения (#{current_account.project_extensions.alive.count})
 
 table.table.table-hover0
   thead
     tr
-      th Наименование
+      th Расширение
+      th Имя
       th Блокчейн
+      th Параметры
+      th Дополнительные поля
       th Дата создания
       th
   tbody
-    - project_extensions.each do |project_extension|
+    - project_extensions.each do |pe|
       tr
         td
-          = link_to project_extension.name, tenant_project_extension_path(project_extension)
+          = link_to pe.name, tenant_project_extension_path(pe)
         td
-          = project_extension.blockchain
+          = link_to pe.title, tenant_project_extension_path(pe)
         td
-          = time_ago_in_words project_extension.created_at
+          = pe.blockchain
         td
-          .float-sm-end= render 'menu', project_extension: project_extension
+          = pe.params
+        td
+          = pe.extra_dataset_paths
+        td
+          = time_ago_in_words pe.created_at
+        td
+          .float-sm-end= render 'menu', project_extension: pe

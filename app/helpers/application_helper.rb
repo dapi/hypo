@@ -13,6 +13,10 @@ module ApplicationHelper
   end
 
   def service_state(service)
+    'OK' # TODO is_active
+  end
+
+  def project_extension_state(pe)
     'OK'
   end
 

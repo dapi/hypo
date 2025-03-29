@@ -3,6 +3,10 @@ module Tenant
     include PaginationSupport
     include RansackSupport
 
+    before_action do
+      @back_url = action_name == 'index' ? root_path : nodes_path
+    end
+
     def index
       render locals: { nodes: current_account.nodes.alive.order(:created_at) }
     end

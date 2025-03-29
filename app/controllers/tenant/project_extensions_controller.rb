@@ -1,5 +1,9 @@
 module Tenant
   class ProjectExtensionsController < ApplicationController
+    before_action do
+      @back_url = action_name == 'index' ? root_path : project_extensions_path
+    end
+
     def index
       render locals: { project_extensions: current_account.project_extensions.order(:created_at) }
     end

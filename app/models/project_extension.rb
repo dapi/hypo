@@ -1,5 +1,5 @@
 class ProjectExtension < ApplicationRecord
-  belongs_to :belockchain
+  belongs_to :blockchain
   belongs_to :account
 
   scope :alive, -> { all }
@@ -8,10 +8,11 @@ class ProjectExtension < ApplicationRecord
   validates :title, presence: true, uniqueness: true
 
   before_create do
-    self.name ||= Faker::App.name
+    self.title ||= Faker::App.name
   end
 
   def set_defaults
-    self.name ||= Faker::App.name
+    self.name ||= 'abi'
+    self.title ||= Faker::App.name
   end
 end

@@ -1,18 +1,23 @@
 = back_link
 
-h1.my-4 Новый сервис
+h1.my-4 Новое расширение
 
 .mt-2
   = simple_form_for project_extension, wrapper_mappings: { boolean: :vertical_boolean }, url: tenant_project_extensions_path do |f|
     = full_error_messages f
     .row
       .col-md-3
-        = f.input :name, label: 'Название', hint: 'Для вашего удобства каждый сервис имеет свое имя', autofocus: true
+        = f.input :name, autofocus: true, label: 'Выбери расширение', hint: 'abi, new_contract'
+      .col-md-3
+        = f.input :title, label: 'Имя', hint: 'Для вашего удобства каждое расширение имеет свое имя'
       .col-md-3
         = f.association :blockchain, include_blank: false
     .row
       .col-md-12
         = f.input :extra_dataset_paths
+    .row
+      .col-md-12
+        = f.input :params
     .row.mt-3
       .col-md-6
-        = f.submit 'Создать сервис', class: 'btn btn-lg btn-outline-primary'
+        = f.submit 'Создать расширение', class: 'btn btn-lg btn-outline-primary'

@@ -1,8 +1,10 @@
 class CreateProjectExtensions < ActiveRecord::Migration[8.0]
   def change
     create_table :project_extensions do |t|
-      t.integer :blockchain_id, null: false
+      t.references :blockchain, null: false
+      t.references :account, null: false
       t.string :title, null: false
+      t.string :name
       t.string :summary
       t.string :tag
       t.jsonb :params, null: false, default: {}

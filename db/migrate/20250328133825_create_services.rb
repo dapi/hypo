@@ -3,7 +3,7 @@ class CreateServices < ActiveRecord::Migration[8.0]
     create_table :services do |t|
       t.references :account, null: false, foreign_key: true
       t.string :name, null: false
-      t.integer :blockchain_id
+      t.references :blockchain, null: false
       t.jsonb :extra_dataset_paths, null: false, default: []
 
       t.timestamps

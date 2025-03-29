@@ -68,24 +68,29 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_29_070444) do
   end
 
   create_table "project_extensions", force: :cascade do |t|
-    t.integer "blockchain_id", null: false
+    t.bigint "blockchain_id", null: false
+    t.bigint "account_id", null: false
     t.string "title", null: false
+    t.string "name"
     t.string "summary"
     t.string "tag"
     t.jsonb "params", default: {}, null: false
     t.string "extra_dataset_paths", default: [], null: false, array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_project_extensions_on_account_id"
+    t.index ["blockchain_id"], name: "index_project_extensions_on_blockchain_id"
   end
 
   create_table "services", force: :cascade do |t|
     t.bigint "account_id", null: false
     t.string "name", null: false
-    t.integer "blockchain_id"
+    t.bigint "blockchain_id", null: false
     t.jsonb "extra_dataset_paths", default: [], null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_services_on_account_id"
+    t.index ["blockchain_id"], name: "index_services_on_blockchain_id"
   end
 
   create_table "sessions", force: :cascade do |t|

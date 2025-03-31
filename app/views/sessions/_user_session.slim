@@ -1,4 +1,4 @@
-= simple_form_for user_session, url: session_path do |f|
+= simple_form_for user_session, url: session_path, data: { turbo: false } do |f|
   .row
     .col-md-12
       = f.input :email, label: false, placeholder: 'email'

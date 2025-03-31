@@ -95,12 +95,11 @@
                                          DELETE /project_extensions/:id(.:format)                                                                 tenant/project_extensions#destroy
                  tenant_project_api_keys GET    /project_api_keys(.:format)                                                                       tenant/project_api_keys#index
                                          POST   /project_api_keys(.:format)                                                                       tenant/project_api_keys#create
-              new_tenant_project_api_key GET    /project_api_keys/new(.:format)                                                                   tenant/project_api_keys#new
-             edit_tenant_project_api_key GET    /project_api_keys/:id/edit(.:format)                                                              tenant/project_api_keys#edit
-                  tenant_project_api_key GET    /project_api_keys/:id(.:format)                                                                   tenant/project_api_keys#show
-                                         PATCH  /project_api_keys/:id(.:format)                                                                   tenant/project_api_keys#update
+                  tenant_project_api_key PATCH  /project_api_keys/:id(.:format)                                                                   tenant/project_api_keys#update
                                          PUT    /project_api_keys/:id(.:format)                                                                   tenant/project_api_keys#update
                                          DELETE /project_api_keys/:id(.:format)                                                                   tenant/project_api_keys#destroy
+                                         GET    /*anything(.:format)                                                                              dashboard#not_found
+                                         GET    /                                                                                                 dashboard#not_found
         turbo_recede_historical_location GET    /recede_historical_location(.:format)                                                             turbo/native/navigation#recede
         turbo_resume_historical_location GET    /resume_historical_location(.:format)                                                             turbo/native/navigation#resume
        turbo_refresh_historical_location GET    /refresh_historical_location(.:format)                                                            turbo/native/navigation#refresh

@@ -1,5 +1,6 @@
 class Account < ApplicationRecord
   include AccountSubdomain
+  ALPHABET = '1234567890abcdef'
 
   broadcasts_refreshes
 
@@ -13,6 +14,10 @@ class Account < ApplicationRecord
   has_many :project_extensions
 
   validates :subdomain, exclusion: { in: ApplicationConfig.reserved_subdomains }
+
+  before_create do
+    self.key ||= Nanoid.generate(size: 8, alphabet: ALPHABET)
+  end
 
   after_create do
     self.members << owner

@@ -1,7 +1,7 @@
 module Tenant
   class ProjectExtensionsController < ApplicationController
     before_action do
-      @back_url = action_name == "index" ? root_path : project_extensions_path
+      @back_url = action_name == "index" ? root_path : tenant_project_extensions_path
     end
 
     def index
@@ -28,17 +28,8 @@ module Tenant
 
     def destroy
       project_extension = current_account.project_extensions.find(params[:id])
-
-      project_extension.with_lock do
-        if project_extension.initiated? || project_extension.failed_to_start? || project_extension.to_start?
-          project_extension.destroy!
-          redirect_back fallback_location: tenant_project_extensions_path, notice: "Сервис #{project_extension.title} удалён"
-          return
-        end
-      end
-
-      Finishproject_extensionJob.perform_later project_extension
-      redirect_back fallback_location: tenant_project_extensions_path, notice: "Сервис #{project_extension.title} удаляется"
+      project_extension.destroy!
+      redirect_back fallback_location: tenant_project_extensions_path, notice: "Сервис #{project_extension.title} удалён"
     end
 
     private

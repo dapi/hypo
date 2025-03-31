@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_29_070444) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_29_155721) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
@@ -21,6 +21,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_29_070444) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "nodes_updated_at", precision: nil
+    t.string "key", null: false
+    t.index ["key"], name: "index_accounts_on_key", unique: true
     t.index ["owner_id"], name: "index_accounts_on_owner_id"
     t.index ["subdomain"], name: "index_accounts_on_subdomain", unique: true
   end
@@ -61,10 +63,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_29_070444) do
 
   create_table "project_api_keys", force: :cascade do |t|
     t.bigint "account_id", null: false
-    t.string "secret_key"
+    t.bigint "creator_id"
+    t.string "secret_key", null: false
+    t.string "access_key", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_project_api_keys_on_account_id"
+    t.index ["creator_id"], name: "index_project_api_keys_on_creator_id"
+    t.index ["secret_key"], name: "index_project_api_keys_on_secret_key", unique: true
   end
 
   create_table "project_extensions", force: :cascade do |t|
@@ -86,7 +92,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_29_070444) do
     t.bigint "account_id", null: false
     t.string "name", null: false
     t.bigint "blockchain_id", null: false
-    t.jsonb "extra_dataset_paths", default: [], null: false
+    t.string "extra_dataset_paths", default: [], null: false, array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_services_on_account_id"
@@ -139,5 +145,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_29_070444) do
   add_foreign_key "memberships", "users"
   add_foreign_key "nodes", "accounts"
   add_foreign_key "project_api_keys", "accounts"
+  add_foreign_key "project_api_keys", "users", column: "creator_id"
   add_foreign_key "services", "accounts"
 end

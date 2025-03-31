@@ -1,7 +1,7 @@
 module Tenant
   class ServicesController < ApplicationController
     before_action do
-      @back_url = action_name == "index" ? root_path : services_path
+      @back_url = action_name == "index" ? root_path : tenant_services_path
     end
 
     def index
@@ -28,17 +28,8 @@ module Tenant
 
     def destroy
       service = current_account.services.find(params[:id])
-
-      service.with_lock do
-        if service.initiated? || service.failed_to_start? || service.to_start?
-          service.destroy!
-          redirect_back fallback_location: tenant_services_path, notice: "Сервис #{service.title} удалён"
-          return
-        end
-      end
-
-      FinishserviceJob.perform_later service
-      redirect_back fallback_location: tenant_services_path, notice: "Сервис #{service.title} удаляется"
+      service.destroy!
+      redirect_back fallback_location: tenant_services_path, notice: "Сервис #{service.name} удалён"
     end
 
     private

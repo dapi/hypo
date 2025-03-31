@@ -1,2 +1,5 @@
--#= render 'user_session', user_session:
-= render 'sessions/email_code_form', user_session:
+
+- if defined?(code_sent_at) && code_sent_at.present?
+  = render 'sessions/user_session', user_session:
+- else
+  = render 'sessions/email_code_form', user_session:

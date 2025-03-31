@@ -12,9 +12,11 @@ class SessionsController < ApplicationController
 
   def new
     render locals: {
-      # user_session: UserSession.new(email: session_email),
       user_session: EmailForm.new(email: session_email)
     }
+  end
+
+  def create
   end
 
   def destroy

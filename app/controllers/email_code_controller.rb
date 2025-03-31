@@ -17,7 +17,7 @@ class EmailCodeController < ApplicationController
     flash[:notice] = "Код для входя отправлен на email #{email_form.email}"
     render "sessions/new", locals: {
       user_session: UserSession.new(email: email_form.email),
-      code_sent_at: Time.zone.now
+      code_sent_at: Time.zone.now,
     }, status: :unprocessable_entity
   end
 end

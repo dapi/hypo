@@ -1,7 +1,7 @@
 class ProjectApiKey < ApplicationRecord
-  ALPHABET = '1234567890abcdef'
+  ALPHABET = "1234567890abcdef"
   belongs_to :account
-  belongs_to :creator, class_name: 'User'
+  belongs_to :creator, class_name: "User"
 
   scope :alive, -> { all }
 
@@ -11,6 +11,6 @@ class ProjectApiKey < ApplicationRecord
   end
 
   def public_access_key
-    [account.key, access_key].join('-')
+    [ account.key, access_key ].join("-")
   end
 end

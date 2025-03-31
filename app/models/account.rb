@@ -1,6 +1,6 @@
 class Account < ApplicationRecord
   include AccountSubdomain
-  ALPHABET = '1234567890abcdef'
+  ALPHABET = "1234567890abcdef"
 
   broadcasts_refreshes
 

@@ -79,6 +79,14 @@ Rails.application.configure do
   # Only use :id for inspections in production.
   config.active_record.attributes_for_inspect = [ :id ]
 
+  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.mailgun_settings = {
+    api_key: ENV.fetch("MAILGUN_API_KEY"),
+    domain: ENV.fetch("MAILGUN_DOMAIN")
+    # api_host: 'api.eu.mailgun.net'  # Uncomment this line for EU region domains
+    # timeout: 20 # Default depends on rest-client, whose default is 60s. Added in 1.2.3.
+  } if ENV.key? "MAILGUN_API_KEY"
+
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [
   #   "example.com",     # Allow requests from example.com

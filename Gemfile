@@ -70,6 +70,8 @@ group :development do
   gem "guard-rails"
   gem "guard-rubocop", "~> 1.5"
   gem "guard-shell", "~> 0.7.2"
+
+  gem "letter_opener_web"
 end
 
 group :test do
@@ -125,3 +127,5 @@ gem "hiredis", "~> 0.6.3"
 gem "mutex_m", "~> 0.3.0"
 
 gem "net-smtp", "~> 0.5.0"
+
+gem "mailgun-ruby", "~> 1.3"

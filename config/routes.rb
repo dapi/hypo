@@ -52,6 +52,7 @@ Rails.application.routes.draw do
     resources :project_api_keys
   end
 
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   get "*anything", to: "dashboard#not_found"
   get "", to: "dashboard#not_found"
 end

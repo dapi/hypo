@@ -15,6 +15,9 @@ Rails.application.routes.draw do
     root "dashboard#index"
 
     resource :session
+    resource :email_code, controller: :email_code
+
+    mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
     # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
     # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
@@ -52,7 +55,6 @@ Rails.application.routes.draw do
     resources :project_api_keys
   end
 
-  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   get "*anything", to: "dashboard#not_found"
   get "", to: "dashboard#not_found"
 end

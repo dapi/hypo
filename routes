@@ -10,6 +10,14 @@
                                          PUT    /session(.:format)                                                                                sessions#update {subdomain: ""}
                                          DELETE /session(.:format)                                                                                sessions#destroy {subdomain: ""}
                                          POST   /session(.:format)                                                                                sessions#create {subdomain: ""}
+                          new_email_code GET    /email_code/new(.:format)                                                                         email_codes#new {subdomain: ""}
+                         edit_email_code GET    /email_code/edit(.:format)                                                                        email_codes#edit {subdomain: ""}
+                              email_code GET    /email_code(.:format)                                                                             email_codes#show {subdomain: ""}
+                                         PATCH  /email_code(.:format)                                                                             email_codes#update {subdomain: ""}
+                                         PUT    /email_code(.:format)                                                                             email_codes#update {subdomain: ""}
+                                         DELETE /email_code(.:format)                                                                             email_codes#destroy {subdomain: ""}
+                                         POST   /email_code(.:format)                                                                             email_codes#create {subdomain: ""}
+                       letter_opener_web        /letter_opener                                                                                    LetterOpenerWeb::Engine {subdomain: ""}
                   telegram_auth_callback GET    /telegram/auth_callback(.:format)                                                                 telegram_auth_callback#create {subdomain: ""}
                         telegram_confirm GET    /telegram/confirm(.:format)                                                                       telegram_auth_callback#confirm {subdomain: ""}
                         telegram_webhook POST   /telegram/ZJqpGeMdrgwdWBJJE6GErRbirhw                                                             #<Telegram::Bot::Middleware(Telegram::WebhookController)> {subdomain: ""}
@@ -101,7 +109,6 @@
                                          PATCH  /project_api_keys/:id(.:format)                                                                   tenant/project_api_keys#update
                                          PUT    /project_api_keys/:id(.:format)                                                                   tenant/project_api_keys#update
                                          DELETE /project_api_keys/:id(.:format)                                                                   tenant/project_api_keys#destroy
-                       letter_opener_web        /letter_opener                                                                                    LetterOpenerWeb::Engine
                                          GET    /*anything(.:format)                                                                              dashboard#not_found
                                          GET    /                                                                                                 dashboard#not_found
         turbo_recede_historical_location GET    /recede_historical_location(.:format)                                                             turbo/native/navigation#recede
@@ -131,6 +138,13 @@ rails_conductor_inbound_email_incinerate POST   /rails/conductor/action_mailbox/
                update_rails_disk_service PUT    /rails/active_storage/disk/:encoded_token(.:format)                                               active_storage/disk#update
                     rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                                    active_storage/direct_uploads#create
 
+Routes for LetterOpenerWeb::Engine:
+      letters GET  /                                letter_opener_web/letters#index
+clear_letters POST /clear(.:format)                 letter_opener_web/letters#clear
+       letter GET  /:id(/:style)(.:format)          letter_opener_web/letters#show
+delete_letter POST /:id/delete(.:format)            letter_opener_web/letters#destroy
+              GET  /:id/attachments/:file(.:format) letter_opener_web/letters#attachment {file: /[^\/]+/}
+
 Routes for SolidQueueDashboard::Engine:
              retry_job POST /jobs/:id/retry(.:format)              solid_queue_dashboard/jobs#retry
                   jobs GET  /jobs(.:format)                        solid_queue_dashboard/jobs#index
@@ -143,10 +157,3 @@ enqueue_recurring_task POST /recurring-tasks/:id/enqueue(.:format) solid_queue_d
                  stats GET  /stats(.:format)                       solid_queue_dashboard/stats#index
      toggle_appearance POST /appearance/toggle(.:format)           solid_queue_dashboard/appearance#toggle
                   root GET  /                                      solid_queue_dashboard/dashboard#index
-
-Routes for LetterOpenerWeb::Engine:
-      letters GET  /                                letter_opener_web/letters#index
-clear_letters POST /clear(.:format)                 letter_opener_web/letters#clear
-       letter GET  /:id(/:style)(.:format)          letter_opener_web/letters#show
-delete_letter POST /:id/delete(.:format)            letter_opener_web/letters#destroy
-              GET  /:id/attachments/:file(.:format) letter_opener_web/letters#attachment {file: /[^\/]+/}

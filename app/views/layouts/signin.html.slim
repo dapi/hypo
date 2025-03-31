@@ -1,0 +1,6 @@
+- content_for :content do
+  div.d-flex.justify-content-center[style='min-height: 500px']
+    .align-self-center
+      .d-flex.justify-content-center.text-center.mb-5.display-6 Sign in to Blockberry
+      = yield
+= render template: 'layouts/simple'

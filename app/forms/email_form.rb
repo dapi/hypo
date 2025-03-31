@@ -1,11 +1,8 @@
 # frozen_string_literal: true
 
-class UserSession < ApplicationForm
+class EmailForm < ApplicationForm
   attribute :email, :string
-  attribute :code, :string
-
   validates :email, presence: true
-  validates :code, presence: true
 
   def persisted?
     false

@@ -1,6 +1,6 @@
 APP=vilna 
 INFRA_REPO=git@github.com:safeblock-com/infra.git 
-WORKFLOW=backend-deploy.yml 
+WORKFLOW=backend-deploy-shared.yml 
 DOCKER_TAG=$(shell git describe --abbrev=0 --tags | sed -e 's/v//')
 
 recreate-db:

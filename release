@@ -1,18 +1,8 @@
 #/usr/bin/env bash
 
-APP=vilna 
-INFRA_REPO=git@github.com:safeblock-com/infra.git 
-WORKFLOW=backend-deploy.yml 
-
 ./bin/semver inc patch
 git add .semver
 git commit -m `./bin/semver`
 git push
-DOCKER_TAG=`git describe --abbrev=0 --tags | sed -e 's/v//'`
 gh release create `./bin/semver` --generate-notes
 git pull --tags
-
-echo "Trigger deploy for ${DOCKER_TAG}"
-gh --repo ${INFRA_REPO} workflow run ${WORKFLOW} -F tag=${DOCKER_TAG} -F app=${APP}
-
-gh --repo ${INFRA_REPO} run list --workflow=${WORKFLOW}

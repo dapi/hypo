@@ -3,11 +3,11 @@
 one:
   account: one
   name: MyString
-  blockchain_id: 1
-  extra_dataset_paths: 
+  blockchain: one
+  extra_dataset_paths:  []
 
 two:
   account: two
   name: MyString
-  blockchain_id: 1
-  extra_dataset_paths: 
+  blockchain: two
+  extra_dataset_paths:  []

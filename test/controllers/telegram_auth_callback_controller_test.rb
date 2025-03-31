@@ -20,7 +20,7 @@ class TelegramAuthCallbackControllerTest < ActionDispatch::IntegrationTest
       user = User.find_by(telegram_user_id:)
       assert user
       assert_equal telegram_user_id.to_i, user.telegram_user.id.to_i
-      assert_equal user.id, session[:user_id]
+      assert_equal user.id.to_s, session[:user_id].to_s
     end
   end
 end

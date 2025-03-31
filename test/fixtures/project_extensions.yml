@@ -1,17 +1,21 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
+  title: one
   summary: MyString
   tag: MyString
   name: MyString
-  params: 
-  extra_dataset_paths: MyString
+  blockchain: one
+  account: one
+  params:  {}
+  extra_dataset_paths: []
 
 two:
-  title: MyString
+  title: two
   summary: MyString
   tag: MyString
   name: MyString
-  params: 
-  extra_dataset_paths: MyString
+  blockchain: two
+  account: two
+  params:  {}
+  extra_dataset_paths: []

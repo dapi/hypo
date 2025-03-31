@@ -3,7 +3,9 @@
 one:
   subdomain: one
   owner: one
+  key: one
 
 two:
   subdomain: two
   owner: two
+  key: two

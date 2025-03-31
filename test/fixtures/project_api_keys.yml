@@ -3,7 +3,9 @@
 one:
   account: one
   secret_key: MyString
+  access_key: one
 
 two:
   account: two
   secret_key: MyString
+  access_key: two

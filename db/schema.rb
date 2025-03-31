@@ -68,9 +68,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_29_155721) do
     t.string "access_key", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["access_key"], name: "index_project_api_keys_on_access_key", unique: true
     t.index ["account_id"], name: "index_project_api_keys_on_account_id"
     t.index ["creator_id"], name: "index_project_api_keys_on_creator_id"
-    t.index ["secret_key"], name: "index_project_api_keys_on_secret_key", unique: true
   end
 
   create_table "project_extensions", force: :cascade do |t|

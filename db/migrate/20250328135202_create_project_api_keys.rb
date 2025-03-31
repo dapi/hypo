@@ -9,6 +9,6 @@ class CreateProjectApiKeys < ActiveRecord::Migration[8.0]
       t.timestamps
     end
 
-    add_index :project_api_keys, :secret_key, unique: true
+    add_index :project_api_keys, :access_key, unique: true
   end
 end

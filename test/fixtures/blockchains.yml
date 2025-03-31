@@ -2,10 +2,10 @@
 
 one:
   chain_id: 1
-  key: MyString
-  name: MyString
+  key: one
+  name: one
 
 two:
-  chain_id: 1
-  key: MyString
-  name: MyString
+  chain_id: 2
+  key: two
+  name: two

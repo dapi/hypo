@@ -131,3 +131,15 @@ gem "net-smtp", "~> 0.5.0"
 gem "mailgun-ruby", "~> 1.3"
 
 gem "rb-gravatar", "~> 1.0"
+
+gem "yabeda", "~> 0.13.1"
+
+gem "yabeda-rails", "~> 0.9.0"
+
+gem "yabeda-prometheus-mmap"
+
+gem "yabeda-puma-plugin"
+
+gem "yabeda-activerecord", "~> 0.1.1"
+
+gem "rack-cors", "~> 2.0"

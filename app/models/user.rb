@@ -9,7 +9,7 @@ class User < ApplicationRecord
 
   has_many :nodes, through: :accounts
 
-  belongs_to :telegram_user
+  belongs_to :telegram_user, optional: true
 
   delegate :first_name, :public_name, :telegram_nick, to: :telegram_user
 
@@ -24,11 +24,11 @@ class User < ApplicationRecord
   end
 
   def to_s
-    public_name
+    telegram_user.present? ? public_name : email.split.first
   end
 
   def avatar_url
-    telegram_user.photo_url
+    telegram_user.try(:photo_url) || Gravatar.src(email)
   end
 
   def self.find_or_create_by_telegram_data!(data)
@@ -45,10 +45,14 @@ class User < ApplicationRecord
       )
   end
 
-  def self.authenticate(telegram_data)
-    yield(
-      telegram_data.is_a?(String) ? User.find_or_create_by_telegram_id!(telegram_data) : User.find_or_create_by_telegram_data!(telegram_data),
-      nil)
+  def self.authenticate(data)
+    if data.is_a? UserSession
+      yield create_with(locale: I18n.locale).find_or_create_by!(email: data.email)
+    else
+      yield(
+        data.is_a?(String) ? User.find_or_create_by_telegram_id!(data) : User.find_or_create_by_telegram_data!(data),
+        nil)
+    end
   end
 
   def developer?

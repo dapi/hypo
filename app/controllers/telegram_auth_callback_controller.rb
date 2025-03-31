@@ -38,16 +38,6 @@ class TelegramAuthCallbackController < ApplicationController
 
   private
 
-  def redirect_after_login
-    if current_user.default_account.present?
-      url = tenant_root_url(subdomain: current_user.default_account.subdomain)
-      redirect_back_or_to url, allow_other_host: true, notice: t("flash.hi", username: current_user)
-    else
-      # TODO: На страницу создания аккаунта через тариф
-      redirect_back_or_to root_url, notice: t("flash.hi", username: current_user)
-    end
-  end
-
   def data_params
     @data_params ||= params
                      .permit(:id, :first_name, :last_name, :username, :photo_url, :auth_date)

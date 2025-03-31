@@ -1,6 +1,6 @@
 module Tenant
   class ProjectApiKeysController < ApplicationController
-    # protect_from_forgery if: :create
+    protect_from_forgery except: :create
 
     before_action do
       @back_url = action_name == "index" ? root_path : tenant_project_api_keys_path

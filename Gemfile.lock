@@ -429,6 +429,7 @@ GEM
       activesupport (>= 6.1.5)
       i18n
     rb-fsevent (0.11.2)
+    rb-gravatar (1.0.7)
     rb-inotify (0.11.1)
       ffi (~> 1.0)
     rdoc (6.12.0)
@@ -623,6 +624,7 @@ DEPENDENCIES
   rails (~> 8.0.1)
   rails-i18n (~> 8.0)
   ransack (~> 4.3)
+  rb-gravatar (~> 1.0)
   redis (~> 5.4)
   request_store (~> 1.7)
   rhelm (~> 0.2.0)

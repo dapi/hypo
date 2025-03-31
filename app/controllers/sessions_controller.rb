@@ -17,6 +17,20 @@ class SessionsController < ApplicationController
   end
 
   def create
+    user_session = UserSession.new params.require(:user_session).permit(:email, :code)
+    if user_session.code == session_email_code && user_session.email = session_email
+      login user_session
+      Account.create!(owner: current_user) unless current_user.default_account.present?
+      redirect_after_login
+    else
+      flash[:alert] = "Неверный код"
+      user_session.errors.add :code, "Неверный код"
+      user_session.code = ""
+      render "sessions/new", locals: {
+        user_session: user_session,
+        code_sent_at: Time.zone.now
+      }, status: :unprocessable_entity
+    end
   end
 
   def destroy

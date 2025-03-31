@@ -1,5 +1,5 @@
 .form-actions.float-end.mt-2
-  = link_to 'Создать', new_tenant_project_api_key_path, class: 'btn btn-outline-primary'
+  = link_to 'Создать', tenant_project_api_keys_path, class: 'btn btn-outline-primary', data: { turbo_method: :create }
 h1.mb-5 Ключи (#{current_account.project_api_keys.alive.count})
 
 table.table.table-hover0
@@ -10,7 +10,7 @@ table.table.table-hover0
       th Дата создания
       th
   tbody
-    - project_api_keys.each do |project_api_key|
+    - ProjectApiKeyDecorator.decorate_collection(project_api_keys).each do |project_api_key|
       tr
         td
           = project_api_key.public_access_key

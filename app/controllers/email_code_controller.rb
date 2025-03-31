@@ -10,14 +10,15 @@ class EmailCodeController < ApplicationController
     email_form = EmailForm.new params.require(:email_form).permit(:email)
     code = Nanoid.generate(size: 6, alphabet: "0123456789")
 
-    session[:email_code] = code
-    self.session_email= email_form.email
+    self.session_email_code = code
+    self.session_email = email_form.email
+    self.session_code_sent_at = Time.zone.now
 
-    SignInMailer.with(code:, email: email_form.email).send_code.deliver_now # TODO настроить очередь
+    SignInMailer.with(code:, email: email_form.email).send_code.deliver_later
     flash[:notice] = "Код для входя отправлен на email #{email_form.email}"
     render "sessions/new", locals: {
       user_session: UserSession.new(email: email_form.email),
-      code_sent_at: Time.zone.now,
+      code_sent_at: Time.zone.now
     }, status: :unprocessable_entity
   end
 end

@@ -7,7 +7,7 @@ class NodeOrchestrator
   attr_reader :cli
 
   def initialize(path:, node_id:, account_id:, values: {})
-    @release = RELEASE_PREFIX + node_id
+    @release = RELEASE_PREFIX + node_id.to_s
     @values = values.merge(
       path: path,
       host: ApplicationConfig.node_host,
@@ -18,8 +18,8 @@ class NodeOrchestrator
       # }
       # },
       extraLabels: {
-        "vilna.blockberry.com/nodeId" => node_id,
-        "vilna.blockberry.com/accountId" => account_id,
+        "vilna.blockberry.com/nodeId" => node_id.to_s,
+        "vilna.blockberry.com/accountId" => account_id.to_s,
         "vilna.blockberry.com/version" => AppVersion.to_s
       }
     ).deep_stringify_keys

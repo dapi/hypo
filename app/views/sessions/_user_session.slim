@@ -1,0 +1,11 @@
+= simple_form_for user_session, url: session_path do |f|
+  .row
+    .col-md-12
+      = f.input :email, label: false, placeholder: 'email'
+  .row
+    .col-md-12
+      = f.input :code, label: false, placeholder: 'code'
+  .row.mt-3
+    .col-md-12
+      = f.submit 'Войти', class: 'btn btn-lg btn-outline-primary'
+

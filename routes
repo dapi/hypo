@@ -95,9 +95,13 @@
                                          DELETE /project_extensions/:id(.:format)                                                                 tenant/project_extensions#destroy
                  tenant_project_api_keys GET    /project_api_keys(.:format)                                                                       tenant/project_api_keys#index
                                          POST   /project_api_keys(.:format)                                                                       tenant/project_api_keys#create
-                  tenant_project_api_key PATCH  /project_api_keys/:id(.:format)                                                                   tenant/project_api_keys#update
+              new_tenant_project_api_key GET    /project_api_keys/new(.:format)                                                                   tenant/project_api_keys#new
+             edit_tenant_project_api_key GET    /project_api_keys/:id/edit(.:format)                                                              tenant/project_api_keys#edit
+                  tenant_project_api_key GET    /project_api_keys/:id(.:format)                                                                   tenant/project_api_keys#show
+                                         PATCH  /project_api_keys/:id(.:format)                                                                   tenant/project_api_keys#update
                                          PUT    /project_api_keys/:id(.:format)                                                                   tenant/project_api_keys#update
                                          DELETE /project_api_keys/:id(.:format)                                                                   tenant/project_api_keys#destroy
+                       letter_opener_web        /letter_opener                                                                                    LetterOpenerWeb::Engine
                                          GET    /*anything(.:format)                                                                              dashboard#not_found
                                          GET    /                                                                                                 dashboard#not_found
         turbo_recede_historical_location GET    /recede_historical_location(.:format)                                                             turbo/native/navigation#recede
@@ -139,3 +143,10 @@ enqueue_recurring_task POST /recurring-tasks/:id/enqueue(.:format) solid_queue_d
                  stats GET  /stats(.:format)                       solid_queue_dashboard/stats#index
      toggle_appearance POST /appearance/toggle(.:format)           solid_queue_dashboard/appearance#toggle
                   root GET  /                                      solid_queue_dashboard/dashboard#index
+
+Routes for LetterOpenerWeb::Engine:
+      letters GET  /                                letter_opener_web/letters#index
+clear_letters POST /clear(.:format)                 letter_opener_web/letters#clear
+       letter GET  /:id(/:style)(.:format)          letter_opener_web/letters#show
+delete_letter POST /:id/delete(.:format)            letter_opener_web/letters#destroy
+              GET  /:id/attachments/:file(.:format) letter_opener_web/letters#attachment {file: /[^\/]+/}

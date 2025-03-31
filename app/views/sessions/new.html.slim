@@ -1,5 +1,10 @@
 div.d-flex.justify-content-center[style='min-height: 500px']
   .align-self-center
-    .d-flex.justify-content-center.text-center.mb-5.display-6 Fast cloud Ethereum development nodes with Anvil Foundry
-    .d-flex.justify-content-center.mb-5 Please authorize to get a node
-    .text-center= render 'telegram_login'
+    .d-flex.justify-content-center.text-center.mb-5.display-6 Sign in to Blockberry
+    /.d-flex.justify-content-center.mb-5 Please authorize to get a node
+    .text-center
+      = render 'user_session', user_session:
+  /.align-self-center
+    /.d-flex.justify-content-center.text-center.mb-5.display-6 Fast cloud Ethereum development nodes with Anvil Foundry
+    /.d-flex.justify-content-center.mb-5 Please authorize to get a node
+    /.text-center= render 'telegram_login'

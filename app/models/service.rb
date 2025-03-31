@@ -1,4 +1,6 @@
 class Service < ApplicationRecord
+  include ListSupport
+
   belongs_to :account
   belongs_to :blockchain
 

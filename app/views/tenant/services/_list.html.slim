@@ -7,15 +7,18 @@ table.table.table-hover0
     tr
       th Наименование
       th Блокчейн
+      th Дополнительные поля
       th Дата создания
       th
   tbody
-    - services.each do |service|
+    - ServiceDecorator.decorate_collection(services).each do |service|
       tr
         td
           = link_to service.name, tenant_service_path(service)
         td
           = service.blockchain
+        td
+          = service.extra_dataset_paths
         td
           = time_ago_in_words service.created_at
         td

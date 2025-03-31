@@ -5,13 +5,17 @@
 -##   <%= turbo_stream_from "room", channel: RoomChannel, data: {room_name: "room #1"} %>
 div[data-project_extension-channel=project_extension.id]
   .form-actions.float-end.mt-2
+    = link_to 'Изменить', edit_tenant_project_extension_path(project_extension), class: 'btn'
     = link_to 'Удалить', tenant_project_extension_path(project_extension), data: { turbo_method: :delete, turbo_confirm: 'Удалить?' }, class: 'btn btn-outline-danger'
+
+  - project_extension = ProjectExtensionDecorator.decorate project_extension
 
   h1.mb-5 Расширение #{project_extension.name}
 
   p Создан #{time_ago_in_words project_extension.created_at}
   p Статус #{project_extension_state project_extension}
   p Blockchain #{project_extension.blockchain}
-  p extra_dataset_paths 
+  p Дополнительные поля: #{project_extension.extra_dataset_paths}
+  p Праметры
   pre 
-    code #{JSON.pretty_generate project_extension.extra_dataset_paths}
+    code #{JSON.pretty_generate project_extension.params}

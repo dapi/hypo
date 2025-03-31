@@ -50,7 +50,6 @@ Rails.application.routes.draw do
     root to: redirect("/nodes")
     resources :nodes
     resources :services
-    resources :services
     resources :project_extensions
     resources :project_api_keys
   end

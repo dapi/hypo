@@ -30,6 +30,12 @@ class ApplicationDecorator < Draper::Decorator
     { [ object.class.name.underscore, "channel" ].join("-") => object.id }
   end
 
+  def extra_dataset_paths
+    object.extra_dataset_paths.map do |el|
+      h.content_tag(:span, el, class: "badge text-bg-primary")
+    end.join(" ").html_safe
+  end
+
   def updated_at
     present_time object.updated_at
   end

@@ -10,13 +10,13 @@
                                          PUT    /session(.:format)                                                                                sessions#update {subdomain: ""}
                                          DELETE /session(.:format)                                                                                sessions#destroy {subdomain: ""}
                                          POST   /session(.:format)                                                                                sessions#create {subdomain: ""}
-                          new_email_code GET    /email_code/new(.:format)                                                                         email_codes#new {subdomain: ""}
-                         edit_email_code GET    /email_code/edit(.:format)                                                                        email_codes#edit {subdomain: ""}
-                              email_code GET    /email_code(.:format)                                                                             email_codes#show {subdomain: ""}
-                                         PATCH  /email_code(.:format)                                                                             email_codes#update {subdomain: ""}
-                                         PUT    /email_code(.:format)                                                                             email_codes#update {subdomain: ""}
-                                         DELETE /email_code(.:format)                                                                             email_codes#destroy {subdomain: ""}
-                                         POST   /email_code(.:format)                                                                             email_codes#create {subdomain: ""}
+                          new_email_code GET    /email_code/new(.:format)                                                                         email_code#new {subdomain: ""}
+                         edit_email_code GET    /email_code/edit(.:format)                                                                        email_code#edit {subdomain: ""}
+                              email_code GET    /email_code(.:format)                                                                             email_code#show {subdomain: ""}
+                                         PATCH  /email_code(.:format)                                                                             email_code#update {subdomain: ""}
+                                         PUT    /email_code(.:format)                                                                             email_code#update {subdomain: ""}
+                                         DELETE /email_code(.:format)                                                                             email_code#destroy {subdomain: ""}
+                                         POST   /email_code(.:format)                                                                             email_code#create {subdomain: ""}
                        letter_opener_web        /letter_opener                                                                                    LetterOpenerWeb::Engine {subdomain: ""}
                   telegram_auth_callback GET    /telegram/auth_callback(.:format)                                                                 telegram_auth_callback#create {subdomain: ""}
                         telegram_confirm GET    /telegram/confirm(.:format)                                                                       telegram_auth_callback#confirm {subdomain: ""}
@@ -82,14 +82,6 @@
                       new_tenant_service GET    /services/new(.:format)                                                                           tenant/services#new
                      edit_tenant_service GET    /services/:id/edit(.:format)                                                                      tenant/services#edit
                           tenant_service GET    /services/:id(.:format)                                                                           tenant/services#show
-                                         PATCH  /services/:id(.:format)                                                                           tenant/services#update
-                                         PUT    /services/:id(.:format)                                                                           tenant/services#update
-                                         DELETE /services/:id(.:format)                                                                           tenant/services#destroy
-                                         GET    /services(.:format)                                                                               tenant/services#index
-                                         POST   /services(.:format)                                                                               tenant/services#create
-                                         GET    /services/new(.:format)                                                                           tenant/services#new
-                                         GET    /services/:id/edit(.:format)                                                                      tenant/services#edit
-                                         GET    /services/:id(.:format)                                                                           tenant/services#show
                                          PATCH  /services/:id(.:format)                                                                           tenant/services#update
                                          PUT    /services/:id(.:format)                                                                           tenant/services#update
                                          DELETE /services/:id(.:format)                                                                           tenant/services#destroy

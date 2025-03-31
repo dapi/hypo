@@ -1,0 +1,18 @@
+= simple_form_for [:tenant, project_extension] do |f|
+  = full_error_messages f
+  .row
+    .col-md-3
+      = f.input :name, autofocus: true, label: 'Выбери расширение', hint: 'abi, new_contract'
+    .col-md-3
+      = f.input :title, label: 'Имя', hint: 'Для вашего удобства каждое расширение имеет свое имя'
+    .col-md-3
+      = f.association :blockchain, include_blank: false
+  .row
+    .col-md-12
+      = f.input :extra_dataset_paths_list, label: 'Дополнительные поля', hint: 'Список элементов, через запятую или пробел'
+  .row
+    .col-md-12
+      = f.input :params, label: 'Параметры', hint: 'JSON'
+  .row.mt-3
+    .col-md-6
+      = f.submit 'Сохранить', class: 'btn btn-lg btn-outline-primary'

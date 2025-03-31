@@ -13,7 +13,7 @@ table.table.table-hover0
       th Дата создания
       th
   tbody
-    - project_extensions.each do |pe|
+    - ProjectExtensionDecorator.decorate_collection(project_extensions).each do |pe|
       tr
         td
           = link_to pe.name, tenant_project_extension_path(pe)

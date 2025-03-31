@@ -24,9 +24,9 @@ module Vilna
 
     config.log_tags = %i[request_id subdomain]
 
-    config.i18n.default_locale = :en
+    config.i18n.default_locale = :ru
 
-    config.i18n.available_locales = [ :en, :ru ]
+    config.i18n.available_locales = [ :ru, :en ]
 
     config.rails_i18n.enabled_modules = [ :pluralization ]
 

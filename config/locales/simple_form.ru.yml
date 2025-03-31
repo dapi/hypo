@@ -15,6 +15,9 @@ ru:
         wallets_count: Количество кошельков
         addresses_count: Количество адресов
 
+        extra_dataset_paths: 'Дополнительные поля'
+        params: Параметры
+
       generate_wallets_form:
         addresses_count: Количество адресов на кошелёк
       project:

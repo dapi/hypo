@@ -1,0 +1,47 @@
+---
+# https://github.com/rails/rails/blob/main/activemodel/lib/active_model/locale/en.yml
+#
+ru:
+  activerecord: &activerecord
+    models:
+      trade:
+        one: Сделка
+        few: Сделок
+        many: Сделки
+        other: Сделка
+      order:
+        one: Заявка
+        few: Заявки
+        many: Заявок
+        other: Заявка
+    attributes: &attributes
+      project_extension:
+        extra_dataset_paths: 'Дополнительные поля'
+        params: Параметры
+
+      user:
+        telegram_user: Телеграм
+        full_name: ФИО
+        locale: Язык
+        api_key: API key
+        blockchain_address: Адрес в блокчейн
+        card_number: Номер карты
+      order: &order
+        created_at: Дата
+        trade: Сделка
+        tokens_amount: Токенов
+        fiat_amount: Оплата
+        direction: Направление
+        client_state: Статус
+        state: Статус
+        rate: Курс
+        card_number: Номер карты
+        total_received_tokens_amount: Принято средств
+        blockchain_address: 'Ваш блокчейн-адрес для приема токенов'
+        full_name: ФИО
+  activemodel:
+    <<: *activerecord
+    attributes:
+      <<: *attributes
+      order_form:
+        <<: *order

@@ -3,6 +3,9 @@
     strong= bootstrap_icon 'three-dots'
   ul.dropdown-menu.text-small.shadow
     li
+      = link_to 'Изменить', edit_tenant_project_extension_path(project_extension), 
+        class: 'dropdown-item'
+    li
       = link_to 'Удалить', tenant_project_extension_path(project_extension), 
         class: 'text-danger dropdown-item', 
         data: { turbo_method: :delete, turbo_confirm: 'Удалить?' }

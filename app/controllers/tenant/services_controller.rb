@@ -15,6 +15,19 @@ module Tenant
       render locals: { service: service }
     end
 
+    def edit
+      service = current_account.services.find params[:id]
+      render locals: { service: }
+    end
+
+    def update
+      service = current_account.services.find params[:id]
+      service.update! permitted_params
+      redirect_to tenant_service_path(service), notice: "Изменилось расширение #{service.name}"
+    rescue ActiveRecord::RecordInvalid => e
+      render :edit, locals: { service: e.record }, status: :unprocessable_entity
+    end
+
     def create
       service = current_account.services.create! permitted_params
       redirect_to tenant_service_path(service), notice: "Создается сервис #{service.name}"
@@ -36,7 +49,7 @@ module Tenant
 
     def permitted_params
       return {} unless params.key? :service
-      params.require(:service).permit(:name, :blockchain_id, :summary, :extra_dataset_paths)
+      params.require(:service).permit(:name, :blockchain_id, :summary, :extra_dataset_paths, :extra_dataset_paths_list)
     end
   end
 end

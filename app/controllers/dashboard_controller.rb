@@ -8,6 +8,10 @@ class DashboardController < ApplicationController
     end
   end
 
+  def version
+    render json: { "version": AppVersion.to_s, "deployment_info": "unknown", "name": "vilna" }
+  end
+
   def not_found
     render status: 404
   end

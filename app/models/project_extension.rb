@@ -7,7 +7,6 @@ class ProjectExtension < ApplicationRecord
 
   scope :alive, -> { all }
 
-  validates :name, presence: true
   validates :title, presence: true
 
   # SCHEMA = Rails.root.join('config', 'schemas', 'project_extension.json')
@@ -20,7 +19,7 @@ class ProjectExtension < ApplicationRecord
   end
 
   def set_defaults
-    self.name ||= "abi"
+    self.extension ||= Extension.default
     self.title ||= Faker::App.name
   end
 

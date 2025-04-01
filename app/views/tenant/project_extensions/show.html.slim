@@ -10,7 +10,7 @@ div[data-project_extension-channel=project_extension.id]
 
   - project_extension = ProjectExtensionDecorator.decorate project_extension
 
-  h1.mb-5 Расширение #{project_extension.name}
+  h1.mb-5 Расширение #{project_extension.title}
 
   p Создан #{time_ago_in_words project_extension.created_at}
   p Статус #{project_extension_state project_extension}

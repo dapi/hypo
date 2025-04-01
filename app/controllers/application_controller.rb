@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   allow_browser versions: :modern
   rescue_from HumanizedError, with: :humanized_error
   around_action :switch_locale
+  before_action :set_headers
 
   private
 
@@ -30,5 +31,10 @@ class ApplicationController < ActionController::Base
       # TODO: На страницу создания аккаунта через тариф
       redirect_back_or_to root_url, notice: t("flash.hi", username: current_user)
     end
+  end
+
+  def set_headers
+    response.headers["X-App-Name"] = "Vilna"
+    response.headers["X-App-Version"] = AppVersion.to_s
   end
 end

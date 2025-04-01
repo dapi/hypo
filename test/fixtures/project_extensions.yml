@@ -4,7 +4,7 @@ one:
   title: one
   summary: MyString
   tag: MyString
-  name: MyString
+  extension: abi
   blockchain: one
   account: one
   params:  {}
@@ -14,8 +14,8 @@ two:
   title: two
   summary: MyString
   tag: MyString
-  name: MyString
   blockchain: two
+  extension: new_contract
   account: two
   params:  {}
   extra_dataset_paths: []

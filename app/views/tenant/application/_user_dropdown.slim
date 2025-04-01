@@ -17,12 +17,15 @@
       - if defined? SolidQueueDashboard
         li
           a.dropdown-item[href=solid_queue_dashboard_url target="_blank"] Solid Queue
-    li
-      hr.dropdown-divider
-    li
-      a.dropdown-item[href=root_url(subdomain: '')] На главную
-    li
-      hr.dropdown-divider
+      - if defined? LetterOpenerWeb
+        li
+          a.dropdown-item[href=letter_opener_web_url target="_blank"] Letter Opener
+      li
+        hr.dropdown-divider
+      li
+        a.dropdown-item[href=root_url(subdomain: '')] На главную
+      li
+        hr.dropdown-divider
     li
       -# Ссылкой не получается, потому что turbu drive отказыватся учитывать method из-за разницы в домене
       = button_to 'Выйти', session_url, method: :delete , class: 'dropdown-item'

@@ -1,0 +1,7 @@
+.dropdown.btn-group
+  a class="btn btn-sm btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+    = user.locale
+  ul.dropdown-menu
+    - I18n.available_locales.each do |locale|
+      li
+        = link_to locale, profile_path(user: { locale: locale }), class: 'dropdown-item', data: { turbo_method: :put }

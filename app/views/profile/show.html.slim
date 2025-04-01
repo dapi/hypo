@@ -10,7 +10,8 @@ dl
     code= current_user.api_key
 
   dt Locale
-  dd= current_user.locale
+  dd
+    = render 'locale_switcher', user: current_user
   dt
   dd
     = button_to 'Выйти', session_url, method: :delete, class: 'btn btn-sm btn-outline-secondary'

@@ -54,6 +54,8 @@ Rails.application.routes.draw do
     resources :project_api_keys
   end
 
-  get "*anything", to: "dashboard#not_found"
-  get "", to: "dashboard#not_found"
+  constraints lambda { |req| req.format == :html } do
+    get "*anything", to: "dashboard#not_found"
+    get "", to: "dashboard#not_found"
+  end
 end

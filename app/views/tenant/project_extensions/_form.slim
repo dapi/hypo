@@ -2,9 +2,9 @@
   = full_error_messages f
   .row
     .col-md-3
-      = f.input :name, autofocus: true, label: 'Выбери расширение', hint: 'abi, new_contract'
+      = f.association :extension, label: 'Выбери расширение', include_blank: false
     .col-md-3
-      = f.input :title, label: 'Имя', hint: 'Для вашего удобства каждое расширение имеет свое имя'
+      = f.input :title, label: 'Имя', hint: 'Для вашего удобства каждое расширение имеет свое имя', autofocus: true
     .col-md-3
       = f.association :blockchain, include_blank: false
   .row

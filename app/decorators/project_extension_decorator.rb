@@ -1,6 +1,12 @@
 class ProjectExtensionDecorator < ApplicationDecorator
   delegate_all
 
+  def extension
+    h.content_tag :code do
+      object.extension.name
+    end
+  end
+
   # Define presentation-specific methods here. Helpers are accessed through
   # `helpers` (aka `h`). You can override attributes, for example:
   #

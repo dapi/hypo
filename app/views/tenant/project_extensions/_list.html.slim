@@ -5,8 +5,8 @@ h1.mb-5 Расширения (#{current_account.project_extensions.alive.count})
 table.table.table-hover0
   thead
     tr
-      th Расширение
       th Имя
+      th Расширение
       th Блокчейн
       th Параметры
       th Дополнительные поля
@@ -16,9 +16,9 @@ table.table.table-hover0
     - ProjectExtensionDecorator.decorate_collection(project_extensions).each do |pe|
       tr
         td
-          = link_to pe.name, tenant_project_extension_path(pe)
-        td
           = link_to pe.title, tenant_project_extension_path(pe)
+        td
+          = link_to pe.extension, tenant_project_extension_path(pe)
         td
           = pe.blockchain
         td

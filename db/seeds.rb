@@ -41,3 +41,7 @@ CHAIN_IDS.each_pair do |key, chain_id|
     create_with(key: key, name: key).
     find_or_create_by!(chain_id: chain_id)
 end
+
+%w[abi new_contract].each do |name|
+  Extension.find_or_create_by!(name: name)
+end

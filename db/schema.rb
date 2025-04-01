@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_29_155721) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_01_060849) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
@@ -33,6 +33,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_29_155721) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "extensions", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_extensions_on_name", unique: true
   end
 
   create_table "memberships", force: :cascade do |t|
@@ -77,15 +84,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_29_155721) do
     t.bigint "blockchain_id", null: false
     t.bigint "account_id", null: false
     t.string "title", null: false
-    t.string "name"
     t.string "summary"
     t.string "tag"
     t.jsonb "params", default: {}, null: false
     t.string "extra_dataset_paths", default: [], null: false, array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "extension_id", null: false
     t.index ["account_id"], name: "index_project_extensions_on_account_id"
     t.index ["blockchain_id"], name: "index_project_extensions_on_blockchain_id"
+    t.index ["extension_id"], name: "index_project_extensions_on_extension_id"
   end
 
   create_table "services", force: :cascade do |t|

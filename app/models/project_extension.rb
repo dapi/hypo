@@ -3,6 +3,7 @@ class ProjectExtension < ApplicationRecord
 
   belongs_to :blockchain
   belongs_to :account
+  belongs_to :extension
 
   scope :alive, -> { all }
 
@@ -21,5 +22,9 @@ class ProjectExtension < ApplicationRecord
   def set_defaults
     self.name ||= "abi"
     self.title ||= Faker::App.name
+  end
+
+  def to_s
+    name
   end
 end

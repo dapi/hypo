@@ -6,12 +6,11 @@ class User < ApplicationRecord
                             inverse_of: :owner
   has_many :memberships, dependent: :delete_all
   has_many :accounts, through: :memberships
-
   has_many :nodes, through: :accounts
 
   belongs_to :telegram_user, optional: true
 
-  delegate :first_name, :public_name, :telegram_nick, to: :telegram_user
+  delegate :first_name, :public_name, :telegram_nick, to: :telegram_user, allow_nil: true
 
   ROLES = %w[user superadmin developer].freeze
 

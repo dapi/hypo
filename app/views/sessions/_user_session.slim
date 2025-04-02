@@ -4,7 +4,7 @@
       = f.input :email, label: false, placeholder: 'email'
   .row
     .col-md-12
-      = f.input :code, label: false, placeholder: 'code', input_html: { value: (Rails.env.development? ? session_email_code : '') }
+      = f.input :code, label: false, autofocus: true, placeholder: 'code', input_html: { value: (Rails.env.development? ? session_email_code : '') }
   .row.mt-3
     .col-md-12
       = f.submit 'Войти', class: 'btn btn-lg btn-outline-primary'

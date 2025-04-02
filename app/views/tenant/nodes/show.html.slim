@@ -12,10 +12,15 @@ div[data-node-channel=node.id]
   p Создан #{time_ago_in_words node.created_at}
   p Статус #{node_state node}
 
+  h2 Параметры
+  = render 'arguments', node: node
+
   - if current_user.superadmin?
+    h2 Для админов
     p 
       | Last node job error message: 
       code =node.last_node_job_error_message
 
   - if node.processing?
     = render 'example', node: node
+

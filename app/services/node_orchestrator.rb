@@ -6,7 +6,7 @@ class NodeOrchestrator
 
   attr_reader :cli
 
-  def initialize(path:, node_id:, account_id:, nodex_url:, arguments: {})
+  def initialize(path:, node_id:, account_id:, arguments: {})
     @release = RELEASE_PREFIX + node_id.to_s
     @values = {}.merge(
       path: path,

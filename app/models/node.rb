@@ -8,7 +8,7 @@ class Node < ApplicationRecord
   ARGUMENTS = {
     "mnemonic" => { type: :string, default: "gate boat total sign print jaguar cache dutch gate universe expect tooth" },
     "chain-id" => { type: :chain_id, default: 56 },
-    "block-time" => { type: :integer, default: 0 },
+    "block-time" => { type: :integer, default: 0, min: 1, units: :seconds },
     "accounts" => { type: :integer, default: 3 },
     "base-fee" => { type: :integer, default: 0 },
     "prune-history" => { type: :integer, default: 50 },

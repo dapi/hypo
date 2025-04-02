@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_02_181025) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_02_191558) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
@@ -55,7 +55,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_02_181025) do
     t.bigint "account_id", null: false
     t.string "key", null: false
     t.boolean "no_mining", default: false, null: false
-    t.integer "block_time", default: 0, null: false
+    t.integer "block_time", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "state", default: "initiated", null: false

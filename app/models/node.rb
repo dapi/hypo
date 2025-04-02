@@ -1,9 +1,32 @@
 class Node < ApplicationRecord
   broadcasts_refreshes
 
-  OPTIONS=%i[no_mining block_time chain_id]
+  # anvil -f https://binance.safeblock.cc --chain-id 56 --accounts 3 --base-fee 0 --auto-impersonate --no-storage-caching --no-rate-limit \
+  # --disable-default-create2-deployer --no-mining --transaction-block-keeper 64 --prune-history 50 \
+  # --mnemonic "gate boat total sign print jaguar cache dutch gate universe expect tooth" --port 18545
+
+  ARGUMENTS = {
+    "mnemonic" => { type: :string, default: "gate boat total sign print jaguar cache dutch gate universe expect tooth" },
+    "chain-id" => { type: :chain_id, default: 56 },
+    "block-time" => { type: :integer, default: 0 },
+    "accounts" => { type: :integer, default: 3 },
+    "base-fee" => { type: :integer, default: 0 },
+    "prune-history" => { type: :integer, default: 50 },
+    "no-mining" => { type: :boolean, default: true },
+    "auto-impersonate" => { type: :boolean, default: true },
+    "no-storage-caching" => { type: :boolean, default: true },
+    "no-rate-limit" => { type: :boolean, default: true },
+    "disable-default-create2-deployer" => { type: :boolean, default: true },
+    "transaction-block-keeper" => { type: :boolean, default: true }
+  }
+
+  INTEGER_ARGUMENTS = ARGUMENTS.filter { |k, v| v[:type] == :integer }
+  BOOLEAN_ARGUMENTS = ARGUMENTS.filter { |k, v| v[:type] == :boolean }
+
+  OPTIONS = ARGUMENTS.keys.map &:underscore
 
   belongs_to :account, touch: :nodes_updated_at
+  belongs_to :blockchain, primary_key: :chain_id, foreign_key: :chain_id
 
   scope :alive, -> { where.not state: %i[finishing finished to_finish failed_to_finish] }
 

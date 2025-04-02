@@ -145,3 +145,5 @@ gem "yabeda-activerecord", "~> 0.1.1"
 gem "rack-cors", "~> 2.0"
 
 # gem "activerecord_json_validator", "~> 3.1"
+
+gem "valid_email", "~> 0.2.1"

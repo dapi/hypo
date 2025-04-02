@@ -10,11 +10,14 @@ class User < ApplicationRecord
 
   belongs_to :telegram_user, optional: true
 
+  validates :email, email: true
+
   delegate :first_name, :public_name, :telegram_nick, to: :telegram_user, allow_nil: true
 
   ROLES = %w[user superadmin developer].freeze
 
   before_create { self.api_key ||= Nanoid.generate(size: 32) }
+
 
   enum :role, ROLES.each_with_object({}) { |key, a| a[key] = key }
 

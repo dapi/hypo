@@ -67,11 +67,6 @@ class Node < ApplicationRecord
     end
   end
 
-  # Пока не используем
-  # after_commit do
-  # NodeRelayJob.perform_later self, previous_changes
-  # end
-
   def set_defaults
     self.title ||= Faker::App.name
     self.key ||= Nanoid.generate(size: 16)
@@ -93,7 +88,22 @@ class Node < ApplicationRecord
     destroy! unless orchestrator.exists?
   end
 
+  def arguments
+    [ "-f", blockchain.nodex_url ] +
+    ARGUMENTS.each_with_object([]) do | (key, definition), agg |
+      if definition[:type] == :boolean
+        agg << "--" + key.to_s if read_attribute(key.underscore)
+      elsif definition[:type] == :string
+        agg << "--" + key.to_s
+        agg << Shellwords.escape(read_attribute(key.underscore))
+      else
+        agg << "--" + key.to_s
+        agg << read_attribute(key.underscore).to_s
+      end
+    end
+  end
+
   def orchestrator
-    @orchestrator ||= NodeOrchestrator.new(path: path, node_id: id, account_id: account_id)
+    @orchestrator ||= NodeOrchestrator.new(path: path, node_id: id, account_id: account_id, arguments:)
   end
 end

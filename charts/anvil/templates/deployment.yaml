@@ -42,8 +42,7 @@ spec:
             - 0.0.0.0
             - --cache-path 
             - /cache
-            {{/*- -p*/}}
-            {{/*- "80"*/}}
+            {{- toYaml .Values.extraArguments | nindent 12 }}
           ports:
             - name: http
               containerPort: 8545 # {{ .Values.service.port }}

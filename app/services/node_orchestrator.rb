@@ -6,11 +6,14 @@ class NodeOrchestrator
 
   attr_reader :cli
 
-  def initialize(path:, node_id:, account_id:, values: {})
+  def initialize(path:, node_id:, account_id:, nodex_url:, arguments: {})
     @release = RELEASE_PREFIX + node_id.to_s
-    @values = values.merge(
+    @values = {}.merge(
       path: path,
       host: ApplicationConfig.node_host,
+
+      extraArguments: arguments,
+
       # Пока не используем
       # ingress: {
       # tls: {
@@ -45,7 +48,11 @@ class NodeOrchestrator
   def install
     with_values do |values_path|
       cli
-        .install(release, ApplicationConfig.chart_dir, wait: ApplicationConfig.helm_wait, timeout: ApplicationConfig.helm_timeout, set: set_options, values: values_path)
+        .install(release, ApplicationConfig.chart_dir,
+                 wait: ApplicationConfig.helm_wait,
+                 timeout: ApplicationConfig.helm_timeout,
+                 set: set_options,
+                 values: values_path)
         .run &method(:run_block)
     end
   end
@@ -76,7 +83,7 @@ class NodeOrchestrator
 
   private
 
-  attr_reader :release, :set_args, :values, :set_options
+  attr_reader :release, :values, :set_options
 
   def logger
     Rails.logger

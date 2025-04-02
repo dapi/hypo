@@ -26,7 +26,8 @@ class ApplicationConfig < Anyway::Config
     home_subdomain: "app",
     redis_cache_store_url: "redis://localhost:6379/2",
     helm_wait: true,
-    helm_timeout: "10m"
+    helm_timeout: "10m",
+    nodex_template_url: "http://nodex-${BLOCKCHAIN_KEY}.nodex.svc.cluster.local:8080"
   )
 
   coerce_types(

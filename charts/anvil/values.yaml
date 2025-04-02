@@ -95,6 +95,8 @@ resources:
     #path: /
     #port: http
 
+extraArguments: []
+
 livenessProbe:
   periodSeconds: 10
   exec:

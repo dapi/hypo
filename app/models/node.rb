@@ -6,19 +6,23 @@ class Node < ApplicationRecord
   # --mnemonic "gate boat total sign print jaguar cache dutch gate universe expect tooth" --port 18545
 
   ARGUMENTS = {
-    "mnemonic" => { type: :string, default: ApplicationConfig.default_mnemonic },
-    "chain-id" => { type: :chain_id, default: 56 },
-    "block-time" => { type: :integer, default: 0, min: 1, units: :seconds },
-    "accounts" => { type: :integer, default: 3 },
     "base-fee" => { type: :integer, default: 0 },
-    "prune-history" => { type: :integer, default: 50 },
-    "no-mining" => { type: :boolean, default: true },
-    "auto-impersonate" => { type: :boolean, default: true },
-    "no-storage-caching" => { type: :boolean, default: true },
-    "no-rate-limit" => { type: :boolean, default: true },
-    "disable-default-create2-deployer" => { type: :boolean, default: true },
-    "transaction-block-keeper" => { type: :integer, default: 64 }
+    "mnemonic" => { type: :string, default: ApplicationConfig.default_mnemonic },
+    "accounts" => { type: :integer, default: 3 }
   }
+
+  # TODO Возможно необходимо удалить из базы
+  # EXTRA_ARGUMENTS = {
+  # "chain-id" => { type: :chain_id, default: 56 },
+  # "block-time" => { type: :integer, default: 0, min: 1, units: :seconds },
+  # "prune-history" => { type: :integer, default: 50 },
+  # "no-mining" => { type: :boolean, default: true },
+  # "auto-impersonate" => { type: :boolean, default: true },
+  # "no-storage-caching" => { type: :boolean, default: true },
+  # "no-rate-limit" => { type: :boolean, default: true },
+  # "disable-default-create2-deployer" => { type: :boolean, default: true },
+  # "transaction-block-keeper" => { type: :integer, default: 64 }
+  # }
 
   INTEGER_ARGUMENTS = ARGUMENTS.filter { |k, v| v[:type] == :integer }
   BOOLEAN_ARGUMENTS = ARGUMENTS.filter { |k, v| v[:type] == :boolean }

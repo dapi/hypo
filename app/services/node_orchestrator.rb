@@ -12,7 +12,7 @@ class NodeOrchestrator
       path: path,
       host: ApplicationConfig.node_host,
 
-      extraArguments: arguments,
+      extraArguments: ApplicationConfig.anvil_arguments + arguments,
 
       # Пока не используем
       # ingress: {

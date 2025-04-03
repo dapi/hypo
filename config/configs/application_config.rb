@@ -28,7 +28,8 @@ class ApplicationConfig < Anyway::Config
     helm_wait: true,
     helm_timeout: "10m",
     nodex_template_url: "http://nodex-${BLOCKCHAIN_KEY}.nodex.svc.cluster.local:8080",
-    default_mnemonic: "cash boat total sign print jaguar soup dutch gate universe expect tooth"
+    default_mnemonic: "cash boat total sign print jaguar soup dutch gate universe expect tooth",
+    anvil_arguments: "--auto-impersonate --no-storage-caching --no-rate-limit --disable-default-create2-deployer --no-mining --transaction-block-keeper 64 --prune-history 50"
   )
 
   coerce_types(
@@ -42,6 +43,10 @@ class ApplicationConfig < Anyway::Config
     else
       protocol + "://" + host
     end
+  end
+
+  def anvil_arguments
+    super.split
   end
 
   def bot_url

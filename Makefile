@@ -1,10 +1,12 @@
 APP=$(shell git remote show origin -n | grep 'Push  URL' | awk -F/ '{print $$2}' | awk -F. '{print $$1}')
 INFRA_REPO=git@github.com:safeblock-com/infra.git 
 WORKFLOW=backend-deploy.yml 
-DOCKER_TAG=$(shell git describe --abbrev=0 --tags | sed -e 's/v//')
+DOCKER_TAG=`git describe --abbrev=0 --tags | sed -e 's/v//'`
 STAGE=default
 SEMVER=`./bin/semver`
 SLEEP=5
+GH=gh --repo ${INFRA_REPO}
+LATEST_RUN_ID=`${GH} run list --workflow=backend-deploy.yml  -L 3 -e workflow_dispatch --json databaseId -q.[0].databaseId`
 
 release-and-deploy: release deploy sleep watch
 
@@ -21,10 +23,16 @@ sleep:
 
 deploy:
 	echo "Trigger deploy for ${DOCKER_TAG}"
-	gh --repo ${INFRA_REPO} workflow run ${WORKFLOW} -F tag=${SEMVER} -F app=${APP} -F stage=${STAGE}
+	${GH} workflow run ${WORKFLOW} -F tag=${DOCKER_TAG} -F app=${APP} -F stage=${STAGE}
 
 watch:
-	gh --repo ${INFRA_REPO} run list --workflow=${WORKFLOW} -L 3 -e workflow_dispatch
+	${GH} run watch ${LATEST_RUN_ID}
+
+view:
+	${GH} run view ${LATEST_RUN_ID} --log-failed
+
+list:
+	${GH} run list --workflow=${WORKFLOW} -L 3 -e workflow_dispatch
 
 recreate-db:
 	dropdb vilna_development || echo

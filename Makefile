@@ -21,6 +21,7 @@ release:
 	@git pull --tags
 
 sleep:
+	@echo "Wait ${SLEEP} seconds for workflow to run"
 	@sleep ${SLEEP}
 
 deploy:

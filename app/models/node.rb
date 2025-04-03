@@ -96,7 +96,7 @@ class Node < ApplicationRecord
         agg << "--" + key.to_s if read_attribute(key.underscore)
       elsif definition[:type] == :string
         agg << "--" + key.to_s
-        agg << Shellwords.escape(read_attribute(key.underscore))
+        agg << read_attribute(key.underscore).to_s
       else
         agg << "--" + key.to_s
         agg << read_attribute(key.underscore).to_s

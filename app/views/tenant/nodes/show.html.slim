@@ -9,8 +9,9 @@ div[data-node-channel=node.id]
 
   h1.mb-5 Узел #{node.title}
 
-  p Создан #{time_ago_in_words node.created_at}
-  p Статус #{node_state node}
+  p Создан: #{time_ago_in_words node.created_at}
+  p Статус: #{node_state node}
+  p Blockchain: #{node.blockchain}
 
   h2 Параметры
   = render 'arguments', node: node

@@ -9,7 +9,7 @@ h1.my-4 Новый узел
       .col-md-3
         = f.input :title, label: 'Название узла', hint: 'Для вашего удобства каждый узел имеет свое имя', autofocus: true
       .col-md-2
-        = f.association :blockchain, include_blank: false
+        = f.association :blockchain, include_blank: false, value_method: :chain_id
     .row
       .col-md-12
         = f.input :mnemonic, input_html: { class: 'font-monospace' }

@@ -15,12 +15,11 @@ bump:
 	@echo "Increment version to ${SEMVER}"
 	@git add .semver
 	@git commit -m ${SEMVER}
+	@git push
 
 release: bump push-release
 
 push-release:
-	@echo "Push to repo"
-	@git push
 	@gh release create ${SEMVER} --generate-notes
 	@git pull --tags
 

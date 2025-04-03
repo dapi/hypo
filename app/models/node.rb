@@ -1,13 +1,12 @@
 class Node < ApplicationRecord
   broadcasts_refreshes
-  DEFAULT_SEED = "gate boat total sign print jaguar cache dutch gate universe expect tooth"
 
   # anvil -f https://binance.safeblock.cc --chain-id 56 --accounts 3 --base-fee 0 --auto-impersonate --no-storage-caching --no-rate-limit \
   # --disable-default-create2-deployer --no-mining --transaction-block-keeper 64 --prune-history 50 \
   # --mnemonic "gate boat total sign print jaguar cache dutch gate universe expect tooth" --port 18545
 
   ARGUMENTS = {
-    "mnemonic" => { type: :string, default: DEFAULT_SEED },
+    "mnemonic" => { type: :string, default: ApplicationConfig.default_mnemonic },
     "chain-id" => { type: :chain_id, default: 56 },
     "block-time" => { type: :integer, default: 0, min: 1, units: :seconds },
     "accounts" => { type: :integer, default: 3 },
@@ -33,7 +32,7 @@ class Node < ApplicationRecord
   before_create { set_defaults }
 
   validates :title, uniqueness: { scope: :account_id }
-  # validates :mnemonic, mnemonic: true
+  validates :mnemonic, mnemonic: true
 
   state_machine initial: :initiated do
     event :start do

@@ -5,10 +5,12 @@ DOCKER_TAG=`git describe --abbrev=0 --tags | sed -e 's/v//'`
 STAGE=default
 SEMVER=`./bin/semver`
 SLEEP=5
-GH=gh --repo ${INFRA_REPO}
-LATEST_RUN_ID=`${GH} run list --workflow=backend-deploy.yml  -L 3 -e workflow_dispatch --json databaseId -q.[0].databaseId`
+GH=gh
+INFRA_GH=gh --repo ${INFRA_REPO}
+LATEST_INFRA_RUN_ID=`${INFRA_GH} run list --workflow=backend-deploy.yml  -L 3 -e workflow_dispatch --json databaseId -q.[0].databaseId`
+LATEST_RUN_ID=`${GH} run list --workflow=release.yml -L 3 -e workflow_dispatch --json databaseId -q.[0].databaseId`
 
-release-and-deploy: release deploy sleep watch
+release-and-deploy: release watch deploy sleep infra-watch
 
 minor:
 	@./bin/semver inc minor
@@ -38,16 +40,19 @@ sleep:
 
 deploy:
 	@echo "Trigger deploy for ${DOCKER_TAG}"
-	@${GH} workflow run ${WORKFLOW} -F tag=${DOCKER_TAG} -F app=${APP} -F stage=${STAGE}
+	@${INFRA_GH} workflow run ${WORKFLOW} -F tag=${DOCKER_TAG} -F app=${APP} -F stage=${STAGE}
 
 watch:
 	@${GH} run watch ${LATEST_RUN_ID}
 
-view:
-	@${GH} run view ${LATEST_RUN_ID} --log-failed
+infra-watch:
+	@${INFRA_GH} run watch ${LATEST_INFRA_RUN_ID}
+
+infra-view:
+	@${INFRA_GH} run view ${LATEST_INFRA_RUN_ID} --log-failed
 
 list:
-	@${GH} run list --workflow=${WORKFLOW} -L 3 -e workflow_dispatch
+	@${INFRA_GH} run list --workflow=${WORKFLOW} -L 3 -e workflow_dispatch
 
 recreate-db:
 	dropdb vilna_development || echo

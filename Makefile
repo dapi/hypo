@@ -2,6 +2,17 @@ APP=vilna
 INFRA_REPO=git@github.com:safeblock-com/infra.git 
 WORKFLOW=backend-deploy.yml 
 DOCKER_TAG=$(shell git describe --abbrev=0 --tags | sed -e 's/v//')
+SEMVER=`./bin/semver`
+
+release-and-deploy: release deploy watch
+
+release:
+	./bin/semver inc patch
+	git add .semver
+	git commit -m ${SEMVER}
+	git push
+	gh release create ${SEMVER} --generate-notes
+	git pull --tags
 
 recreate-db:
 	dropdb vilna_development || echo

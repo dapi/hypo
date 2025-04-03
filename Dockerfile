@@ -43,7 +43,7 @@ FROM base AS build
 # autoconf bison libssl-dev libreadline6 libreadline6-dev zlib1g zlib1g-dev && \
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential git libpq-dev pkg-config \
-    autoconf && \
+    automake autoconf libtool && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Install JavaScript dependencies

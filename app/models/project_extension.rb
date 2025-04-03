@@ -11,8 +11,13 @@ class ProjectExtension < ApplicationRecord
 
   # SCHEMA = Rails.root.join('config', 'schemas', 'project_extension.json')
   # validates :params, json: { schema: SCHEMA }
-
   validates :params, json: true
+
+  before_save do
+    self.params = ActiveSupport::JSON.decode(params.strip) if value.is_a?(String)
+  end
+
+  # validates :params, json: true
 
   before_create do
     self.title ||= Faker::App.name

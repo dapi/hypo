@@ -16,15 +16,15 @@ aside.d-flex.flex-column.flex-shrink-0.p-3.text-bg-dark[style="width: 280px;"]
     li
       = active_link_to tenant_services_path, class: 'nav-link text-white' do
         = bootstrap_icon :grid, width: 16, height: 16, class: 'pe-none me-2'
-        |  Сервисы
+        = title_with_counter '  Сервисы', current_account.services.alive.count
     li
       = active_link_to tenant_project_extensions_path, class: 'nav-link text-white' do
         = bootstrap_icon :backpack, width: 16, height: 16, class: 'pe-none me-2'
-        |  Расширения
+        = title_with_counter '  Расширения', current_account.project_extensions.alive.count
     li
       = active_link_to tenant_project_api_keys_path, class: 'nav-link text-white' do
         = bootstrap_icon :key, width: 16, height: 16, class: 'pe-none me-2'
-        |  API Ключи 
+        = title_with_counter '  API Ключи', current_account.project_api_keys.alive.count
     /li
       /= active_link_to private_sessions_path, class: 'nav-link text-white' do
         /= bootstrap_icon 'people', width: 16, height: 16, class: 'pe-none me-2'

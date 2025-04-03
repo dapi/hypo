@@ -5,8 +5,7 @@ class JsonValidator < ActiveModel::EachValidator
   end
 
   def validate_each(record, attribute, value)
-    value = value.strip if value.is_a?(String)
-    ActiveSupport::JSON.decode(value)
+    ActiveSupport::JSON.decode(value.strip) if value.is_a?(String)
   rescue JSON::ParserError, TypeError => exception
     record.errors.add(attribute, options[:message], exception_message: exception.message)
   end

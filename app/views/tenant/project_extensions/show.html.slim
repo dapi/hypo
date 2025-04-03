@@ -16,6 +16,5 @@ div[data-project_extension-channel=project_extension.id]
   p Статус #{project_extension_state project_extension}
   p Blockchain #{project_extension.blockchain}
   p Дополнительные поля: #{project_extension.extra_dataset_paths}
-  p Праметры
-  pre 
-    code #{JSON.pretty_generate project_extension.params}
+  p Праметры:
+  = project_extension.params

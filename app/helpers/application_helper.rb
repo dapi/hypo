@@ -1,4 +1,12 @@
 module ApplicationHelper
+  def expose_json(data)
+    content_tag :code do
+      content_tag :pre do
+        JSON.pretty_generate data
+      end
+    end
+  end
+
   def app_title
     ApplicationConfig.app_title
   end

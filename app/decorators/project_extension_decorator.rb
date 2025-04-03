@@ -8,9 +8,7 @@ class ProjectExtensionDecorator < ApplicationDecorator
   end
 
   def params
-    h.content_tag :code do
-      object.params
-    end
+    h.expose_json object.params
   end
 
   # Define presentation-specific methods here. Helpers are accessed through

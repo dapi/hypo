@@ -14,7 +14,8 @@ class ProjectExtension < ApplicationRecord
   validates :params, json: true
 
   before_save do
-    self.params = ActiveSupport::JSON.decode(params.strip) if value.is_a?(String)
+    # Уже провалидировали, поэтому сохранят не страшно
+    self.params = ActiveSupport::JSON.decode(params.strip) if params.is_a?(String)
   end
 
   # validates :params, json: true

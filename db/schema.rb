@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_02_191558) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_03_085213) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
@@ -68,9 +68,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_02_191558) do
     t.boolean "no_storage_caching", default: true
     t.boolean "no_rate_limit", default: true
     t.boolean "disable_default_create2_deployer", default: true
-    t.boolean "transaction_block_keeper", default: true
     t.integer "prune_history", default: 50
     t.string "mnemonic", default: "gate boat total sign print jaguar cache dutch gate universe expect tooth"
+    t.integer "transaction_block_keeper", default: 64
     t.index ["account_id", "created_at"], name: "index_nodes_on_account_id_and_created_at"
     t.index ["account_id", "title"], name: "index_nodes_on_account_id_and_title", unique: true
     t.index ["account_id"], name: "index_nodes_on_account_id"

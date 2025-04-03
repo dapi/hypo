@@ -17,7 +17,7 @@ class Node < ApplicationRecord
     "no-storage-caching" => { type: :boolean, default: true },
     "no-rate-limit" => { type: :boolean, default: true },
     "disable-default-create2-deployer" => { type: :boolean, default: true },
-    "transaction-block-keeper" => { type: :boolean, default: true }
+    "transaction-block-keeper" => { type: :integer, default: 64 }
   }
 
   INTEGER_ARGUMENTS = ARGUMENTS.filter { |k, v| v[:type] == :integer }

@@ -31,6 +31,7 @@ class ApplicationDecorator < Draper::Decorator
   end
 
   def extra_dataset_paths
+    return h.content_tag :i, 'отсутствуют', class: 'text-muted' if object.extra_dataset_paths.empty?
     object.extra_dataset_paths.map do |el|
       h.content_tag(:span, el, class: "badge text-bg-primary")
     end.join(" ").html_safe

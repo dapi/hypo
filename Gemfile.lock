@@ -734,7 +734,6 @@ DEPENDENCIES
   rails-i18n (~> 8.0)
   ransack (~> 4.3)
   rb-gravatar (~> 1.0)
-  rbsecp256k1 (~> 6.0)
   redis (~> 5.4)
   request_store (~> 1.7)
   rhelm (~> 0.2.0)

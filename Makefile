@@ -11,28 +11,30 @@ LATEST_RUN_ID=`${GH} run list --workflow=backend-deploy.yml  -L 3 -e workflow_di
 release-and-deploy: release deploy sleep watch
 
 release:
-	./bin/semver inc patch
-	git add .semver
-	git commit -m ${SEMVER}
-	git push
-	gh release create ${SEMVER} --generate-notes
-	git pull --tags
+	@./bin/semver inc patch
+	@echo "Increment version to ${SEMVER}"
+	@git add .semver
+	@git commit -m ${SEMVER}
+	@echo "Push to repo"
+	@git push
+	@gh release create ${SEMVER} --generate-notes
+	@git pull --tags
 
 sleep:
-	sleep ${SLEEP}
+	@sleep ${SLEEP}
 
 deploy:
-	echo "Trigger deploy for ${DOCKER_TAG}"
-	${GH} workflow run ${WORKFLOW} -F tag=${DOCKER_TAG} -F app=${APP} -F stage=${STAGE}
+	@echo "Trigger deploy for ${DOCKER_TAG}"
+	@${GH} workflow run ${WORKFLOW} -F tag=${DOCKER_TAG} -F app=${APP} -F stage=${STAGE}
 
 watch:
-	${GH} run watch ${LATEST_RUN_ID}
+	@${GH} run watch ${LATEST_RUN_ID}
 
 view:
-	${GH} run view ${LATEST_RUN_ID} --log-failed
+	@${GH} run view ${LATEST_RUN_ID} --log-failed
 
 list:
-	${GH} run list --workflow=${WORKFLOW} -L 3 -e workflow_dispatch
+	@${GH} run list --workflow=${WORKFLOW} -L 3 -e workflow_dispatch
 
 recreate-db:
 	dropdb vilna_development || echo

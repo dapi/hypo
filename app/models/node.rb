@@ -35,8 +35,10 @@ class Node < ApplicationRecord
 
   before_create { set_defaults }
 
-  validates :title, uniqueness: { scope: :account_id }
-  validates :mnemonic, mnemonic: true
+  validates :base_fee, numericality: { only_integer: true, greater_than_or_equal_to: 0 , less_than: 10000 }
+  validates :account, numericality: { only_integer: true, greater_than: 0, less_than: 10 }
+  validates :title, uniqueness: { scope: :account_id }, length: { minimum: 2, maximum: 64 }
+  validates :mnemonic, mnemonic: true, length: { minimum: 36, maximum: 512 }
 
   state_machine initial: :initiated do
     event :start do

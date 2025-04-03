@@ -7,7 +7,7 @@ class ProjectExtension < ApplicationRecord
 
   scope :alive, -> { all }
 
-  validates :title, presence: true
+  validates :title, presence: true, length: { minimum: 3, maximum: 64 }
 
   # SCHEMA = Rails.root.join('config', 'schemas', 'project_extension.json')
   # validates :params, json: { schema: SCHEMA }

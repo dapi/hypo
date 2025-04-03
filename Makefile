@@ -14,7 +14,7 @@ minor:
 	@./bin/semver inc patch
 
 patch:
-	@./bin/semver inc patch
+	@./bin/semver inc minor
 
 bump-patch: patch push-semver
 bump-minor: minor push-semver

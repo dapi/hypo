@@ -1,3 +1,4 @@
+```
 anvil -f https://binance.safeblock.cc --chain-id 56 --accounts 3 --base-fee 0 --auto-impersonate --no-storage-caching --no-rate-limit --disable-default-create2-deployer --no-mining --transaction-block-keeper 64 --prune-history 50 --mnemonic "gate boat total sign print jaguar cache dutch gate universe expect tooth" --port 18545
 
 Флаги:
@@ -35,3 +36,4 @@ Account 0:
 Account 1: 
   - Address: 0xE2D71fD4c77693483e1581B02D9e0e5DC7923FF0
   - Private Key: 0x790832408fccbe4fd54fa4b4111149a4cb1a09af25deadbb0c4e6b06305c1fba
+```

@@ -11,10 +11,10 @@ LATEST_RUN_ID=`${GH} run list --workflow=backend-deploy.yml  -L 3 -e workflow_di
 release-and-deploy: release deploy sleep watch
 
 minor:
-	@./bin/semver inc patch
+	@./bin/semver inc minor
 
 patch:
-	@./bin/semver inc minor
+	@./bin/semver inc patch
 
 bump-patch: patch push-semver
 bump-minor: minor push-semver

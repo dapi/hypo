@@ -51,7 +51,7 @@ module Tenant
       return {} unless params.key? :project_extension
       params.
         require(:project_extension).
-        permit(:title, :extension_id, :blockchain_id, :params, :summary, :extra_dataset_paths, :extra_dataset_paths_list)
+        permit(:title, :extension_id, :blockchain_id, :params, :params_string, :summary, :extra_dataset_paths, :extra_dataset_paths_list)
     end
   end
 end

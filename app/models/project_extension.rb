@@ -9,9 +9,7 @@ class ProjectExtension < ApplicationRecord
 
   validates :title, presence: true, length: { minimum: 3, maximum: 64 }
 
-  # SCHEMA = Rails.root.join('config', 'schemas', 'project_extension.json')
-  # validates :params, json: { schema: SCHEMA }
-  validates :params, json: true
+  validate :validate_params_string
 
   before_save do
     # Уже провалидировали, поэтому сохранят не страшно
@@ -31,5 +29,34 @@ class ProjectExtension < ApplicationRecord
 
   def to_s
     name
+  end
+
+  def params_string
+    @params_string ||= JSON.pretty_generate(params)
+  end
+
+  def params_string=(value)
+    @params_string = value
+    self.params = parse_json_string value
+  rescue ParsingError
+    # suppress
+  end
+
+  private
+
+  ParsingError = Class.new StandardError
+
+  def parse_json_string(value)
+    data = ActiveSupport::JSON.decode(value) || {}
+    raise ParsingError, "Must be a map/hash" unless data.is_a? Hash
+    data
+  rescue JSON::ParserError, TypeError => exception
+    raise ParsingError, exception.message
+  end
+
+  def validate_params_string
+    parse_json_string params_string
+  rescue ParsingError => exception
+    errors.add(:params_string, exception.message)
   end
 end

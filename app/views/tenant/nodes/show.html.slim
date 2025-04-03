@@ -15,6 +15,9 @@ div[data-node-channel=node.id]
   h2 Параметры
   = render 'arguments', node: node
 
+  h2 Кошельки
+  = render 'wallets', wallets: node.wallets
+
   - if current_user.superadmin?
     h2 Для админов
     p 

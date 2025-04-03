@@ -147,3 +147,13 @@ gem "rack-cors", "~> 2.0"
 # gem "activerecord_json_validator", "~> 3.1"
 
 gem "valid_email", "~> 0.2.1"
+
+# Crypto address validator
+# gem "adequate_crypto_address", "~> 0.1.9"
+#
+gem "bip44", github: "dapi/bip44"
+
+# gem 'eth', '~> 0.5.11'
+# gem "eth", github: "dapi/eth.rb", branch: "fix_get_balance_with_block_number"
+# gem "bitcoin-ruby", git: "https://github.com/lian/bitcoin-ruby", branch: "master", require: "bitcoin"
+gem "derivator", "~> 0.1"

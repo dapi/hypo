@@ -22,7 +22,6 @@ class Node < ApplicationRecord
 
   INTEGER_ARGUMENTS = ARGUMENTS.filter { |k, v| v[:type] == :integer }
   BOOLEAN_ARGUMENTS = ARGUMENTS.filter { |k, v| v[:type] == :boolean }
-
   OPTIONS = ARGUMENTS.keys.map &:underscore
 
   belongs_to :account, touch: :nodes_updated_at
@@ -31,7 +30,9 @@ class Node < ApplicationRecord
   scope :alive, -> { where.not state: %i[finishing finished to_finish failed_to_finish] }
 
   before_create { set_defaults }
+
   validates :title, uniqueness: { scope: :account_id }
+  validates :mnemonic, mnemonic: true
 
   state_machine initial: :initiated do
     event :start do
@@ -101,6 +102,14 @@ class Node < ApplicationRecord
         agg << read_attribute(key.underscore).to_s
       end
     end
+  end
+
+  def wallets
+    @wallets ||= accounts.times.map { |i| wallets_generator.wallet i }
+  end
+
+  def wallets_generator
+    @wallets_generator ||= WalletsGenerator.new(mnemonic)
   end
 
   def orchestrator

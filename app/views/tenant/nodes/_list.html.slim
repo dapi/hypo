@@ -7,6 +7,7 @@ table.table.table-hover0
     tr
       th Узал
       th Состояние
+      th Кошельки
       th API
       th Дата создания
       th
@@ -17,6 +18,8 @@ table.table.table-hover0
           = link_to node.title, tenant_node_path(node)
         td
           = node_state node
+        td
+          = node.accounts
         td
           = link_to 'RPC endpoint', node.url, target: '_blank', rel: "noopener noreferrer"
         td

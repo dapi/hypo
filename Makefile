@@ -10,11 +10,15 @@ LATEST_RUN_ID=`${GH} run list --workflow=backend-deploy.yml  -L 3 -e workflow_di
 
 release-and-deploy: release deploy sleep watch
 
-release:
+bump:
 	@./bin/semver inc patch
 	@echo "Increment version to ${SEMVER}"
 	@git add .semver
 	@git commit -m ${SEMVER}
+
+release: bump push-release
+
+push-release:
 	@echo "Push to repo"
 	@git push
 	@gh release create ${SEMVER} --generate-notes

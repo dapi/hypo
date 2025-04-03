@@ -6,6 +6,7 @@ class Node < ApplicationRecord
   # --mnemonic "gate boat total sign print jaguar cache dutch gate universe expect tooth" --port 18545
 
   ARGUMENTS = {
+    "chain-id" => { type: :chain_id, default: 56 },
     "base-fee" => { type: :integer, default: 0 },
     "mnemonic" => { type: :string, default: ApplicationConfig.default_mnemonic },
     "accounts" => { type: :integer, default: 3 }
@@ -13,7 +14,6 @@ class Node < ApplicationRecord
 
   # TODO Возможно необходимо удалить из базы
   # EXTRA_ARGUMENTS = {
-  # "chain-id" => { type: :chain_id, default: 56 },
   # "block-time" => { type: :integer, default: 0, min: 1, units: :seconds },
   # "prune-history" => { type: :integer, default: 50 },
   # "no-mining" => { type: :boolean, default: true },

@@ -6,8 +6,10 @@
 #
 one:
   api_key: one
+  email: one@example.com
 # column: value
 #
 two:
   api_key: two
+  email: two@example.com
 # column: value

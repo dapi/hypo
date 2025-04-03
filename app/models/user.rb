@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
   belongs_to :telegram_user, optional: true
 
-  validates :email, email: true
+  validates :email, email: true, if: :email?
 
   delegate :first_name, :public_name, :telegram_nick, to: :telegram_user, allow_nil: true
 

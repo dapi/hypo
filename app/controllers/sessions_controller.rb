@@ -24,12 +24,11 @@ class SessionsController < ApplicationController
       Account.create!(owner: current_user) unless current_user.default_account.present?
       redirect_after_login
     else
-      flash[:alert] = "Неверный код"
+      flash.now[:alert] = "Неверный код"
       user_session.errors.add :code, "Неверный код"
       user_session.code = ""
-      render "sessions/new", locals: {
-        user_session: user_session,
-        code_sent_at: Time.zone.now
+      render "user_session", locals: {
+        user_session: user_session
       }, status: :unprocessable_entity
     end
   end

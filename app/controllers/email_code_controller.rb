@@ -15,8 +15,8 @@ class EmailCodeController < ApplicationController
     self.session_code_sent_at = Time.zone.now
 
     SignInMailer.with(code:, email: email_form.email).send_code.deliver_later
-    flash[:notice] = "Код для входя отправлен на email #{email_form.email}"
-    render "sessions/new", locals: {
+    flash.now[:notice] = "Код для входя отправлен на email #{email_form.email}"
+    render "sessions/user_session", locals: {
       user_session: UserSession.new(email: email_form.email),
       code_sent_at: Time.zone.now
     }, status: :unprocessable_entity

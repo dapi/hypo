@@ -36,7 +36,7 @@ class Node < ApplicationRecord
   before_create { set_defaults }
 
   validates :base_fee, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than: 10000 }
-  validates :account, numericality: { only_integer: true, greater_than: 0, less_than: 10 }
+  validates :accounts, numericality: { only_integer: true, greater_than: 0, less_than: 10 }
   validates :title, uniqueness: { scope: :account_id }, length: { minimum: 2, maximum: 64 }
   validates :mnemonic, mnemonic: true, length: { minimum: 36, maximum: 512 }
 

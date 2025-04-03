@@ -10,7 +10,7 @@ INFRA_GH=gh --repo ${INFRA_REPO}
 LATEST_INFRA_RUN_ID=`${INFRA_GH} run list --workflow=backend-deploy.yml  -L 3 -e workflow_dispatch --json databaseId -q.[0].databaseId`
 LATEST_RUN_ID=`${GH} run list --workflow=release.yml -L 3 -e workflow_dispatch --json databaseId -q.[0].databaseId`
 
-release-and-deploy: release watch deploy sleep infra-watch
+patch-release-and-deploy: patch-release watch deploy sleep infra-watch
 
 minor:
 	@./bin/semver inc minor

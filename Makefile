@@ -25,7 +25,8 @@ push-semver:
 	@git commit -m ${SEMVER}
 	@git push
 
-release: bump-patch push-release
+patch-release: bump-patch push-release
+minor-release: bump-minor push-release
 
 push-release:
 	@gh release create ${SEMVER} --generate-notes

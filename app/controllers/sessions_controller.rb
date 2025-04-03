@@ -17,6 +17,10 @@ class SessionsController < ApplicationController
     }
   end
 
+  def show
+    redirect_to new_session_url
+  end
+
   def create
     user_session = UserSession.new params.require(:user_session).permit(:email, :code)
     if user_session.code == session_email_code && user_session.email = session_email

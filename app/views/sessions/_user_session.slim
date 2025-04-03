@@ -1,10 +1,12 @@
 = simple_form_for user_session, url: session_path, data: { turbo: false } do |f|
   .row
     .col-md-12
-      = f.input :email, label: false, placeholder: 'email'
+      = f.input :email, label: false, placeholder: 'email', disabled: true
   .row
     .col-md-12
       = f.input :code, label: false, autofocus: true, placeholder: 'code', input_html: { value: (Rails.env.development? ? session_email_code : '') }
   .row.mt-3
-    .col-md-12
+    .col-md-4
       = f.submit 'Войти', class: 'btn btn-lg btn-outline-primary'
+    .col-md-8
+      = link_to 'Изменить email &rarr;'.html_safe, new_session_url(user_session: user_session), class: 'float-end btn btn-lg'

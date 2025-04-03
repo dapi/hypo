@@ -1,8 +1,0 @@
-#/usr/bin/env bash
-
-./bin/semver inc patch
-git add .semver
-git commit -m `./bin/semver`
-git push
-gh release create `./bin/semver` --generate-notes
-git pull --tags

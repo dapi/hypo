@@ -4,7 +4,7 @@
     strong= current_user
   ul.dropdown-menu.dropdown-menu-dark.text-small.shadow
     li
-      a.dropdown-item[href=profile_url]
+      a.dropdown-item[href=profile_url(back_url: current_url)]
         | Профиль
     - if current_user.superadmin?
       li

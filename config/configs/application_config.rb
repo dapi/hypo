@@ -25,7 +25,7 @@ class ApplicationConfig < Anyway::Config
     reserved_subdomains: "www,node,vilna",
     home_subdomain: "app",
     redis_cache_store_url: "redis://localhost:6379/2",
-    helm_timeout: "10m",
+    helm_timeout: "10s",
     nodex_template_url: "http://nodex-${BLOCKCHAIN_KEY}.nodex.svc.cluster.local:8080",
     default_mnemonic: "cash boat total sign print jaguar soup dutch gate universe expect tooth",
     anvil_arguments: "--auto-impersonate --no-storage-caching --no-rate-limit --disable-default-create2-deployer --no-mining --transaction-block-keeper 64 --prune-history 50"

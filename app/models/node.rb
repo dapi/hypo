@@ -45,6 +45,10 @@ class Node < ApplicationRecord
       transition initiated: :to_start
     end
 
+    event :restart do
+      transition failed_to_start: :to_start
+    end
+
     event :starting do
       transition to_start: :starting
     end

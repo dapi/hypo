@@ -7,6 +7,13 @@ class StartNodeJob < ApplicationJob
 
   def perform(node)
     node.update_column :last_node_job_error_message, nil
+    node.with_lock do
+      if node.failed_to_start?
+        node.orchestrator.uninstall if node.orchestrator.exists?
+        node.restart!
+      end
+    end
+
     node.start!
     node.with_lock do
       node.starting!

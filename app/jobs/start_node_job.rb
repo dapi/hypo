@@ -6,6 +6,7 @@ class StartNodeJob < ApplicationJob
     group: :nodes
 
   def perform(node)
+    node.update_column :last_node_job_error_message, nil
     node.start!
     node.with_lock do
       node.starting!

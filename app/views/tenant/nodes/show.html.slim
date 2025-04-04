@@ -19,7 +19,7 @@ div[data-node-channel=node.id]
   h2 Кошельки
   = render 'wallets', wallets: node.wallets
 
-  - if current_user.superadmin?
+  - if current_user.superadmin? || Rails.env.development?
     h2 Для админов
     p 
       | Last node job error message: 

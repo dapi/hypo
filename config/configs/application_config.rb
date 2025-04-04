@@ -25,7 +25,6 @@ class ApplicationConfig < Anyway::Config
     reserved_subdomains: "www,node,vilna",
     home_subdomain: "app",
     redis_cache_store_url: "redis://localhost:6379/2",
-    helm_wait: true,
     helm_timeout: "10m",
     nodex_template_url: "http://nodex-${BLOCKCHAIN_KEY}.nodex.svc.cluster.local:8080",
     default_mnemonic: "cash boat total sign print jaguar soup dutch gate universe expect tooth",
@@ -33,7 +32,6 @@ class ApplicationConfig < Anyway::Config
   )
 
   coerce_types(
-    helm_wait: :boolean,
     telegram_auth_expiration: :integer
   )
 

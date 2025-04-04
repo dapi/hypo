@@ -2,12 +2,16 @@ require "rhelm/client"
 require "tempfile"
 
 class NodeOrchestrator
-  RELEASE_PREFIX = "anvil-"
+  RELEASE_PREFIX = Rails.env.production? ? "anvil-" : "anvil-"+Rails.env+"-"
 
   attr_reader :cli
 
   def initialize(path:, node_id:, account_id:, arguments: {})
     @release = RELEASE_PREFIX + node_id.to_s
+    @logger = ActiveSupport::TaggedLogging.
+      new(Rails.logger).
+      tagged("NodeOrchestrator( #{account_id}, #{node_id} )")
+    @logger.info "Initialize with #{arguments}"
     @values = {}.merge(
       path: path,
       host: ApplicationConfig.node_host,
@@ -27,11 +31,10 @@ class NodeOrchestrator
       }
     ).deep_stringify_keys
     args = {
+      create_namespace: true, # Полезно для тестовых окружений
       namespace: ApplicationConfig.kube_namespace,
       kube_as_user: ApplicationConfig.kube_as_user,
       kube_as_group: ApplicationConfig.kube_as_group
-      # Для примера
-      # logger: Rhelm::Client::SimpleLogger
     }
     if ApplicationConfig.kube_token.present?
       args.merge!(
@@ -41,23 +44,25 @@ class NodeOrchestrator
     elsif ApplicationConfig.kubeconfig.present?
       args.merge! kubeconfig: ApplicationConfig.kubeconfig
     end
-    @cli = Rhelm::Client.new(**args)
+    @cli = Rhelm::Client.new(logger: @logger, **args)
     @set_options = nil
   end
 
   def install
+    logger.info "install"
     with_values do |values_path|
       cli
         .install(release, ApplicationConfig.chart_dir,
-                 wait: ApplicationConfig.helm_wait,
+                 wait: true,
                  timeout: ApplicationConfig.helm_timeout,
                  set: set_options,
                  values: values_path)
-        .run &method(:run_block)
+        .run
     end
   end
 
   def upgrade
+    logger.info "upgrade"
     with_values do |values_path|
       cli
         .upgrade(release, ApplicationConfig.chart_dir, set: set_options, values: values_path)
@@ -66,6 +71,7 @@ class NodeOrchestrator
   end
 
   def uninstall
+    logger.info "uninstall"
     cli.uninstall(release).run
   end
 
@@ -83,11 +89,7 @@ class NodeOrchestrator
 
   private
 
-  attr_reader :release, :values, :set_options
-
-  def logger
-    Rails.logger
-  end
+  attr_reader :release, :values, :set_options, :logger
 
   def with_values(&block)
     file = Tempfile.new(release + "-values.yaml")
@@ -96,16 +98,5 @@ class NodeOrchestrator
     block.call file.path
   ensure
     file&.unlink
-  end
-
-  def run_block(lines, status)
-    if status == 0
-      logger.info("helm install worked great!")
-    elsif /timeout/im.match(lines)
-      raise MyTimeoutError, "helm install timed out, oh no!"
-    else
-      # Use the built-in error reporting code to get more details
-      report_failure(lines, status)
-    end
   end
 end

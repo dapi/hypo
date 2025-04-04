@@ -1,4 +1,10 @@
 GIT
+  remote: https://github.com/brandymint/rhelm.git
+  revision: a3a2a296ef763f9cb0eca4f41ecf6dacfd1cce26
+  specs:
+    rhelm (0.2.0)
+
+GIT
   remote: https://github.com/dapi/bip44.git
   revision: b30d3dfcc9465cfcbf8373bba7e100d45928cf16
   specs:
@@ -521,7 +527,6 @@ GEM
     request_store (1.7.0)
       rack (>= 1.4)
     rexml (3.4.1)
-    rhelm (0.2.0)
     rlp (0.7.3)
     rubocop (1.73.1)
       json (~> 2.3)
@@ -736,7 +741,7 @@ DEPENDENCIES
   rb-gravatar (~> 1.0)
   redis (~> 5.4)
   request_store (~> 1.7)
-  rhelm (~> 0.2.0)
+  rhelm!
   rubocop-rails-omakase
   selenium-webdriver
   semver2!

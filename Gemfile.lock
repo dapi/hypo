@@ -143,7 +143,7 @@ GEM
     bootstrap-icons-helper (2.0.2)
       bootstrap-icons (~> 1)
       rails (>= 7.0)
-    brakeman (7.0.1)
+    brakeman (7.0.2)
       racc
     bugsnag (6.27.1)
       concurrent-ruby (~> 1.0)

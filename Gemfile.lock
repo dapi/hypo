@@ -770,4 +770,4 @@ DEPENDENCIES
   zstd-ruby (~> 1.5)
 
 BUNDLED WITH
-   2.6.3
+   2.6.7

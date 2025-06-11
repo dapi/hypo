@@ -18,12 +18,11 @@ class NodeOrchestrator
 
       extraArguments: ApplicationConfig.anvil_arguments + arguments,
 
-      # Пока не используем
-      # ingress: {
-      # tls: {
-      # secretName: ApplicationConfig.tls_secret_name
-      # }
-      # },
+      ingress: {
+        tls: {
+          secretName: ApplicationConfig.tls_secret_name
+        }
+      },
       extraLabels: {
         "vilna.blockberry.com/nodeId" => node_id.to_s,
         "vilna.blockberry.com/accountId" => account_id.to_s,

@@ -28,7 +28,7 @@ module NodesHelper
     title = NODE_STATE_TITLES.fetch(state)
     content_tag :span, class: NODE_STATE_CLASSES.fetch(state), title: state do
       buffer = []
-      if node.initiated? || node.to_start? || node.starting?
+      if node.initiated? || node.starting?
         buffer << render("spinner")
         buffer << " " + title
       else

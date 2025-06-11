@@ -5,25 +5,21 @@ class StartNodeJob < ApplicationJob
     duration: 5.minutes,
     group: :nodes
 
-  def perform(node)
+  def perform(node, restart = false)
     node.update_column :last_node_job_error_message, nil
-    node.with_lock do
-      if node.failed_to_start?
-        node.orchestrator.uninstall if node.orchestrator.exists?
-        node.restart!
-      end
+    if node.failed_to_start? || (node.processing? && restart)
+      node.restart!
+      node.orchestrator.uninstall if node.orchestrator.exists?
+    else
+      node.start!
     end
 
-    node.start!
-    node.with_lock do
-      node.starting!
-      node.orchestrator.install
-      node.started!
-    end
+    node.orchestrator.install
+    node.started!
   rescue => err
     Rails.logger.error "NodeActionJob[#{node}] catch error #{err}"
     node&.update_column :last_node_job_error_message, err.message
-    node&.failed!
+    node&.failed! unless node.failed_to_start?
     raise err
   end
 end

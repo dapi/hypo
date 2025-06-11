@@ -49,7 +49,12 @@ Rails.application.routes.draw do
 
   scope module: :tenant, as: :tenant, constraints: AccountConstraint do
     root to: redirect("/nodes")
-    resources :nodes
+    resources :nodes do
+      member do
+        put :update_latest_block
+        put :restart
+      end
+    end
     resources :services
     resources :project_extensions
     resources :project_api_keys

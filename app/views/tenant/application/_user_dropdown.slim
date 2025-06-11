@@ -11,9 +11,6 @@
         hr.dropdown-divider
       li
         a.dropdown-item[href=admin_root_url target="_blank"] Admin
-      - if defined? Sidekiq
-        li
-          a.dropdown-item[href=sidekiq_web_url target="_blank"] Sidekiq
       - if defined? SolidQueueDashboard
         li
           a.dropdown-item[href=solid_queue_dashboard_url target="_blank"] Solid Queue

@@ -25,7 +25,7 @@ _default: &_default
   #min_messages: notice
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
-  pool: <%= (defined?(Sidekiq) && Sidekiq.server?) ? Sidekiq.instance_variable_get('@config').concurrency : (ENV.fetch('RAILS_MAX_THREADS') { 5 }.to_i * ENV.fetch('WEB_CONCURRENCY') { 1 }.to_i) %>
+  pool: <%= ENV.fetch('RAILS_MAX_THREADS') { 5 }.to_i * ENV.fetch('WEB_CONCURRENCY') { 1 }.to_i %>
   <% if ENV.key?('DATABASE_HOST') %>
   host: <%= ENV.fetch('DATABASE_HOST') %>
   <% end %>

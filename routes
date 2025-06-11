@@ -1,7 +1,8 @@
                                   Prefix Verb   URI Pattern                                                                                       Controller#Action
                                                 /assets                                                                                           Propshaft::Server
-                                         GET    /                                                                                                 redirect(301, https://3000.brandymint.ru) {subdomain: "www"}
+                                         GET    /                                                                                                 redirect(301, https://3012.brandymint.ru) {subdomain: "www"}
                       rails_health_check GET    /up(.:format)                                                                                     rails/health#show {subdomain: ""}
+                                 version GET    /version(.:format)                                                                                dashboard#version {subdomain: ""}
                                     root GET    /                                                                                                 dashboard#index {subdomain: ""}
                              new_session GET    /session/new(.:format)                                                                            sessions#new {subdomain: ""}
                             edit_session GET    /session/edit(.:format)                                                                           sessions#edit {subdomain: ""}
@@ -69,6 +70,7 @@
                                          DELETE /memberships/:id(.:format)                                                                        admin/memberships#destroy {subdomain: "admin"}
                               admin_root GET    /                                                                                                 admin/accounts#index {subdomain: "admin"}
                              tenant_root GET    /                                                                                                 redirect(301, /nodes)
+         update_latest_block_tenant_node PUT    /nodes/:id/update_latest_block(.:format)                                                          tenant/nodes#update_latest_block
                             tenant_nodes GET    /nodes(.:format)                                                                                  tenant/nodes#index
                                          POST   /nodes(.:format)                                                                                  tenant/nodes#create
                          new_tenant_node GET    /nodes/new(.:format)                                                                              tenant/nodes#new

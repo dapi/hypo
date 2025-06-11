@@ -17,7 +17,7 @@ class ApplicationConfig < Anyway::Config
     kube_as_group: nil,
     kube_as_user: nil,
     telegram_auth_expiration: 120, # В Секундах
-    tls_secret_name: "anvil-node-blockberry-cc-tls",
+    tls_secret_name: "vilna-nodes-tls",
     node_host: "node.localhost",
     chart_dir: "./charts/anvil",
     bot_token: "",

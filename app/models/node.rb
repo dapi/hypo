@@ -42,15 +42,12 @@ class Node < ApplicationRecord
 
   state_machine initial: :initiated do
     event :start do
-      transition initiated: :to_start
+      transition initiated: :starting
     end
 
     event :restart do
-      transition failed_to_start: :to_start
-    end
-
-    event :starting do
-      transition to_start: :starting
+      transition failed_to_start: :starting
+      transition processing: :starting
     end
 
     event :started do
@@ -58,7 +55,7 @@ class Node < ApplicationRecord
     end
 
     event :failed do
-      transition %i[starting to_start initiated] => :failed_to_start
+      transition %i[starting starting initiated] => :failed_to_start
       transition %i[finishing] => :failed_to_finish
     end
 
@@ -89,6 +86,14 @@ class Node < ApplicationRecord
 
   def ws_url
     "wss://" + ApplicationConfig.node_host + path
+  end
+
+  def post!(body)
+    Faraday.post url, body, { "Content-Type" => "application/json" }
+  end
+
+  def getBlockNumber!
+    post! '{"method":"eth_blockNumber","params":[],"id":1,"jsonrpc":"2.0"}'
   end
 
   def path

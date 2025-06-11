@@ -11,6 +11,20 @@ module Tenant
       render locals: { nodes: current_account.nodes.alive.order(:created_at) }
     end
 
+    def update_latest_block
+      node = current_account.nodes.find(params[:id])
+      node.post! '{"method":"anvil_reset","params":[{"forking": {"blockNumber":"latest"}}],"id":1,"jsonrpc":"2.0"}'
+
+      redirect_to tenant_node_path(node), notice: "Обновляю последний блок"
+    end
+
+    def restart
+      node = current_account.nodes.find(params[:id])
+      StartNodeJob.perform_later node, true
+
+      redirect_to tenant_node_path(node), notice: "Перезапукаю узел"
+    end
+
     def new
       node = Node.new
       node.set_defaults
@@ -34,7 +48,7 @@ module Tenant
       node = current_account.nodes.find(params[:id])
 
       node.with_lock do
-        if node.initiated? || node.failed_to_start? || node.to_start?
+        if node.initiated? || node.failed_to_start? || node.starting?
           node.destroy!
           redirect_back fallback_location: tenant_nodes_path, notice: "Узел #{node.title} удалён"
           return

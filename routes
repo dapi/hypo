@@ -71,6 +71,7 @@
                               admin_root GET    /                                                                                                 admin/accounts#index {subdomain: "admin"}
                              tenant_root GET    /                                                                                                 redirect(301, /nodes)
          update_latest_block_tenant_node PUT    /nodes/:id/update_latest_block(.:format)                                                          tenant/nodes#update_latest_block
+                     restart_tenant_node PUT    /nodes/:id/restart(.:format)                                                                      tenant/nodes#restart
                             tenant_nodes GET    /nodes(.:format)                                                                                  tenant/nodes#index
                                          POST   /nodes(.:format)                                                                                  tenant/nodes#create
                          new_tenant_node GET    /nodes/new(.:format)                                                                              tenant/nodes#new

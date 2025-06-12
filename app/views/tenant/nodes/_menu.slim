@@ -11,7 +11,7 @@
     - if node.processing?
       li= link_to 'Примеры использования', tenant_node_path(node), class: 'dropdown-item'
       li= link_to 'Обновить последний блок', update_latest_block_tenant_node_path(node), class: 'dropdown-item', data: { turbo_method: :put }
-      li= link_to 'Перезапустить узел', update_restart_tenant_node_path(node), class: 'dropdown-item', data: { turbo_method: :put }
+      li= link_to 'Перезапустить узел', restart_tenant_node_path(node), class: 'dropdown-item', data: { turbo_method: :put }
       li= link_to 'RPC Endpoint', node.url, class: 'dropdown-item'
     li
       hr.dropdown-divider

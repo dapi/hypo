@@ -21,6 +21,16 @@ div[data-node-channel=node.id]
 
   h2 Последний блок
 
+  p Как узнать последний блок?
+
+  code
+    pre.border.border-secondary-subtle.rounded.py-2.px-2
+      | 
+        curl #{node_url} \
+        -X POST \
+        -H "Content-Type: application/json" \
+        --data '{"method":"eth_blockNumber","params":[],"id":1,"jsonrpc":"2.0"}'
+
   p Как обновить последний блок?
 
   code

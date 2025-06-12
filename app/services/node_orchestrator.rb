@@ -32,6 +32,15 @@ class NodeOrchestrator
         "vilna.blockberry.com/version" => AppVersion.to_s
       }
     ).deep_stringify_keys
+
+    @values.deep_merge!(
+      ingress: {
+        extraAnnotations: {
+          "cert-manager.io/cluster-issuer" => ApplicationConfig.cluster_issuer
+        }
+      }
+    ) if ApplicationConfig.cluster_issuer.present?
+
     args = {
       create_namespace: ApplicationConfig.kube_create_namespace,
       namespace: ApplicationConfig.kube_namespace,

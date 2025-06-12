@@ -19,7 +19,7 @@ spec:
   tls:
     - hosts:
       - {{ $.Values.host | quote }}
-      secretName: {{ .Values.ingress.secretName }}
+      secretName: {{ .Values.ingress.tls.secretName }}
   rules:
     - host: {{ .Values.host | quote }}
       http:

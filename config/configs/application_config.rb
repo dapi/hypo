@@ -17,6 +17,7 @@ class ApplicationConfig < Anyway::Config
     kube_as_group: nil,
     kube_as_user: nil,
     kube_create_namespace: false, # Для разработки полезно иметь true
+    cluster_issuer: "letsencrypt-http",
     telegram_auth_expiration: 120, # В Секундах
     tls_secret_name: "vilna-nodes-tls",
     node_host: "node.localhost",

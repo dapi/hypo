@@ -21,6 +21,9 @@ class NodeOrchestrator
       ingress: {
         tls: {
           secretName: ApplicationConfig.tls_secret_name
+        },
+        extraAnnotations: {
+          "cert-manager.io/cluster-issuer" => ApplicationConfig.cluster_issuer
         }
       },
       extraLabels: {

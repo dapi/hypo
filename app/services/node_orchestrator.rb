@@ -30,7 +30,7 @@ class NodeOrchestrator
       }
     ).deep_stringify_keys
     args = {
-      create_namespace: true, # Полезно для тестовых окружений
+      create_namespace: ApplicationConfig.create_namespace,
       namespace: ApplicationConfig.kube_namespace,
       kube_as_user: ApplicationConfig.kube_as_user,
       kube_as_group: ApplicationConfig.kube_as_group

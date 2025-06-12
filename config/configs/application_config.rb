@@ -16,6 +16,7 @@ class ApplicationConfig < Anyway::Config
     kube_namespace: "vilna-nodes-" + Rails.env,
     kube_as_group: nil,
     kube_as_user: nil,
+    kube_create_namespace: false, # Для разработки полезно иметь true
     telegram_auth_expiration: 120, # В Секундах
     tls_secret_name: "vilna-nodes-tls",
     node_host: "node.localhost",
@@ -32,7 +33,8 @@ class ApplicationConfig < Anyway::Config
   )
 
   coerce_types(
-    telegram_auth_expiration: :integer
+    telegram_auth_expiration: :integer,
+    kube_create_namespace: :boolean,
   )
 
   def home_url

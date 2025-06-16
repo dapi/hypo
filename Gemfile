@@ -142,7 +142,7 @@ gem "yabeda-puma-plugin"
 
 gem "yabeda-activerecord", "~> 0.1.1"
 
-gem "rack-cors", "~> 2.0"
+gem "rack-cors", "~> 3.0"
 
 # gem "activerecord_json_validator", "~> 3.1"
 

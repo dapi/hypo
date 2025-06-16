@@ -18,7 +18,7 @@ class NodeOrchestrator
 
       extraArguments: ApplicationConfig.anvil_arguments + arguments,
 
-      images: {
+      image: {
         repository: ApplicationConfig.anvil_repository,
         tag: ApplicationConfig.anvil_tag,
         pullPolicy: ApplicationConfig.anvil_pull_policy

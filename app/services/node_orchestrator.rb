@@ -21,7 +21,7 @@ class NodeOrchestrator
       images: {
         repository: ApplicationConfig.anvil_repository,
         tag: ApplicationConfig.anvil_tag,
-        pullPolicy: ApplicationConfig.anvil_pull_policy,
+        pullPolicy: ApplicationConfig.anvil_pull_policy
       },
 
       ingress: {

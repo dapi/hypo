@@ -1,7 +1,7 @@
 class StartNodeJob < ApplicationJob
   queue_as :default
   limits_concurrency to: 1,
-    key: ->(node, _restart=false) { node.id },
+    key: ->(node, _restart = false) { node.id },
     duration: 5.minutes,
     group: :nodes
 

@@ -18,6 +18,12 @@ class NodeOrchestrator
 
       extraArguments: ApplicationConfig.anvil_arguments + arguments,
 
+      images: {
+        repository: ApplicationConfig.anvil_repository,
+        tag: ApplicationConfig.anvil_tag,
+        pullPolicy: ApplicationConfig.anvil_pull_policy,
+      },
+
       ingress: {
         tls: {
           secretName: ApplicationConfig.tls_secret_name

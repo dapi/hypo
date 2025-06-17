@@ -10,16 +10,17 @@ INFRA_GH=gh --repo ${INFRA_REPO}
 LATEST_INFRA_RUN_ID=`${INFRA_GH} run list --workflow=backend-deploy.yml  -L 3 -e workflow_dispatch --json databaseId -q.[0].databaseId`
 LATEST_RUN_ID=`${GH} run list --workflow=release.yml -L 3 -e workflow_dispatch --json databaseId -q.[0].databaseId`
 
-patch-release-and-deploy: patch-release watch deploy sleep infra-watch
+patch: patch-release watch deploy sleep infra-watch
+minor: minor-release watch deploy sleep infra-watch
 
-minor:
+semver-minor:
 	@./bin/semver inc minor
 
-patch:
+semver-patch:
 	@./bin/semver inc patch
 
-bump-patch: patch push-semver
-bump-minor: minor push-semver
+bump-patch: semver-patch push-semver
+bump-minor: semver-minor push-semver
 
 push-semver:
 	@echo "Increment version to ${SEMVER}"

@@ -42,6 +42,7 @@ Rails.application.routes.draw do
         resources :accounts
         resources :nodes
         resources :memberships
+        resources :image_tags
         root to: "accounts#index"
       end
     end

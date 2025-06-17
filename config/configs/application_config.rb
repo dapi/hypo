@@ -25,7 +25,7 @@ class ApplicationConfig < Anyway::Config
     bot_token: "",
     bot_username: "",
     reserved_subdomains: "www,node,vilna",
-    anvil_repository:  "ghcr.io/safeblock-com/anvil-image/anvil",
+    anvil_default_repository:  "ghcr.io/safeblock-com/anvil-image/anvil",
     anvil_pull_policy: "IfNotPresent",
     home_subdomain: "app",
     redis_cache_store_url: "redis://localhost:6379/2",

@@ -6,7 +6,7 @@ class NodeOrchestrator
 
   attr_reader :cli
 
-  def initialize(path:, node_id:, account_id:, arguments: {})
+  def initialize(path:, node_id:, account_id:, repository:, tag:, arguments: {})
     @release = RELEASE_PREFIX + node_id.to_s
     @logger = ActiveSupport::TaggedLogging.
       new(Rails.logger).
@@ -19,8 +19,8 @@ class NodeOrchestrator
       extraArguments: ApplicationConfig.anvil_arguments + arguments,
 
       image: {
-        repository: ApplicationConfig.anvil_repository,
-        tag: ApplicationConfig.anvil_tag,
+        repository:,
+        tag:,
         pullPolicy: ApplicationConfig.anvil_pull_policy
       },
 

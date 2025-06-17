@@ -63,7 +63,7 @@ module Tenant
 
     def permitted_params
       return {} unless params.key? :node
-      params.require(:node).permit(Node::OPTIONS + [ :title ])
+      params.require(:node).permit(Node::OPTIONS + [ :title, :image_tag_id ])
     end
   end
 end

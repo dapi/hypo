@@ -7,8 +7,10 @@ div[data-node-channel=node.id]
   .form-actions.float-end.mt-2
     = link_to 'Удалить', tenant_node_path(node), data: { turbo_method: :delete, turbo_confirm: 'Удалить?' }, class: 'btn btn-outline-danger'
 
+  - node = NodeDecorator.decorate node
   h1.mb-5 Узел #{node.title}
 
+  p Образ: #{node.tag}
   p Создан: #{time_ago_in_words node.created_at}
   p Статус: #{node_state node}
   p Blockchain: #{node.blockchain}

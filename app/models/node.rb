@@ -30,6 +30,7 @@ class Node < ApplicationRecord
 
   belongs_to :account, touch: :nodes_updated_at
   belongs_to :blockchain, primary_key: :chain_id, foreign_key: :chain_id
+  belongs_to :image_tag
 
   scope :alive, -> { where.not state: %i[finishing finished to_finish failed_to_finish] }
 
@@ -128,6 +129,6 @@ class Node < ApplicationRecord
   end
 
   def orchestrator
-    @orchestrator ||= NodeOrchestrator.new(path: path, node_id: id, account_id: account_id, arguments:)
+    @orchestrator ||= NodeOrchestrator.new(path: path, node_id: id, account_id: account_id, arguments:, repository: image_tag.repository, tag: image_tag.tag)
   end
 end

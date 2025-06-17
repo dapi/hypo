@@ -5,17 +5,20 @@ h1.mb-5 Ваши узлы (#{current_account.nodes.alive.count})
 table.table.table-hover0
   thead
     tr
-      th Узал
+      th Узел
+      th Образ
       th Состояние
       th Кошельки
       th API
       th Дата создания
       th
   tbody
-    - nodes.each do |node|
+    - NodeDecorator.decorate_collection(nodes).each do |node|
       tr
         td
           = link_to node.title, tenant_node_path(node)
+        td
+          = node.tag
         td
           = node_state node
         td

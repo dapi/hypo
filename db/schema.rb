@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_03_134641) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_17_081536) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
@@ -42,6 +42,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_03_134641) do
     t.index ["name"], name: "index_extensions_on_name", unique: true
   end
 
+  create_table "image_tags", force: :cascade do |t|
+    t.string "tag", null: false
+    t.string "description"
+    t.boolean "is_available", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["is_available", "tag"], name: "index_image_tags_on_is_available_and_tag"
+    t.index ["tag"], name: "index_image_tags_on_tag", unique: true
+  end
+
   create_table "memberships", force: :cascade do |t|
     t.bigint "account_id", null: false
     t.bigint "user_id", null: false
@@ -71,9 +81,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_03_134641) do
     t.integer "prune_history", default: 50
     t.string "mnemonic", default: "cash boat total sign print jaguar soup dutch gate universe expect tooth"
     t.integer "transaction_block_keeper", default: 64
+    t.bigint "image_tag_id", null: false
     t.index ["account_id", "created_at"], name: "index_nodes_on_account_id_and_created_at"
     t.index ["account_id", "title"], name: "index_nodes_on_account_id_and_title", unique: true
     t.index ["account_id"], name: "index_nodes_on_account_id"
+    t.index ["image_tag_id"], name: "index_nodes_on_image_tag_id"
     t.index ["key"], name: "index_nodes_on_key", unique: true
   end
 
@@ -161,6 +173,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_03_134641) do
   add_foreign_key "memberships", "accounts"
   add_foreign_key "memberships", "users"
   add_foreign_key "nodes", "accounts"
+  add_foreign_key "nodes", "image_tags"
   add_foreign_key "project_api_keys", "accounts"
   add_foreign_key "project_api_keys", "users", column: "creator_id"
   add_foreign_key "services", "accounts"

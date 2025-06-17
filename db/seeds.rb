@@ -24,7 +24,7 @@ account = Account
 
 account.memberships.find_or_create_by! user: user
 
-account.nodes.first_or_create!
+account.nodes.first_or_create! image_tag: ImageTag.current
 
 CHAIN_IDS = {
   "binance" => 56,

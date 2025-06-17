@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class NodeDashboard < Administrate::BaseDashboard
+class ImageTagDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -8,15 +8,12 @@ class NodeDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    id: Field::String,
-    account: Field::BelongsTo,
-    image_tag: Field::BelongsTo,
-    block_time: Field::Boolean,
-    path: Field::String,
-    url: Field::String,
-    key: Field::String,
-    no_mining: Field::Boolean,
-    state: Field::String,
+    id: Field::Number,
+    description: Field::String,
+    is_available: Field::Boolean,
+    is_current: Field::Boolean,
+    tag: Field::String,
+    repository: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime
   }.freeze
@@ -28,21 +25,22 @@ class NodeDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
     id
-    account
-    path
+    description
+    is_available
+    is_current
+    repository
+    tag
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
     id
-    account
-    block_time
-    key
-    url
-    path
-    no_mining
-    state
+    description
+    is_available
+    is_current
+    repository
+    tag
     created_at
     updated_at
   ].freeze
@@ -51,11 +49,11 @@ class NodeDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
-    account
-    block_time
-    key
-    no_mining
-    state
+    description
+    tag
+    repository
+    is_available
+    is_current
   ].freeze
 
   # COLLECTION_FILTERS
@@ -70,10 +68,10 @@ class NodeDashboard < Administrate::BaseDashboard
   #   }.freeze
   COLLECTION_FILTERS = {}.freeze
 
-  # Overwrite this method to customize how nodes are displayed
-  # across all pages of the admin dashboard.
-  #
-  # def display_resource(node)
-  #   "Node ##{node.id}"
-  # end
+   # Overwrite this method to customize how image tags are displayed
+   # across all pages of the admin dashboard.
+   #
+   def display_resource(image_tag)
+     image_tag.detailed_tag
+   end
 end

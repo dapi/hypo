@@ -44,11 +44,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_17_081536) do
 
   create_table "image_tags", force: :cascade do |t|
     t.string "tag", null: false
+    t.string "repository", null: false
     t.string "description"
     t.boolean "is_available", default: true, null: false
+    t.boolean "is_current", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["is_available", "tag"], name: "index_image_tags_on_is_available_and_tag"
+    t.index ["is_current"], name: "index_image_tags_on_is_current"
     t.index ["tag"], name: "index_image_tags_on_tag", unique: true
   end
 
@@ -72,14 +75,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_17_081536) do
     t.citext "title", null: false
     t.integer "chain_id", default: 56, null: false
     t.string "last_node_job_error_message"
-    t.integer "accounts", default: 3
     t.integer "base_fee", default: 0
-    t.boolean "auto_impersonate", default: true
-    t.boolean "no_storage_caching", default: true
-    t.boolean "no_rate_limit", default: true
-    t.boolean "disable_default_create2_deployer", default: true
-    t.integer "prune_history", default: 50
     t.string "mnemonic", default: "cash boat total sign print jaguar soup dutch gate universe expect tooth"
+    t.integer "accounts", default: 3
     t.integer "transaction_block_keeper", default: 64
     t.bigint "image_tag_id", null: false
     t.index ["account_id", "created_at"], name: "index_nodes_on_account_id_and_created_at"

@@ -1,9 +1,11 @@
-= simple_form_for user_session, url: email_code_path do |f|
-  .row
-    .col-md-8
-      = f.input :email, label: false, type: :email, placeholder: 'email@example.com', autofocus: true, hint: 'Ваш email для авторизации'
-    .col-md-4
-      = f.submit 'Отправить код', class: 'btn btn-outline-primary'
+= render 'telegram_login'
+
+/= simple_form_for user_session, url: email_code_path do |f|
   /.row
-    /.col-md-6
-      /= f.input :code, label: false, placeholder: 'code', disabled: true
+    /.col-md-8
+      /= f.input :email, label: false, type: :email, placeholder: 'email@example.com', autofocus: true, hint: 'Ваш email для авторизации'
+    /.col-md-4
+      /= f.submit 'Отправить код', class: 'btn btn-outline-primary'
+  //.row
+    //.col-md-6
+      //= f.input :code, label: false, placeholder: 'code', disabled: true

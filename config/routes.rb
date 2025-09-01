@@ -2,6 +2,8 @@ require "account_constraint"
 require "admin_constraint"
 
 Rails.application.routes.draw do
+  default_url_options ApplicationConfig.default_url_options.symbolize_keys
+
   get "/", to: redirect(ApplicationConfig.home_url), constraints: { subdomain: "www" }
 
   constraints subdomain: "" do
@@ -47,7 +49,8 @@ Rails.application.routes.draw do
   end
 
   scope module: :tenant, as: :tenant, constraints: AccountConstraint do
-    root to: "dashboard#index"
+    root to: "projects#index"
+    resources :projects
   end
 
   constraints lambda { |req| req.format == :html } do

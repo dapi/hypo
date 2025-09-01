@@ -1,4 +1,4 @@
-class Tenant::ProjectApiKeyDecorator < Draper::Decorator
+class Tenant::ProjectDecorator < Draper::Decorator
   delegate_all
 
   # Define presentation-specific methods here. Helpers are accessed through
@@ -9,4 +9,5 @@ class Tenant::ProjectApiKeyDecorator < Draper::Decorator
   #       object.created_at.strftime("%a %m/%d/%y")
   #     end
   #   end
+
 end

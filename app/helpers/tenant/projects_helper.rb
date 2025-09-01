@@ -1,0 +1,2 @@
+module Tenant::ProjectsHelper
+end

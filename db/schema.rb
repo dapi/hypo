@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_17_081536) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_01_075019) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
@@ -115,6 +115,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_17_081536) do
     t.index ["extension_id"], name: "index_project_extensions_on_extension_id"
   end
 
+  create_table "projects", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_projects_on_account_id"
+  end
+
   create_table "services", force: :cascade do |t|
     t.bigint "account_id", null: false
     t.string "name", null: false
@@ -174,5 +182,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_17_081536) do
   add_foreign_key "nodes", "image_tags"
   add_foreign_key "project_api_keys", "accounts"
   add_foreign_key "project_api_keys", "users", column: "creator_id"
+  add_foreign_key "projects", "accounts"
   add_foreign_key "services", "accounts"
 end

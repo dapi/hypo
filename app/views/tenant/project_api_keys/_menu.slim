@@ -1,8 +1,0 @@
-.dropdown
-  a.d-flex.align-items-center.text-decoration-none[href="#" data-bs-toggle="dropdown" aria-expanded="false"]
-    strong= bootstrap_icon 'three-dots'
-  ul.dropdown-menu.text-small.shadow
-    li
-      = link_to 'Удалить', tenant_project_api_key_path(project_api_key), 
-        class: 'text-danger dropdown-item', 
-        data: { turbo_method: :delete, turbo_confirm: 'Удалить?' }

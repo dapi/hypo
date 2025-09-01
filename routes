@@ -1,32 +1,32 @@
                                   Prefix Verb   URI Pattern                                                                                       Controller#Action
                                                 /assets                                                                                           Propshaft::Server
-                                         GET    /                                                                                                 redirect(301, https://3012.brandymint.ru) {subdomain: "www"}
+                                         GET    /                                                                                                 redirect(301, http://app.localhost) {subdomain: "www"}
                       rails_health_check GET    /up(.:format)                                                                                     rails/health#show {subdomain: ""}
                                  version GET    /version(.:format)                                                                                dashboard#version {subdomain: ""}
-                                    root GET    /                                                                                                 dashboard#index {subdomain: ""}
-                             new_session GET    /session/new(.:format)                                                                            sessions#new {subdomain: ""}
-                            edit_session GET    /session/edit(.:format)                                                                           sessions#edit {subdomain: ""}
-                                 session GET    /session(.:format)                                                                                sessions#show {subdomain: ""}
-                                         PATCH  /session(.:format)                                                                                sessions#update {subdomain: ""}
-                                         PUT    /session(.:format)                                                                                sessions#update {subdomain: ""}
-                                         DELETE /session(.:format)                                                                                sessions#destroy {subdomain: ""}
-                                         POST   /session(.:format)                                                                                sessions#create {subdomain: ""}
-                          new_email_code GET    /email_code/new(.:format)                                                                         email_code#new {subdomain: ""}
-                         edit_email_code GET    /email_code/edit(.:format)                                                                        email_code#edit {subdomain: ""}
-                              email_code GET    /email_code(.:format)                                                                             email_code#show {subdomain: ""}
-                                         PATCH  /email_code(.:format)                                                                             email_code#update {subdomain: ""}
-                                         PUT    /email_code(.:format)                                                                             email_code#update {subdomain: ""}
-                                         DELETE /email_code(.:format)                                                                             email_code#destroy {subdomain: ""}
-                                         POST   /email_code(.:format)                                                                             email_code#create {subdomain: ""}
-                       letter_opener_web        /letter_opener                                                                                    LetterOpenerWeb::Engine {subdomain: ""}
-                  telegram_auth_callback GET    /telegram/auth_callback(.:format)                                                                 telegram_auth_callback#create {subdomain: ""}
-                        telegram_confirm GET    /telegram/confirm(.:format)                                                                       telegram_auth_callback#confirm {subdomain: ""}
-                        telegram_webhook POST   /telegram/ZJqpGeMdrgwdWBJJE6GErRbirhw                                                             #<Telegram::Bot::Middleware(Telegram::WebhookController)> {subdomain: ""}
-                                 profile GET    /profile(.:format)                                                                                profile#show {subdomain: ""}
-                                         PATCH  /profile(.:format)                                                                                profile#update {subdomain: ""}
-                                         PUT    /profile(.:format)                                                                                profile#update {subdomain: ""}
-                                accounts GET    /accounts(.:format)                                                                               accounts#index {subdomain: ""}
-                                 account GET    /accounts/:id(.:format)                                                                           accounts#show {subdomain: ""}
+                                    root GET    /                                                                                                 dashboard#index {subdomain: "app"}
+                             new_session GET    /session/new(.:format)                                                                            sessions#new {subdomain: "app"}
+                            edit_session GET    /session/edit(.:format)                                                                           sessions#edit {subdomain: "app"}
+                                 session GET    /session(.:format)                                                                                sessions#show {subdomain: "app"}
+                                         PATCH  /session(.:format)                                                                                sessions#update {subdomain: "app"}
+                                         PUT    /session(.:format)                                                                                sessions#update {subdomain: "app"}
+                                         DELETE /session(.:format)                                                                                sessions#destroy {subdomain: "app"}
+                                         POST   /session(.:format)                                                                                sessions#create {subdomain: "app"}
+                          new_email_code GET    /email_code/new(.:format)                                                                         email_code#new {subdomain: "app"}
+                         edit_email_code GET    /email_code/edit(.:format)                                                                        email_code#edit {subdomain: "app"}
+                              email_code GET    /email_code(.:format)                                                                             email_code#show {subdomain: "app"}
+                                         PATCH  /email_code(.:format)                                                                             email_code#update {subdomain: "app"}
+                                         PUT    /email_code(.:format)                                                                             email_code#update {subdomain: "app"}
+                                         DELETE /email_code(.:format)                                                                             email_code#destroy {subdomain: "app"}
+                                         POST   /email_code(.:format)                                                                             email_code#create {subdomain: "app"}
+                       letter_opener_web        /letter_opener                                                                                    LetterOpenerWeb::Engine {subdomain: "app"}
+                  telegram_auth_callback GET    /telegram/auth_callback(.:format)                                                                 telegram_auth_callback#create {subdomain: "app"}
+                        telegram_confirm GET    /telegram/confirm(.:format)                                                                       telegram_auth_callback#confirm {subdomain: "app"}
+                        telegram_webhook POST   /telegram/ZJqpGeMdrgwdWBJJE6GErRbirhw                                                             #<Telegram::Bot::Middleware(Telegram::WebhookController)> {subdomain: "app"}
+                                 profile GET    /profile(.:format)                                                                                profile#show {subdomain: "app"}
+                                         PATCH  /profile(.:format)                                                                                profile#update {subdomain: "app"}
+                                         PUT    /profile(.:format)                                                                                profile#update {subdomain: "app"}
+                                accounts GET    /accounts(.:format)                                                                               accounts#index {subdomain: "app"}
+                                 account GET    /accounts/:id(.:format)                                                                           accounts#show {subdomain: "app"}
                    solid_queue_dashboard        /solid-queue                                                                                      SolidQueueDashboard::Engine {subdomain: "admin"}
                              admin_users GET    /users(.:format)                                                                                  admin/users#index {subdomain: "admin"}
                                          POST   /users(.:format)                                                                                  admin/users#create {subdomain: "admin"}
@@ -52,14 +52,6 @@
                                          PATCH  /accounts/:id(.:format)                                                                           admin/accounts#update {subdomain: "admin"}
                                          PUT    /accounts/:id(.:format)                                                                           admin/accounts#update {subdomain: "admin"}
                                          DELETE /accounts/:id(.:format)                                                                           admin/accounts#destroy {subdomain: "admin"}
-                             admin_nodes GET    /nodes(.:format)                                                                                  admin/nodes#index {subdomain: "admin"}
-                                         POST   /nodes(.:format)                                                                                  admin/nodes#create {subdomain: "admin"}
-                          new_admin_node GET    /nodes/new(.:format)                                                                              admin/nodes#new {subdomain: "admin"}
-                         edit_admin_node GET    /nodes/:id/edit(.:format)                                                                         admin/nodes#edit {subdomain: "admin"}
-                              admin_node GET    /nodes/:id(.:format)                                                                              admin/nodes#show {subdomain: "admin"}
-                                         PATCH  /nodes/:id(.:format)                                                                              admin/nodes#update {subdomain: "admin"}
-                                         PUT    /nodes/:id(.:format)                                                                              admin/nodes#update {subdomain: "admin"}
-                                         DELETE /nodes/:id(.:format)                                                                              admin/nodes#destroy {subdomain: "admin"}
                        admin_memberships GET    /memberships(.:format)                                                                            admin/memberships#index {subdomain: "admin"}
                                          POST   /memberships(.:format)                                                                            admin/memberships#create {subdomain: "admin"}
                     new_admin_membership GET    /memberships/new(.:format)                                                                        admin/memberships#new {subdomain: "admin"}
@@ -69,41 +61,7 @@
                                          PUT    /memberships/:id(.:format)                                                                        admin/memberships#update {subdomain: "admin"}
                                          DELETE /memberships/:id(.:format)                                                                        admin/memberships#destroy {subdomain: "admin"}
                               admin_root GET    /                                                                                                 admin/accounts#index {subdomain: "admin"}
-                             tenant_root GET    /                                                                                                 redirect(301, /nodes)
-         update_latest_block_tenant_node PUT    /nodes/:id/update_latest_block(.:format)                                                          tenant/nodes#update_latest_block
-                     restart_tenant_node PUT    /nodes/:id/restart(.:format)                                                                      tenant/nodes#restart
-                            tenant_nodes GET    /nodes(.:format)                                                                                  tenant/nodes#index
-                                         POST   /nodes(.:format)                                                                                  tenant/nodes#create
-                         new_tenant_node GET    /nodes/new(.:format)                                                                              tenant/nodes#new
-                        edit_tenant_node GET    /nodes/:id/edit(.:format)                                                                         tenant/nodes#edit
-                             tenant_node GET    /nodes/:id(.:format)                                                                              tenant/nodes#show
-                                         PATCH  /nodes/:id(.:format)                                                                              tenant/nodes#update
-                                         PUT    /nodes/:id(.:format)                                                                              tenant/nodes#update
-                                         DELETE /nodes/:id(.:format)                                                                              tenant/nodes#destroy
-                         tenant_services GET    /services(.:format)                                                                               tenant/services#index
-                                         POST   /services(.:format)                                                                               tenant/services#create
-                      new_tenant_service GET    /services/new(.:format)                                                                           tenant/services#new
-                     edit_tenant_service GET    /services/:id/edit(.:format)                                                                      tenant/services#edit
-                          tenant_service GET    /services/:id(.:format)                                                                           tenant/services#show
-                                         PATCH  /services/:id(.:format)                                                                           tenant/services#update
-                                         PUT    /services/:id(.:format)                                                                           tenant/services#update
-                                         DELETE /services/:id(.:format)                                                                           tenant/services#destroy
-               tenant_project_extensions GET    /project_extensions(.:format)                                                                     tenant/project_extensions#index
-                                         POST   /project_extensions(.:format)                                                                     tenant/project_extensions#create
-            new_tenant_project_extension GET    /project_extensions/new(.:format)                                                                 tenant/project_extensions#new
-           edit_tenant_project_extension GET    /project_extensions/:id/edit(.:format)                                                            tenant/project_extensions#edit
-                tenant_project_extension GET    /project_extensions/:id(.:format)                                                                 tenant/project_extensions#show
-                                         PATCH  /project_extensions/:id(.:format)                                                                 tenant/project_extensions#update
-                                         PUT    /project_extensions/:id(.:format)                                                                 tenant/project_extensions#update
-                                         DELETE /project_extensions/:id(.:format)                                                                 tenant/project_extensions#destroy
-                 tenant_project_api_keys GET    /project_api_keys(.:format)                                                                       tenant/project_api_keys#index
-                                         POST   /project_api_keys(.:format)                                                                       tenant/project_api_keys#create
-              new_tenant_project_api_key GET    /project_api_keys/new(.:format)                                                                   tenant/project_api_keys#new
-             edit_tenant_project_api_key GET    /project_api_keys/:id/edit(.:format)                                                              tenant/project_api_keys#edit
-                  tenant_project_api_key GET    /project_api_keys/:id(.:format)                                                                   tenant/project_api_keys#show
-                                         PATCH  /project_api_keys/:id(.:format)                                                                   tenant/project_api_keys#update
-                                         PUT    /project_api_keys/:id(.:format)                                                                   tenant/project_api_keys#update
-                                         DELETE /project_api_keys/:id(.:format)                                                                   tenant/project_api_keys#destroy
+                             tenant_root GET    /                                                                                                 tenant/dashboard#index
                                          GET    /*anything(.:format)                                                                              dashboard#not_found
                                          GET    /                                                                                                 dashboard#not_found
         turbo_recede_historical_location GET    /recede_historical_location(.:format)                                                             turbo/native/navigation#recede

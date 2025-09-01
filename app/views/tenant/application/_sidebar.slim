@@ -9,22 +9,22 @@ aside.d-flex.flex-column.flex-shrink-0.p-3.text-bg-dark[style="width: 280px;"]
       /= active_link_to tenant_root_path, class: 'nav-link text-white', active: :exclusive do
         /= bootstrap_icon :speedometer2, width: 16, height: 16, class: 'pe-none me-2'
         /|  Рабочий стол
-    li
-      = active_link_to tenant_nodes_path, data: { turbo: true }, class: 'nav-link text-white' do
-        = bootstrap_icon :speedometer2, width: 16, height: 16, class: 'pe-none me-2'
-        = '  Узлы'
-    li
-      = active_link_to tenant_services_path, class: 'nav-link text-white' do
-        = bootstrap_icon :grid, width: 16, height: 16, class: 'pe-none me-2'
-        = '  Сервисы'
-    li
-      = active_link_to tenant_project_extensions_path, class: 'nav-link text-white' do
-        = bootstrap_icon :backpack, width: 16, height: 16, class: 'pe-none me-2'
-        = '  Расширения'
-    li
-      = active_link_to tenant_project_api_keys_path, class: 'nav-link text-white' do
-        = bootstrap_icon :key, width: 16, height: 16, class: 'pe-none me-2'
-        = '  API Ключи'
+    /li
+      /= active_link_to tenant_nodes_path, data: { turbo: true }, class: 'nav-link text-white' do
+        /= bootstrap_icon :speedometer2, width: 16, height: 16, class: 'pe-none me-2'
+        /= '  Узлы'
+    /li
+      /= active_link_to tenant_services_path, class: 'nav-link text-white' do
+        /= bootstrap_icon :grid, width: 16, height: 16, class: 'pe-none me-2'
+        /= '  Сервисы'
+    /li
+      /= active_link_to tenant_project_extensions_path, class: 'nav-link text-white' do
+        /= bootstrap_icon :backpack, width: 16, height: 16, class: 'pe-none me-2'
+        /= '  Расширения'
+    /li
+      /= active_link_to tenant_project_api_keys_path, class: 'nav-link text-white' do
+        /= bootstrap_icon :key, width: 16, height: 16, class: 'pe-none me-2'
+        /= '  API Ключи'
     /li
       /= active_link_to private_sessions_path, class: 'nav-link text-white' do
         /= bootstrap_icon 'people', width: 16, height: 16, class: 'pe-none me-2'

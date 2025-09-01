@@ -1,5 +1,4 @@
-# Vilna - anvil orchestrator
+# Hypo
 
-[![CI](https://github.com/safeblock-com/vilna/actions/workflows/ci.yml/badge.svg)](https://github.com/safeblock-com/vilna/actions/workflows/ci.yml)
+[![CI](https://github.com/dapi/hypo/actions/workflows/ci.yml/badge.svg)](https://github.com/dapi/hypo/actions/workflows/ci.yml)
 
-Orchestrator for anvil - https://book.getfoundry.sh/anvil/

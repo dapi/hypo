@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_01_075019) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_01_080633) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
@@ -40,6 +40,22 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_01_075019) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_extensions_on_name", unique: true
+  end
+
+  create_table "hypotheses", force: :cascade do |t|
+    t.bigint "project_id", null: false
+    t.text "draft"
+    t.text "formulated"
+    t.text "actions"
+    t.text "data"
+    t.text "insights"
+    t.text "comments"
+    t.integer "beilef_in_success"
+    t.integer "simplicity"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_hypotheses_on_project_id"
   end
 
   create_table "image_tags", force: :cascade do |t|
@@ -176,6 +192,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_01_075019) do
   end
 
   add_foreign_key "accounts", "users", column: "owner_id"
+  add_foreign_key "hypotheses", "projects"
   add_foreign_key "memberships", "accounts"
   add_foreign_key "memberships", "users"
   add_foreign_key "nodes", "accounts"

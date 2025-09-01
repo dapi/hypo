@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  project: one
+  draft: MyText
+  formulated: MyText
+  actions: MyText
+  data: MyText
+  insights: MyText
+  comments: MyText
+  beilef_in_success: 1
+  simplicity: 1
+  status: MyString
+
+two:
+  project: two
+  draft: MyText
+  formulated: MyText
+  actions: MyText
+  data: MyText
+  insights: MyText
+  comments: MyText
+  beilef_in_success: 1
+  simplicity: 1
+  status: MyString

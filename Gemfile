@@ -149,3 +149,5 @@ gem "rack-cors", "~> 3.0"
 # gem "activerecord_json_validator", "~> 3.1"
 
 gem "valid_email", "~> 0.2.1"
+
+gem "ruby_llm", "~> 1.6"

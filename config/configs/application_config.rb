@@ -13,6 +13,7 @@ class ApplicationConfig < Anyway::Config
     bot_token: "",
     bot_username: "",
     reserved_subdomains: "www,app",
+    deepseek_api_key: '',
     home_subdomain: "app",
     redis_cache_store_url: "redis://localhost:6379/2",
   )

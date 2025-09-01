@@ -48,7 +48,7 @@ gem "slim-rails"
 group :development, :test do
   gem "dip", "~> 8.2.5"
 
-  gem 'solargraph'
+  gem "solargraph"
 
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
@@ -149,4 +149,3 @@ gem "rack-cors", "~> 3.0"
 # gem "activerecord_json_validator", "~> 3.1"
 
 gem "valid_email", "~> 0.2.1"
-

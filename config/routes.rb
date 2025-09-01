@@ -47,7 +47,7 @@ Rails.application.routes.draw do
   end
 
   scope module: :tenant, as: :tenant, constraints: AccountConstraint do
-    root to: 'dashboard#index'
+    root to: "dashboard#index"
   end
 
   constraints lambda { |req| req.format == :html } do

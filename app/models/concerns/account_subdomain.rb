@@ -7,7 +7,7 @@ module AccountSubdomain
   SUBDOMAIN_PREFIX_SYMBOLS = ("a".."z").to_a.freeze
 
   def self.generate_subdomain
-    return 'demo' if Rails.env.development? && Account.count.zero?
+    return "demo" if Rails.env.development? && Account.count.zero?
     SUBDOMAIN_PREFIX_SYMBOLS.sample +
       Nanoid.generate(size: SUBDOMAIN_LENGTH-1, alphabet: SUBDOMAIN_SYMBOLS)
   end

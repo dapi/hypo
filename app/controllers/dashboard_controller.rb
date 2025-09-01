@@ -13,6 +13,6 @@ class DashboardController < ApplicationController
   end
 
   def not_found
-    render status: 404, layout: 'simple'
+    render status: 404, layout: "simple"
   end
 end

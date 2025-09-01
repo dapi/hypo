@@ -13,8 +13,8 @@
 # policy.script_src  :self, :https
 # policy.style_src   :self, :https
 # policy.frame_src   :self, :https, 'https://oauth.telegram.org/'
-## policy.frame_ancestors :self, :https, 'https://oauth.telegram.org/', 'https://oauth.telegram.org/embed/vilna_dev_bot', 'http://127.0.0.1'
-# policy.frame_ancestors :self, :https, 'https://oauth.telegram.org/', 'https://oauth.telegram.org/embed/vilna_dev_bot', 'http://127.0.0.1'
+## policy.frame_ancestors :self, :https, 'https://oauth.telegram.org/', 'https://oauth.telegram.org/embed/hypo_dev_bot', 'http://127.0.0.1'
+# policy.frame_ancestors :self, :https, 'https://oauth.telegram.org/', 'https://oauth.telegram.org/embed/hypo_dev_bot', 'http://127.0.0.1'
 ## Specify URI for violation reports
 ## policy.report_uri "/csp-violation-report-endpoint"
 # end

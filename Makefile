@@ -56,6 +56,6 @@ list:
 	@${INFRA_GH} run list --workflow=${WORKFLOW} -L 3 -e workflow_dispatch
 
 recreate-db:
-	dropdb vilna_development || echo
+	dropdb hypo_development || echo
 	rm -f db/schema.rb
 	rake db:create:primary db:migrate:primary

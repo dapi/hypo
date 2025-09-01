@@ -40,25 +40,14 @@ Rails.application.routes.draw do
         resources :users
         resources :telegram_users
         resources :accounts
-        resources :nodes
         resources :memberships
-        resources :image_tags
         root to: "accounts#index"
       end
     end
   end
 
   scope module: :tenant, as: :tenant, constraints: AccountConstraint do
-    root to: redirect("/nodes")
-    resources :nodes do
-      member do
-        put :update_latest_block
-        put :restart
-      end
-    end
-    resources :services
-    resources :project_extensions
-    resources :project_api_keys
+    root to: 'dashboard#index'
   end
 
   constraints lambda { |req| req.format == :html } do

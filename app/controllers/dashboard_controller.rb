@@ -9,7 +9,7 @@ class DashboardController < ApplicationController
   end
 
   def version
-    render json: { "version": AppVersion.to_s, "deployment_info": "unknown", "name": "vilna" }
+    render json: { "version": AppVersion.to_s, "deployment_info": "unknown", "name": "hypo" }
   end
 
   def not_found

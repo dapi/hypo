@@ -5,18 +5,6 @@ GIT
     rhelm (0.2.0)
 
 GIT
-  remote: https://github.com/dapi/bip44.git
-  revision: b30d3dfcc9465cfcbf8373bba7e100d45928cf16
-  specs:
-    bip44 (0.2.18)
-      bip_mnemonic
-      ecdsa (~> 1.2.0)
-      eth
-      keccak (~> 1.3)
-      money-tree
-      rlp (~> 0.7.3)
-
-GIT
   remote: https://github.com/haf/semver.git
   revision: 515fc5c6ccec6eee1bdd7b7e94e7ff505cecf935
   specs:
@@ -127,15 +115,13 @@ GEM
     anyway_config (2.7.2)
       ruby-next-core (~> 1.0)
     ast (2.4.2)
+    backport (1.2.0)
     base64 (0.3.0)
     bcrypt (3.1.20)
     bcrypt_pbkdf (1.1.1)
-    bech32 (1.5.0)
-      thor (>= 1.1.0)
     benchmark (0.4.1)
     bigdecimal (3.2.2)
     bindex (0.8.1)
-    bip_mnemonic (0.0.4)
     bootsnap (1.18.6)
       msgpack (~> 1.2)
     bootstrap-icons (1.0.15)
@@ -170,8 +156,7 @@ GEM
     debug (1.11.0)
       irb (~> 1.10)
       reline (>= 0.3.8)
-    derivator (0.1)
-      openssl (>= 3.0)
+    diff-lcs (1.6.2)
     dip (8.2.5)
       json-schema (~> 5)
       public_suffix (>= 2.0.2, < 6.0)
@@ -186,19 +171,11 @@ GEM
       ruby2_keywords
     drb (2.2.3)
     dry-initializer (3.2.0)
-    ecdsa (1.2.0)
     ed25519 (1.4.0)
     erb (5.0.1)
     erubi (1.13.1)
     et-orbi (1.2.11)
       tzinfo
-    eth (0.5.11)
-      forwardable (~> 1.3)
-      keccak (~> 1.3)
-      konstructor (~> 1.0)
-      openssl (>= 2.2, < 4.0)
-      rbsecp256k1 (~> 6.0)
-      scrypt (~> 3.0)
     faker (3.5.2)
       i18n (>= 1.8.11, < 2)
     faraday (2.13.1)
@@ -216,11 +193,7 @@ GEM
     ffi (1.17.1-arm64-darwin)
     ffi (1.17.1-x86_64-linux-gnu)
     ffi (1.17.1-x86_64-linux-musl)
-    ffi-compiler (1.3.2)
-      ffi (>= 1.15.5)
-      rake
     formatador (1.1.0)
-    forwardable (1.3.3)
     fugit (1.11.1)
       et-orbi (~> 1, >= 1.2.11)
       raabro (~> 1.4)
@@ -269,6 +242,7 @@ GEM
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
+    jaro_winkler (1.6.1)
     jbuilder (2.13.0)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
@@ -301,8 +275,10 @@ GEM
       activerecord
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
-    keccak (1.3.2)
-    konstructor (1.0.2)
+    kramdown (2.5.1)
+      rexml (>= 3.3.9)
+    kramdown-parser-gfm (1.1.0)
+      kramdown (~> 2.0)
     language_server-protocol (3.17.0.4)
     launchy (3.1.1)
       addressable (~> 2.8)
@@ -341,11 +317,7 @@ GEM
       mime-types-data (~> 3.2025, >= 3.2025.0507)
     mime-types-data (3.2025.0624)
     mini_mime (1.1.5)
-    mini_portile2 (2.8.8)
     minitest (5.25.5)
-    money-tree (0.11.2)
-      bech32 (~> 1.3)
-      openssl (~> 3.1)
     msgpack (1.8.0)
     multi_xml (0.7.1)
       bigdecimal (~> 3.1)
@@ -400,17 +372,17 @@ GEM
       rack (>= 1.2, < 4)
       snaky_hash (~> 2.0)
       version_gem (~> 1.1)
-    openssl (3.3.0)
+    observer (0.1.2)
     ostruct (0.6.1)
     parallel (1.26.3)
     parser (3.3.7.1)
       ast (~> 2.4.1)
       racc
     pg (1.5.9)
-    pkg-config (1.6.0)
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
+    prism (1.4.0)
     prometheus-client-mmap (1.2.9)
       base64
       bigdecimal
@@ -513,10 +485,8 @@ GEM
       ffi (~> 1.0)
     rb_sys (0.9.111)
       rake-compiler-dock (= 1.9.1)
-    rbsecp256k1 (6.0.0)
-      mini_portile2 (~> 2.8)
-      pkg-config (~> 1.5)
-      rubyzip (~> 2.3)
+    rbs (3.6.1)
+      logger
     rdoc (6.14.1)
       erb
       psych (>= 4.0.0)
@@ -529,8 +499,9 @@ GEM
       io-console (~> 0.5)
     request_store (1.7.0)
       rack (>= 1.4)
+    reverse_markdown (3.0.0)
+      nokogiri
     rexml (3.4.1)
-    rlp (0.7.3)
     rubocop (1.73.1)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
@@ -562,9 +533,6 @@ GEM
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     rubyzip (2.4.1)
-    scrypt (3.0.8)
-      ffi-compiler (>= 1.0, < 2.0)
-      rake (>= 9, < 14)
     securerandom (0.4.1)
     selenium-webdriver (4.34.0)
       base64 (~> 0.2)
@@ -587,6 +555,26 @@ GEM
     snaky_hash (2.0.1)
       hashie
       version_gem (~> 1.1, >= 1.1.1)
+    solargraph (0.56.2)
+      backport (~> 1.2)
+      benchmark (~> 0.4)
+      bundler (~> 2.0)
+      diff-lcs (~> 1.4)
+      jaro_winkler (~> 1.6, >= 1.6.1)
+      kramdown (~> 2.3)
+      kramdown-parser-gfm (~> 1.1)
+      logger (~> 1.6)
+      observer (~> 0.1)
+      ostruct (~> 0.6)
+      parser (~> 3.0)
+      prism (~> 1.4)
+      rbs (~> 3.6.1)
+      reverse_markdown (~> 3.0)
+      rubocop (~> 1.38)
+      thor (~> 1.0)
+      tilt (~> 2.0)
+      yard (~> 0.9, >= 0.9.24)
+      yard-solargraph (~> 0.1)
     solid_cable (3.0.11)
       actioncable (>= 7.2)
       activejob (>= 7.2)
@@ -685,6 +673,9 @@ GEM
       anyway_config (>= 1.3, < 3)
       railties
       yabeda (~> 0.8)
+    yard (0.9.37)
+    yard-solargraph (0.1.0)
+      yard (~> 0.9)
     zeitwerk (2.7.3)
     zstd-ruby (1.5.6.6)
 
@@ -705,7 +696,6 @@ DEPENDENCIES
   administrate!
   anyway_config (~> 2.7)
   bcrypt (~> 3.1.7)
-  bip44!
   bootsnap
   bootstrap-icons-helper (~> 2.0)
   brakeman
@@ -713,7 +703,6 @@ DEPENDENCIES
   capybara
   cssbundling-rails (~> 1.4)
   debug
-  derivator (~> 0.1)
   dip (~> 8.2.5)
   draper (~> 4.0)
   faker (~> 3.5)
@@ -750,6 +739,7 @@ DEPENDENCIES
   semver2!
   simple_form (~> 5.3)
   slim-rails
+  solargraph
   solid_cable
   solid_cache
   solid_queue

@@ -2,5 +2,5 @@
   - if current_user.default_account.present?
     = link_to 'Nodes', tenant_nodes_url(subdomain: current_user.default_account.subdomain)
 - else
-  h1 Welome to Vilna!
+  h1 Welome to Hypo!
   = link_to 'Sign in', new_session_url

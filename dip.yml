@@ -8,7 +8,7 @@ environment:
 compose:
   files:
     - .dockerdev/compose.yml
-  project_name: vilna
+  project_name: hypo
 
 interaction:
   # This command spins up a Rails container with the required dependencies (such as databases),
@@ -58,7 +58,7 @@ interaction:
   psql:
     description: Run Postgres psql console
     service: postgres
-    default_args: vilna_development
+    default_args: hypo_development
     command: psql -h postgres -U postgres
 
   clean_cache:

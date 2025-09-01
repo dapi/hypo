@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_headers
-    response.headers["X-App-Name"] = "Vilna"
+    response.headers["X-App-Name"] = "Hypo"
     response.headers["X-App-Version"] = AppVersion.to_s
   end
 end

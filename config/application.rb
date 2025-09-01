@@ -6,7 +6,7 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module Vilna
+module Hypo
   class Application < Rails::Application
     # Configure the path for configuration classes that should be used before initialization
     # NOTE: path should be relative to the project root (Rails.root)

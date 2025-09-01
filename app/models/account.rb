@@ -13,7 +13,7 @@ class Account < ApplicationRecord
   has_many :services
   has_many :project_extensions
 
-  validates :subdomain, exclusion: { in: ApplicationConfig.reserved_subdomains }
+  validates :subdomain, exclusion: { in: ApplicationConfig.reserved_subdomains }, presence: true
 
   before_create do
     self.key ||= Nanoid.generate(size: 8, alphabet: ALPHABET)

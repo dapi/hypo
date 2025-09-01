@@ -48,6 +48,8 @@ gem "slim-rails"
 group :development, :test do
   gem "dip", "~> 8.2.5"
 
+  gem 'solargraph'
+
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
 

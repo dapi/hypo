@@ -1,7 +1,7 @@
 ---
 # https://github.com/rails/rails/blob/main/activemodel/lib/active_model/locale/en.yml
 #
-ru:
+ru-backup:
   activerecord: &activerecord
     models:
       trade:

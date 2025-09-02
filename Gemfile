@@ -94,8 +94,6 @@ gem "anyway_config", "~> 2.7"
 
 gem "sorcery", "~> 0.17.0"
 
-gem "rhelm", github: "brandymint/rhelm"
-
 gem "zstd-ruby", "~> 1.5"
 
 gem "solid_queue_dashboard", "~> 0.2.0"
@@ -151,3 +149,5 @@ gem "rack-cors", "~> 3.0"
 gem "valid_email", "~> 0.2.1"
 
 gem "ruby_llm", "~> 1.6"
+
+gem "redcarpet", "~> 3.6"

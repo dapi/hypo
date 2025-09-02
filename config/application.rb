@@ -26,7 +26,7 @@ module Hypo
 
     config.i18n.default_locale = :ru
 
-    config.i18n.available_locales = [ :ru, :en ]
+    config.i18n.available_locales = [ :ru ]
 
     config.rails_i18n.enabled_modules = [ :pluralization ]
 

@@ -2,4 +2,4 @@ css: yarn watch:css
 css: yarn build:css --watch
 jobs: ./bin/jobs
 bot: bundle exec rake telegram:bot:poller
-server: rails s -b 192.168.88.10 -p 3000
+server: rails s 

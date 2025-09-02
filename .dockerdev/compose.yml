@@ -3,14 +3,14 @@ x-app: &app
     context: .
     args:
       RUBY_VERSION: '3.4.1'
-      PG_MAJOR: '16'
-      NODE_MAJOR: '18'
-  image: vilna-dev:1.0.0
+      PG_MAJOR: '17'
+      NODE_MAJOR: '20'
+  image: hypo-dev:1.0.0
   environment: &env
     NODE_ENV: ${NODE_ENV:-development}
     RAILS_ENV: ${RAILS_ENV:-development}
-    VILNA_BOT_TOKEN: ${VILNA_BOT_TOKEN:-bot-token}
-    VILNA_BOT_USERNAME: ${VILNA_BOT_USERNAME:-bot-username}
+    HYPO_BOT_TOKEN: ${HYPO_BOT_TOKEN:-bot-token}
+    HYPO_BOT_USERNAME: ${HYPO_BOT_USERNAME:-bot-username}
   tmpfs:
     - /tmp
     - /app/tmp/pids
@@ -56,7 +56,7 @@ services:
       - '3000:3000'
 
   postgres:
-    image: postgres:16
+    image: postgres:17
     volumes:
       - .psqlrc:/root/.psqlrc:ro
       - postgres:/var/lib/postgresql/data

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_01_080633) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_01_134757) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
@@ -27,10 +27,44 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_01_080633) do
     t.index ["subdomain"], name: "index_accounts_on_subdomain", unique: true
   end
 
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.string "service_name", null: false
+    t.bigint "byte_size", null: false
+    t.string "checksum"
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
   create_table "blockchains", force: :cascade do |t|
     t.integer "chain_id"
     t.string "key"
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "chats", force: :cascade do |t|
+    t.string "model_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -78,6 +112,20 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_01_080633) do
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_memberships_on_account_id"
     t.index ["user_id"], name: "index_memberships_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.bigint "chat_id", null: false
+    t.string "role"
+    t.text "content"
+    t.string "model_id"
+    t.integer "input_tokens"
+    t.integer "output_tokens"
+    t.bigint "tool_call_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chat_id"], name: "index_messages_on_chat_id"
+    t.index ["tool_call_id"], name: "index_messages_on_tool_call_id"
   end
 
   create_table "nodes", force: :cascade do |t|
@@ -136,6 +184,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_01_080633) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "instruction"
+    t.string "about"
     t.index ["account_id"], name: "index_projects_on_account_id"
   end
 
@@ -168,6 +218,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_01_080633) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "tool_calls", force: :cascade do |t|
+    t.bigint "message_id", null: false
+    t.string "tool_call_id", null: false
+    t.string "name", null: false
+    t.jsonb "arguments", default: {}
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["message_id"], name: "index_tool_calls_on_message_id"
+    t.index ["tool_call_id"], name: "index_tool_calls_on_tool_call_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "crypted_password"
@@ -192,13 +253,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_01_080633) do
   end
 
   add_foreign_key "accounts", "users", column: "owner_id"
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "hypotheses", "projects"
   add_foreign_key "memberships", "accounts"
   add_foreign_key "memberships", "users"
+  add_foreign_key "messages", "chats"
   add_foreign_key "nodes", "accounts"
   add_foreign_key "nodes", "image_tags"
   add_foreign_key "project_api_keys", "accounts"
   add_foreign_key "project_api_keys", "users", column: "creator_id"
   add_foreign_key "projects", "accounts"
   add_foreign_key "services", "accounts"
+  add_foreign_key "tool_calls", "messages"
 end

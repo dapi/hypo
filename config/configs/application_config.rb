@@ -9,7 +9,7 @@ class ApplicationConfig < Anyway::Config
     host: "localhost",
     protocol: "http",
     port: "3000",
-    llm_provider: 'deepseek',
+    llm_provider: "deepseek",
     # config.default_model = "gpt-4.1-nano"
     # config.default_model = "deepseek-reasoner"
     llm_default_model: "deepseek-chat",

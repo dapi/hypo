@@ -125,7 +125,7 @@ GEM
       rails (>= 7.1)
     brakeman (7.1.0)
       racc
-    bugsnag (6.27.1)
+    bugsnag (6.28.0)
       concurrent-ruby (~> 1.0)
     builder (3.3.0)
     capybara (3.40.0)
@@ -708,7 +708,7 @@ DEPENDENCIES
   bootsnap
   bootstrap-icons-helper (~> 2.0)
   brakeman
-  bugsnag (~> 6.27)
+  bugsnag (~> 6.28)
   capybara
   cssbundling-rails (~> 1.4)
   csv (~> 3.3)

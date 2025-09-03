@@ -5,7 +5,7 @@ class CheckHypothesisQualityJob < ApplicationJob
   def perform(hypothesis_id)
     h = Hypothesis.find hypothesis_id
 
-    chat =
+    chat = Chat.create provider
     # chat = RubyLLM.chat provider: ApplicationConfig.llm_provider
     chat.with_instructions "Ты эксперт в создании и развитии IT-продуктов"
   end

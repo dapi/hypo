@@ -151,3 +151,7 @@ gem "valid_email", "~> 0.2.1"
 gem "ruby_llm", "~> 1.6"
 
 gem "redcarpet", "~> 3.6"
+
+gem "csv2md", "~> 1.1"
+
+gem "csv", "~> 3.3"

@@ -1,4 +1,6 @@
+<% if ENV.key? 'BUGSNAG_API_KEY' %>
 <script type="module">
   import BugsnagPerformance from '//d2wy8f7a9ursnm.cloudfront.net/v1/bugsnag-performance.min.js'
-  BugsnagPerformance.start({ apiKey: '7a189150a2ca438b5e62b3d906ddaf59' })
+  BugsnagPerformance.start({ apiKey: "<%= ENV.fetch('BUGSNAG_API_KEY') %>" })
 </script>
+<% end %>

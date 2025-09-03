@@ -3,6 +3,7 @@ require_relative "../config/environment"
 require "rails/test_help"
 require "minitest/mock"
 
+# ActionDispatch::Http::URL.tld_length = 1
 module ActiveSupport
   class TestCase
     # Run tests in parallel with specified workers

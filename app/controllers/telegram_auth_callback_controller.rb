@@ -25,7 +25,7 @@ class TelegramAuthCallbackController < ApplicationController
       login data.fetch("tid")
       redirect_after_login
     else
-      redirect_to new_session_url, notice: "Неверный токен авторизации (1), попробуйте еще раз"
+      redirect_to new_session_url, notice: "Неверный токен авторизации (1), попробуйте еще раз", allow_other_host: true
     end
   rescue ActiveSupport::MessageVerifier::InvalidSignature
     redirect_to new_session_url, notice: "Неверный токен авторизации (2), попробуйте еще раз"

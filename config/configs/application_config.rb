@@ -9,6 +9,7 @@ class ApplicationConfig < Anyway::Config
     host: "localhost",
     protocol: "http",
     port: "3000",
+    google_drive_secret_file: '.secrets/google-drive.json',
     llm_provider: "deepseek",
     # config.default_model = "gpt-4.1-nano"
     # config.default_model = "deepseek-reasoner"

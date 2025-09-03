@@ -746,6 +746,7 @@ DEPENDENCIES
   dip (~> 8.2.5)
   draper (~> 4.0)
   faker (~> 3.5)
+  faraday-multipart (~> 1.1)
   google_drive (~> 1.0)
   guard
   guard-ctags-bundler

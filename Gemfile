@@ -157,5 +157,4 @@ gem "csv2md", "~> 1.1"
 gem "csv", "~> 3.3"
 
 # gem "faraday-multipart", "~> 1.1"
-gem 'google_drive_maintained'
-
+gem "google_drive_maintained"

@@ -25,5 +25,4 @@ module Telegram::RescueErrors
     Bugsnag.notify error
     Rails.logger.error "#{error} #{chat.to_json}"
   end
-
 end

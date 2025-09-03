@@ -44,10 +44,10 @@ dip rails s
 
 # Run full test suite
 dip rails test
-bin/rails test test:system
+dip rails test:system
 
 # Run single test file
-bin/rails test test/models/account_test.rb
+dip rails test test/models/account_test.rb
 
 # Access Rails console
 dip rails c

@@ -19,8 +19,13 @@ module Telegram
 
     use_session!
 
+    def new_hypo(*)
+      message =  payload.fetch('text')
+      reply_with :message, text: 'Прекрасная гипотеза, сейчас мы ее проанализируем, оценим и раскроем. Минуточку..'
+      # TODO Ask agent
+    end
+
     def callback_query(key)
-      debugger
       Rails.logger.warn "Выбор без контекста, странно: #{args}"
       Bugsnag.notify "Выбор без контекста, странно" do |b|
         b.metadata = { args: }

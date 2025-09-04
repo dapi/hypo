@@ -15,6 +15,11 @@ module Telegram::Commands::Start
     end
   end
 
+  def restart!(*)
+    current_user.update! read_guide_at: nil
+    start!
+  end
+
   def read_guide_callback_query(*args)
     current_user.touch :read_guide_at
     reply_with :message, text: "О какая ты умничка! Зачёт ;)"
@@ -24,7 +29,7 @@ module Telegram::Commands::Start
   private
 
   def start_new_hypo
-    save_context :start_new_hypo
+    save_context :new_hypo
     respond_with :message, text: multiline(
       "А теперь напиши своими словами основную гипотезу которую ты хочешь проверить.",
       "",

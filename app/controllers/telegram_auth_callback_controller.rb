@@ -3,6 +3,8 @@
 # frozen_string_literal: true
 
 class TelegramAuthCallbackController < ApplicationController
+  include Telegram::Verifier
+
   def self.sign_params(data_params)
     data_check_string = data_params.sort.map { |k, v| [ k, v ].join("=") }.join("\n")
     secret_key = OpenSSL::Digest::SHA256.new(ApplicationConfig.bot_token).digest
@@ -12,7 +14,6 @@ class TelegramAuthCallbackController < ApplicationController
   before_action :authorize!, only: :create
 
   def confirm
-    verifier = Rails.application.message_verifier :telegram
     token = params[:token].to_s
     if token.present?
       data = verifier.verify token, purpose: :login

@@ -20,14 +20,6 @@ module ApplicationHelper
     AUTH_PREFIX + cookies.signed[:auth_token]||=Nanoid.generate
   end
 
-  def service_state(service)
-    "OK" # TODO is_active
-  end
-
-  def project_extension_state(pe)
-    "OK"
-  end
-
   def back_link(url = nil)
     link_to "&larr; #{t('helpers.back')}".html_safe, url || back_url || root_path
   end

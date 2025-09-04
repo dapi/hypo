@@ -49,7 +49,7 @@ Rails.application.routes.draw do
   end
 
   scope module: :tenant, as: :tenant, constraints: AccountConstraint do
-    root to: "projects#index"
+    root to: "dashboard#index"
     resources :projects
   end
 

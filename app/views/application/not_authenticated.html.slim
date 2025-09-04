@@ -1,2 +1,4 @@
 .text-center.mb-5.display-5 Для дальнейших действий необходимо представиться
-.text-center= link_to 'Войти', new_session_url, class: 'btn btn-lg btn-primary'
+// .text-center= link_to 'Войти', new_session_url, class: 'btn btn-lg btn-primary'
+.text-center
+  = render 'telegram_login'

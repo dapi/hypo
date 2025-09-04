@@ -33,6 +33,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def telegram_verifier
+    debugger
+    @telegram_verifier ||= Rails.application.message_verifier :telegram
+  end
+
   def set_headers
     response.headers["X-App-Name"] = "Hypo"
     response.headers["X-App-Version"] = AppVersion.to_s

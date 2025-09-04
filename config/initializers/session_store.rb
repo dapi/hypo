@@ -2,4 +2,5 @@
 
 Rails.application.config.session_store :cookie_store,
                                        key: "_hypo_session",
-                                       domain: :all
+                                       domain:  ApplicationConfig.cookie_domain,
+                                       tld_length: ApplicationConfig.tld_length

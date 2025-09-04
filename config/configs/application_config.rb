@@ -7,12 +7,11 @@ class ApplicationConfig < Anyway::Config
   attr_config(
     app_title: "Hypo",
     host: "localhost",
+    cookie_domain: ":all",
     protocol: "http",
     port: "3000",
     google_drive_secret_file: ".secrets/google-drive.json",
     llm_provider: "deepseek",
-    # config.default_model = "gpt-4.1-nano"
-    # config.default_model = "deepseek-reasoner"
     llm_default_model: "deepseek-chat",
     telegram_auth_expiration: 120, # В Секундах
     bot_token: "",
@@ -67,6 +66,11 @@ class ApplicationConfig < Anyway::Config
 
   def bot_id
     bot_token.split(":").first
+  end
+
+  def cookie_domain
+    value = super
+    value == ":all" ? :all : value
   end
 
   class << self

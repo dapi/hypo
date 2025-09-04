@@ -1,0 +1,15 @@
+test:
+  host: localhost
+  cookie_domain: ':all'
+  protocol: http
+
+development:
+  host: localhost
+  cookie_domain: .localhost
+  protocol: http
+  port: 3000
+
+production:
+  proticol: https
+  cookie_domain: ':all'
+  port: 443

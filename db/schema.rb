@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_02_195420) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_04_103731) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
@@ -247,6 +247,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_02_195420) do
     t.string "role", default: "user", null: false
     t.string "api_key", null: false
     t.string "locale", default: "en", null: false
+    t.datetime "read_guide_at", precision: nil
     t.index ["api_key"], name: "index_users_on_api_key", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["last_logout_at", "last_activity_at"], name: "index_users_on_last_logout_at_and_last_activity_at"

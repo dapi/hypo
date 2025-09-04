@@ -25,7 +25,7 @@ class TelegramUser < ApplicationRecord
     telegram_nick
   end
 
-  def telegram_nick
+  def nickname
     "@#{username}"
   end
 end

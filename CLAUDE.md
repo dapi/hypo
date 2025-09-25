@@ -147,10 +147,11 @@ make bump-patch && make push-release
 
 The app uses Rails' built-in testing framework with:
 - Unit tests in `test/models/`
-- Controller tests in `test/controllers/` 
+- Controller tests in `test/controllers/`
 - System tests with Capybara + Selenium
 - Fixtures in `test/fixtures/`
 - Test helper with common setup in `test/test_helper.rb`
+- Additional specs and documentation in `docs/` directory
 
 Run system tests specifically with: `bin/rails test:system`
 

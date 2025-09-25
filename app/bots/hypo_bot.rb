@@ -1,14 +1,18 @@
-class HypoBot << TelegramBot::Graph
-  start! do # Такая node
-    message "Добро пожаловать!"
-
-    # Множественные выходы из узла
-    goto :read_guide, when: -> { !read_guide? }
-    goto :new_project, when: -> { !current_project && read_guide? }
-    goto :new_hypo, when: -> { current_project && read_guide? }
+class HypoBot < TelegramBot::Graph
+  start! do
+    replay_with :message, text: "Добро пожаловать!"
+    if read_guide?
+      if current_project
+        goto :new_hypo
+      else
+        goto :new_project
+      end
+    else
+      goto :read_guide
+    end
   end
 
-  restart! do
+  command :restart! do
     reset_read_guide!
     start!
   end
@@ -18,13 +22,13 @@ class HypoBot << TelegramBot::Graph
     goto :new_project
   end
 
-  ask :new_project, 'Напиши о чем твой проект? Кто потенциальный клиент?', on_answer: -> {  |message| create_project message } do
+  ask :new_project, text: 'Напиши о чем твой проект? Кто потенциальный клиент?', on_answer: -> (message) { create_project message } do
     reply_with :message, text: 'Отличный проект! Так и запишем.'
     goto :new_hypo
   end
 
-  ask :new_hypo, 'А теперь напиши свою гипотезу и я помогу тебе с её сильной формулировкой', on_answer: -> { |message| validate_with_llm mesage } do
-    gogo :hypo_answer
+  ask :new_hypo, text: 'А теперь напиши свою гипотезу и я помогу тебе с её сильной формулировкой', on_answer: -> (message) { validate_with_llm mesage } do
+    goto :hypo_answer
   end
 
   wait :hypo_answer do
@@ -33,9 +37,6 @@ class HypoBot << TelegramBot::Graph
   end
 
   private
-
-  def validate_with_llm
-  end
 
   def reset_read_guide!
     current_user.update! read_guide_at: nil

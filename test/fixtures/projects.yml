@@ -2,8 +2,8 @@
 
 one:
   account: one
-  name: MyString
+  name: one
 
 two:
   account: two
-  name: MyString
+  name: two

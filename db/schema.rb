@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_04_103731) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_25_133815) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
@@ -183,12 +183,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_04_103731) do
 
   create_table "projects", force: :cascade do |t|
     t.bigint "account_id", null: false
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "instruction"
     t.string "about"
     t.index ["account_id"], name: "index_projects_on_account_id"
+    t.index ["name"], name: "index_projects_on_name", unique: true
   end
 
   create_table "services", force: :cascade do |t|

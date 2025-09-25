@@ -1,8 +1,7 @@
 module TelegramBot
   class Confirmation < Node
-    def initialize(name, text:, on_confirm:, &block)
+    def initialize(name, text:, &block)
       @text = text
-      @on_confirm = on_confirm
       super name, &block
     end
   end

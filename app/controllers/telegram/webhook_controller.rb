@@ -8,8 +8,8 @@ module Telegram
   class WebhookController < Bot::UpdatesController
     include Telegram::Bot::UpdatesController::MessageContext
     include Telegram::Bot::UpdatesController::CallbackQueryContext
-    include Telegram::Bot::UpdatesController::TypedUpdate
-    include Telegram::Bot::UpdatesController::Session
+    # include Telegram::Bot::UpdatesController::TypedUpdate
+    include Telegram::Session
 
     include Telegram::Verifier
     include RescueErrors
@@ -30,7 +30,33 @@ module Telegram
       reply_with :message, text: "Ой, что-то мы потерялись в диалоге.. сообщили разработчикам. Ждите или не ждите ;) нам не все равно, но мы медленные."
     end
 
+    # Calculates action name and args for payload.
+    # Uses `action_for_#{payload_type}` methods.
+    # If this method doesn't return anything
+    # it uses fallback with action same as payload type.
+    # Returns array `[action, args]`.
+    def bot_action_for_payload
+      if payload_type
+        send("action_for_#{payload_type}") || action_for_default_payload
+      else
+        [:unsupported_payload_type, []]
+      end
+    end
+
+    def action_for_payload
+      [:bot_flow_action, [payload]]
+    end
+
+    def bot_flow_action(*args)
+      action, args = bot_action_for_payload
+      bot_flow.process action, *args
+    end
+
     private
+
+    def bot_flow
+      @bot_flow ||= HypoBot.new from_id: from['id'], chat_id: chat['id'], controller: self, session:
+    end
 
     def current_user
       telegram_user.user
@@ -52,13 +78,6 @@ module Telegram
       @telegram_user ||= TelegramUser
         .create_with(chat.slice(*%w[first_name last_name username]))
         .create_or_find_by! id: chat.fetch("id")
-    end
-
-
-    # In this case session will persist for user only in specific chat.
-    # Same user in other chat will have different session.
-    def session_key
-      "#{bot.username}:#{chat['id']}:#{from['id']}" if chat && from
     end
   end
 end

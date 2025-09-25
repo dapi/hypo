@@ -17,17 +17,20 @@ class HypoBot < TelegramBot::Graph
     start!
   end
 
-  confirm :read_guide, text: 'Прочтите доку', on_confirm: -> { read_guide! }  do # TODO Может быть назвать этот узел confirm?
+  confirm :read_guide, text: 'Прочтите доку' do
+    read_guide!
     reply_with :message, text: 'Уй ты умничка! Продолжаем..'
     goto :new_project
   end
 
-  ask :new_project, text: 'Напиши о чем твой проект? Кто потенциальный клиент?', on_answer: -> (message) { create_project message } do
+  ask :new_project, text: 'Напиши о чем твой проект? Кто потенциальный клиент?' do |message|
+    create_project message
     reply_with :message, text: 'Отличный проект! Так и запишем.'
     goto :new_hypo
   end
 
-  ask :new_hypo, text: 'А теперь напиши свою гипотезу и я помогу тебе с её сильной формулировкой', on_answer: -> (message) { validate_with_llm mesage } do
+  ask :new_hypo, text: 'А теперь напиши свою гипотезу и я помогу тебе с её сильной формулировкой' do |message|
+    validate_with_llm mesage
     goto :hypo_answer
   end
 

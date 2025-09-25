@@ -8,16 +8,12 @@ module Telegram
   class WebhookController < Bot::UpdatesController
     include Telegram::Bot::UpdatesController::MessageContext
     include Telegram::Bot::UpdatesController::CallbackQueryContext
+    include Telegram::Bot::UpdatesController::TypedUpdate
+    include Telegram::Bot::UpdatesController::Session
 
     include Telegram::Verifier
-    # include UpdateProjectMembership
-    # include Commands::Who
-    # include Actions::Message
-    # include Actions::MyChatMember
     include RescueErrors
     include Commands::Start
-
-    use_session!
 
     def new_hypo(*)
       message =  payload.fetch('text')
@@ -57,6 +53,13 @@ module Telegram
       @telegram_user ||= TelegramUser
         .create_with(chat.slice(*%w[first_name last_name username]))
         .create_or_find_by! id: chat.fetch("id")
+    end
+
+
+    # In this case session will persist for user only in specific chat.
+    # Same user in other chat will have different session.
+    def session_key
+      "#{bot.username}:#{chat['id']}:#{from['id']}" if chat && from
     end
   end
 end

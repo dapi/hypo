@@ -158,3 +158,5 @@ gem "csv", "~> 3.3"
 
 # gem "faraday-multipart", "~> 1.1"
 gem "google_drive_maintained"
+
+gem "state_machines", "~> 0.31.0"

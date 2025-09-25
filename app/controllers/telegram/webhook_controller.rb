@@ -33,8 +33,7 @@ module Telegram
     private
 
     def current_user
-      return @current_user if defined? @current_user
-      @current_user = telegram_user.user
+      telegram_user.user
     end
 
     def multiline(*args)

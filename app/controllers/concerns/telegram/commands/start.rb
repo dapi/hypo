@@ -1,17 +1,13 @@
 module Telegram::Commands::Start
   extend ActiveSupport::Concern
   def start!(word = nil, *other_words)
-    if current_user.present?
-      if current_user.read_guide_at.present?
-        respond_with :message, text: "С возвращением, #{nickname} ;)"
+    if current_user.read_guide_at.present?
+      respond_with :message, text: "С возвращением, #{nickname} ;)"
 
-        # TODO Что дальше? Вводим новую гипотезу или продолжаем диалог? Или спросить что делать дальше?
-        start_new_hypo
-      else
-        welcome_read_guide
-      end
+      # TODO Что дальше? Вводим новую гипотезу или продолжаем диалог? Или спросить что делать дальше?
+      start_new_hypo
     else
-      start_new_user
+      welcome_read_guide
     end
   end
 

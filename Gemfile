@@ -95,7 +95,7 @@ gem "anyway_config", "~> 2.7"
 
 gem "sorcery", "~> 0.17.0"
 
-gem "zstd-ruby", "~> 1.5"
+gem "zstd-ruby", "~> 2.0"
 
 gem "solid_queue_dashboard", "~> 0.2.0"
 

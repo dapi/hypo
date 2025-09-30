@@ -129,7 +129,7 @@ gem "mutex_m", "~> 0.3.0"
 
 gem "net-smtp", "~> 0.5.0"
 
-gem "mailgun-ruby", "~> 1.3"
+gem "mailgun-ruby", "~> 1.4"
 
 gem "rb-gravatar", "~> 1.0"
 

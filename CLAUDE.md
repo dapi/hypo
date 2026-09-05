@@ -170,3 +170,7 @@ When working with tenant-specific features:
 - Responsive design with mobile-first approach
 - Slim templates for clean, semantic markup
 - Real-time UI updates via Action Cable channels
+
+## Sessions System Behaviors
+
+@CLAUDE.sessions.md
